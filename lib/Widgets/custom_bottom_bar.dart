@@ -13,56 +13,80 @@ class BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.sizeOf(context).height;
-    double width = MediaQuery.sizeOf(context).width;
+    Size size = MediaQuery.of(context).size;
+
     return Container(
-      width: width,
-      decoration: const BoxDecoration(
-        border: BorderDirectional(
+      height: size.width * .230,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: const BorderDirectional(
           top: BorderSide(
             width: 1,
             color: Color(0xFF766B6B),
           ),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.15),
+            blurRadius: 30,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
-      child: BottomNavigationBar(
-          onTap: (int index) {
+      child: ListView.builder(
+        itemCount: mainScreenViewModel.icons.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) => InkWell(
+          onTap: () {
             mainScreenViewModel.currentTabSet = index;
           },
-          currentIndex: mainScreenViewModel.currentTab,
-          type: BottomNavigationBarType.fixed,
-          showUnselectedLabels: true,
-          selectedItemColor: const Color(0xFF365830),
-          unselectedItemColor: const Color(0xFF766B6B),
-          selectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF365830),
-              fontSize: 12,
-              fontFamily: 'Montserrat'),
-          unselectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.w400,
-              color: Color(0xFF766B6B),
-              fontSize: 12,
-              fontFamily: 'Montserrat'),
-          items: mainScreenViewModel.items
-              .map((e) => BottomNavigationBarItem(
-                  icon: Image.asset(
-                    e.icon.toString(),
-                    height: height * 0.04,
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 1500),
+                curve: Curves.fastLinearToSlowEaseIn,
+                margin: EdgeInsets.only(
+                  bottom: index == mainScreenViewModel.currentTab
+                      ? 0
+                      : size.width * .029,
+                  right: size.width * .1,
+                  left: size.width * .1,
+                ),
+                width: size.width * .128,
+                height: index == mainScreenViewModel.currentTab
+                    ? size.width * .016
+                    : 0,
+                decoration: const BoxDecoration(
+                  color: Color(0xFF365830),
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(5),
                   ),
-                  label: e.lable))
-              .toList()),
+                ),
+              ),
+              Image.asset(
+                mainScreenViewModel.icons[index],
+                //width: size.width * .080,
+                color: index == mainScreenViewModel.currentTab
+                    ? const Color(0xFF365830)
+                    : const Color(0xFF766B6B),
+              ),
+              Text(
+                mainScreenViewModel.lables[index],
+                style: TextStyle(
+                  fontSize: 14,
+                  color: index == mainScreenViewModel.currentTab
+                      ? const Color(0xFF365830)
+                      : const Color(0xFF766B6B),
+                ),
+              ),
+              SizedBox(height: size.width * .02),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
-
-// index == mainScreenViewModel.currentTab
-//               ? Container(
-//                   height: 50,
-//                   width: 30,
-//                   decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(5),
-//                     color: Colors.green,
-//                   ),
-//                 )
-//               : const SizedBox(),

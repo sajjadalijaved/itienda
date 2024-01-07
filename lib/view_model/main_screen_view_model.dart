@@ -13,12 +13,17 @@ class MainScreenViewModel extends ChangeNotifier {
     const ProfileScreen()
   ];
 
-  List<BottomBarItem> items = [
-    BottomBarItem(icon: "assets/home.png", lable: "Inicio"),
-    BottomBarItem(icon: "assets/category.png", lable: "Categorías"),
-    BottomBarItem(icon: "assets/user.png", lable: "Perfil"),
+  List<String> icons = [
+    "assets/home.png",
+    "assets/category.png",
+    "assets/user.png",
   ];
 
+  List<String> lables = [
+    "Inicio",
+    "Categorías",
+    "Perfil",
+  ];
   set currentTabSet(int tab) {
     _currentTab = tab;
     notifyListeners();
@@ -26,13 +31,4 @@ class MainScreenViewModel extends ChangeNotifier {
 
   int get currentTab => _currentTab;
   get currentScreen => _screen[_currentTab];
-}
-
-class BottomBarItem {
-  String? lable;
-  String? icon;
-  BottomBarItem({
-    this.lable,
-    this.icon,
-  });
 }
