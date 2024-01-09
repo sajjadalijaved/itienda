@@ -1,18 +1,15 @@
 class FieldValidator {
-
-
   static String? validateEmail(String value) {
-
     if (value.isEmpty) {
       return 'Email is Required';
     }
-    if (!RegExp(
-        r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$")
+    if (!RegExp(r"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$")
         .hasMatch(value)) {
       return 'Please enter a valid Email';
     }
     return null;
   }
+
   static String? validatePassword(String value) {
     if (value.isEmpty) return "Password is required";
     if (value.length < 6) return "Password is too short";
@@ -36,8 +33,6 @@ class FieldValidator {
     return null;
   }
 
-
-
   static String? validateLastName(String value) {
     if (value.isEmpty) return "Last name is required";
     if (value.length <= 1) {
@@ -46,9 +41,20 @@ class FieldValidator {
 
     return null;
   }
+
   static String? validatePinCode(String? value) {
     if (value!.isEmpty) {
       return "Incorrect PIN CODE";
+    }
+    return null;
+  }
+
+  static String? validatedate(String? value) {
+    if (value!.isEmpty) {
+      return "Birth date is required";
+    }
+    if (value.length < 10) {
+      return "Enter correct formate date like dd-mm-yyyy";
     }
     return null;
   }

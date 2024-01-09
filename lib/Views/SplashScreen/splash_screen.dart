@@ -91,54 +91,66 @@ class _SplashScreenState extends State<SplashScreen> {
 
     return Scaffold(
         backgroundColor: Colors.white,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: width * 0.10),
-              child: SizedBox(
-                height: height * 0.15,
-                width: width,
-                child: Image.asset(
-                  "assets/splash.png",
-                  fit: BoxFit.cover,
+        body: Container(
+          padding: EdgeInsets.only(top: height * 0.10),
+          height: height,
+          width: width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/splash1.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.10),
+                child: SizedBox(
+                  height: height * 0.15,
+                  width: width,
+                  child: Image.asset(
+                    "assets/splash.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: height * 0.04,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: width * 0.18),
-              child: SizedBox(
-                height: height * 0.05,
-                width: width,
-                child: Row(
-                  children: [
-                    const Text(
-                      "Bienvenido(a)!",
-                      style: TextStyle(
-                          color: Color(
-                            0xFF000000,
-                          ),
-                          fontSize: 30,
-                          fontFamily: "Regular",
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    Image.asset(
-                      "assets/emoji.png",
-                      fit: BoxFit.cover,
-                      height: height * 0.034,
-                      width: width * 0.074,
-                    ),
-                  ],
-                ),
+              SizedBox(
+                height: height * 0.03,
               ),
-            )
-          ],
+              Padding(
+                padding: EdgeInsets.only(left: width * 0.10),
+                child: SizedBox(
+                  height: height * 0.05,
+                  width: width,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Bienvenido(a)!",
+                        style: TextStyle(
+                            color: Color(
+                              0xFF000000,
+                            ),
+                            fontSize: 30,
+                            fontFamily: "Montserrat",
+                            fontWeight: FontWeight.w400),
+                      ),
+                      SizedBox(
+                        width: width * 0.03,
+                      ),
+                      Image.asset(
+                        "assets/emoji.png",
+                        fit: BoxFit.cover,
+                        height: height * 0.036,
+                        width: width * 0.076,
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ));
   }
 }

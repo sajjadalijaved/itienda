@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:itienda/Views/home_screen.dart';
-import 'package:itienda/Views/profile_screen.dart';
-import 'package:itienda/Views/categories_screen.dart';
+import 'package:itienda/Views/ProfileScreens/profile_screen.dart';
+import 'package:itienda/Views/CategoryScreens/categories_screen.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 

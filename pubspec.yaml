@@ -44,6 +44,7 @@ dependencies:
   shared_preferences: ^2.2.2
   animate_do: ^3.1.2
   provider: ^6.1.1
+  font_awesome_flutter: ^10.6.0
 
   pin_code_fields: ^8.0.1
   # rive: ^0.12.4

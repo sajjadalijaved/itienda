@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itienda/Utils/appcolors.dart';
+import 'package:itienda/Views/CategoryScreens/job_listing_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -112,47 +113,61 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         (index) => Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Container(
-                                  height: height * 0.04,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      width: 0.05,
-                                      color: const Color(0xFF365830),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            JobListingJobSeekerScreen(
+                                          name: name[index],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    height: height * 0.04,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border.all(
+                                        width: 0.05,
+                                        color: const Color(0xFF365830),
+                                      ),
                                     ),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: width * 0.01,
-                                      ),
-                                      const Icon(
-                                        Icons.arrow_forward_outlined,
-                                        size: 25,
-                                      ),
-                                      SizedBox(
-                                        width: width * 0.03,
-                                      ),
-                                      Text(
-                                        name[index],
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            fontFamily: "Montserrat",
-                                            color: AppColors.textBlackColor),
-                                      ),
-                                      const Spacer(),
-                                      Text(
-                                        "${number[index]}  vacantes",
-                                        style: const TextStyle(
-                                            fontSize: 12,
-                                            fontFamily: "Montserrat",
-                                            color: Color(0xFF006341)),
-                                      ),
-                                      SizedBox(
-                                        width: width * 0.03,
-                                      ),
-                                    ],
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: width * 0.01,
+                                        ),
+                                        const Icon(
+                                          Icons.arrow_forward_outlined,
+                                          size: 25,
+                                        ),
+                                        SizedBox(
+                                          width: width * 0.03,
+                                        ),
+                                        Text(
+                                          name[index],
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              fontFamily: "Montserrat",
+                                              color: AppColors.textBlackColor),
+                                        ),
+                                        const Spacer(),
+                                        Text(
+                                          "${number[index]}  vacantes",
+                                          style: const TextStyle(
+                                              fontSize: 12,
+                                              fontFamily: "Montserrat",
+                                              color: Color(0xFF006341)),
+                                        ),
+                                        SizedBox(
+                                          width: width * 0.03,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
