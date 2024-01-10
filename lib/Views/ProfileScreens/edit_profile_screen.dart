@@ -524,7 +524,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             child: SizedBox(
                                 height: height * 0.06,
                                 child: text(
-                                    "¿En cuales areas te gustaria actuar?      Escoge hasta 3 opciones",
+                                    "¿En cuales areas te gustaria actuar? Escoge hasta 3 opciones",
                                     14,
                                     fontWeight: FontWeight.w500)),
                           ),

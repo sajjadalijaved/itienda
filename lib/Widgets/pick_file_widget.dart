@@ -49,6 +49,12 @@ class _FilePickerWidgetState extends State<FilePickerWidget>
   }
 
   @override
+  void dispose() {
+    loadingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
