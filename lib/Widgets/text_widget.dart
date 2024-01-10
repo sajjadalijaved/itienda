@@ -13,7 +13,6 @@ Widget text(String text, double fontsize, {FontWeight? fontWeight}) {
 }
 
 Widget row(ValueNotifier<bool> checkbox, Widget text, BuildContext context) {
-  double height = MediaQuery.sizeOf(context).height;
   double width = MediaQuery.sizeOf(context).width;
   return Row(
     children: [
@@ -23,22 +22,25 @@ Widget row(ValueNotifier<bool> checkbox, Widget text, BuildContext context) {
                 onTap: () {
                   checkbox.value = !checkbox.value;
                 },
-                child: Container(
-                  padding: const EdgeInsets.only(right: 6),
-                  height: height * 0.02,
-                  width: width * 0.04,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 500),
+                  height: 22,
+                  width: 22,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    border:
-                        Border.all(width: 0.5, color: AppColors.textLoginColor),
+                      color: checkbox.value == true
+                          ? AppColors.buttonColor
+                          : Colors.white,
+                      border: checkbox.value == true
+                          ? Border.all(color: Colors.black)
+                          : Border.all(color: AppColors.regisgerColor),
+                      borderRadius: BorderRadius.circular(2)),
+                  child: Center(
+                    child: Icon(
+                      checkbox.value == true ? Icons.check : null,
+                      color: Colors.white,
+                      size: 20,
+                    ),
                   ),
-                  child: checkbox.value == true
-                      ? const Icon(
-                          Icons.check,
-                          size: 18,
-                          color: Colors.black,
-                        )
-                      : null,
                 ),
               )),
       SizedBox(

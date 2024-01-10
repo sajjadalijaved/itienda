@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../Utils/Validation/validation.dart';
 import 'package:itienda/Widgets/text_widget.dart';
 import 'package:itienda/Widgets/custombutton.dart';
+import 'package:itienda/Widgets/pick_file_widget.dart';
 import 'package:itienda/Widgets/custom_textfield_for_edit_profile.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -57,6 +58,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   void initState() {
     super.initState();
+
     nameController = TextEditingController();
     phoneController = TextEditingController();
     dateController = TextEditingController();
@@ -141,8 +143,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 child: Form(
                   key: key,
                   child: Container(
-                      padding: EdgeInsets.only(left: width * 0.06),
-                      margin: EdgeInsets.only(left: width * 0.06),
+                      padding: EdgeInsets.only(
+                          left: width * 0.04, right: width * 0.01),
+                      margin: EdgeInsets.only(left: width * 0.02),
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage("assets/pro.png"),
@@ -181,7 +184,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           text("Nombre Completo", 12,
                               fontWeight: FontWeight.w500),
                           Padding(
-                            padding: EdgeInsets.only(right: width * 0.01),
+                            padding: EdgeInsets.only(right: width * 0.02),
                             child: CustomTextFieldForEditProfile(
                               height: height * 0.04,
                               hint: "",
@@ -241,20 +244,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               height: height * 0.02,
                               child: text("Género", 14,
                                   fontWeight: FontWeight.w500)),
-                          SizedBox(
-                            height: height * 0.04,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                row(mancheckbox, text("Masculino", 12),
-                                    context),
-                                SizedBox(
-                                  width: width * 0.16,
-                                ),
-                                row(womancheckbox, text("Feminino", 12),
-                                    context),
-                              ],
+                          Padding(
+                            padding: EdgeInsets.only(right: width * 0.10),
+                            child: SizedBox(
+                              height: height * 0.04,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  row(mancheckbox, text("Masculino", 12),
+                                      context),
+                                  SizedBox(
+                                    width: width * 0.16,
+                                  ),
+                                  row(womancheckbox, text("Feminino", 12),
+                                      context),
+                                ],
+                              ),
                             ),
                           ),
 
@@ -273,7 +278,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 row(mexicanocheckbox, text("Mexicano(a)", 12),
                                     context),
                                 SizedBox(
-                                  width: width * 0.133,
+                                  width: width * 0.131,
                                 ),
                                 row(extranjerocheckbox,
                                     text("Extranjero(a)", 12), context),
@@ -292,17 +297,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               children: [
                                 SizedBox(
                                   height: height * 0.01,
+                                  width: width,
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    row(
-                                        puertocheckbox,
-                                        text("Puerto Vallarta, Jal.", 12),
-                                        context),
                                     SizedBox(
-                                      width: width * 0.044,
+                                      child: row(
+                                          puertocheckbox,
+                                          text("Puerto Vallarta, Jal.", 12),
+                                          context),
+                                    ),
+                                    SizedBox(
+                                      width: width * 0.038,
                                     ),
                                     row(
                                         cabocheckbox,
@@ -348,14 +356,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     height: height * 0.01,
                                   ),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
                                       row(bsicocheckbox, text("Básico", 12),
                                           context),
                                       SizedBox(
-                                        width: width * 0.22,
+                                        width: width * 0.21,
                                       ),
                                       row(mediocheckbox,
                                           text("Medio Superior", 12), context),
@@ -365,14 +372,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     height: height * 0.01,
                                   ),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
                                       row(superiorcheckbox,
                                           text("Superior", 12), context),
                                       SizedBox(
-                                        width: width * 0.20,
+                                        width: width * 0.19,
                                       ),
                                       row(postgradocheckbox,
                                           text("Postgrado", 12), context),
@@ -397,14 +403,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               child: Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
                                       row(nulocheckbox, text("Nulo", 12),
                                           context),
                                       SizedBox(
-                                        width: width * 0.26,
+                                        width: width * 0.248,
                                       ),
                                       row(bsicocheckbox1, text("Básico", 12),
                                           context),
@@ -414,14 +419,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     height: height * 0.01,
                                   ),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
                                       row(intermediocheckbox,
                                           text("Intermedio", 12), context),
                                       SizedBox(
-                                        width: width * 0.176,
+                                        width: width * 0.164,
                                       ),
                                       row(avanzadocheckbox,
                                           text("Avanzado", 12), context),
@@ -447,12 +451,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               child: SizedBox(
                                 height: height * 0.04,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     row(sicheckbox1, text("Sí", 12), context),
                                     SizedBox(
-                                      width: width * 0.31,
+                                      width: width * 0.29,
                                     ),
                                     row(nocheckbox1, text("No", 12), context),
                                   ],
@@ -481,12 +484,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               child: SizedBox(
                                 height: height * 0.04,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     row(sicheckbox2, text("Sí", 12), context),
                                     SizedBox(
-                                      width: width * 0.31,
+                                      width: width * 0.29,
                                     ),
                                     row(nocheckbox2, text("No", 12), context),
                                   ],
@@ -506,12 +508,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               child: SizedBox(
                                 height: height * 0.04,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     row(sicheckbox3, text("Sí", 12), context),
                                     SizedBox(
-                                      width: width * 0.31,
+                                      width: width * 0.29,
                                     ),
                                     row(nocheckbox3, text("No", 12), context),
                                   ],
@@ -529,138 +530,109 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ),
                           Padding(
                               padding: EdgeInsets.only(left: width * 0.020),
-                              child: SizedBox(
-                                height: height * 0.18,
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        row(
-                                            administrativocheckbox,
-                                            text("Administrativo", 12),
-                                            context),
-                                        SizedBox(
-                                          width: width * 0.14,
-                                        ),
-                                        row(
-                                            atencioncheckbox,
-                                            text("Atención al Cliente", 12),
-                                            context),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        row(construccioncheckbox,
-                                            text("Construcción", 12), context),
-                                        SizedBox(
-                                          width: width * 0.16,
-                                        ),
-                                        row(gastronomiacheckbox2,
-                                            text("Gastronomia", 12), context),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        row(mantenimientocheckbox3,
-                                            text("Mantenimiento", 12), context),
-                                        SizedBox(
-                                          width: width * 0.14,
-                                        ),
-                                        row(saludcheckbox3, text("Salud", 12),
-                                            context),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        row(seguridadcheckbox,
-                                            text("Seguridad", 12), context),
-                                        SizedBox(
-                                          width: width * 0.21,
-                                        ),
-                                        row(servicioscheckbox,
-                                            text("Servicios", 12), context),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        row(tecnologiacheckbox,
-                                            text("Tecnología", 12), context),
-                                        SizedBox(
-                                          width: width * 0.20,
-                                        ),
-                                        row(ventascheckbox, text("Ventas", 12),
-                                            context),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    row(otroscheckbox, text("Otros", 12),
-                                        context),
-                                  ],
-                                ),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      row(administrativocheckbox,
+                                          text("Administrativo", 12), context),
+                                      SizedBox(
+                                        width: width * 0.12,
+                                      ),
+                                      row(
+                                          atencioncheckbox,
+                                          text(
+                                            "Atención al Cliente",
+                                            12,
+                                          ),
+                                          context),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      row(construccioncheckbox,
+                                          text("Construcción", 12), context),
+                                      SizedBox(
+                                        width: width * 0.14,
+                                      ),
+                                      row(gastronomiacheckbox2,
+                                          text("Gastronomia", 12), context),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      row(mantenimientocheckbox3,
+                                          text("Mantenimiento", 12), context),
+                                      SizedBox(
+                                        width: width * 0.12,
+                                      ),
+                                      row(saludcheckbox3, text("Salud", 12),
+                                          context),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  Row(
+                                    children: [
+                                      row(seguridadcheckbox,
+                                          text("Seguridad", 12), context),
+                                      SizedBox(
+                                        width: width * 0.194,
+                                      ),
+                                      row(servicioscheckbox,
+                                          text("Servicios", 12), context),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  Row(
+                                    children: [
+                                      row(tecnologiacheckbox,
+                                          text("Tecnología", 12), context),
+                                      SizedBox(
+                                        width: width * 0.184,
+                                      ),
+                                      row(ventascheckbox, text("Ventas", 12),
+                                          context),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  row(otroscheckbox, text("Otros", 12),
+                                      context),
+                                ],
                               )),
+                          SizedBox(
+                            height: height * 0.01,
+                          ),
 
                           /// Subir curriculum
                           Padding(
                             padding: EdgeInsets.only(left: width * 0.020),
                             child: SizedBox(
-                                height: height * 0.02,
+                                height: height * 0.03,
                                 child: text("Subir curriculum", 14,
                                     fontWeight: FontWeight.w500)),
                           ),
 
                           ///
-                          Padding(
-                            padding: EdgeInsets.only(left: width * 0.020),
-                            child: SizedBox(
-                                height: height * 0.03,
-                                child: GestureDetector(
-                                  onTap: () {},
-                                  child: Row(
-                                    children: [
-                                      const Text(
-                                        "Escoger Archivo",
-                                        style: TextStyle(
-                                            color: Color(0xFF3E34B5),
-                                            fontSize: 12),
-                                      ),
-                                      SizedBox(
-                                        width: width * 0.05,
-                                      ),
-                                      const Icon(
-                                        Icons.upload_outlined,
-                                        color: Color(0xFF3E34B5),
-                                        size: 20,
-                                      )
-                                    ],
-                                  ),
-                                )),
-                          ),
+                          const FilePickerWidget(),
+
                           SizedBox(
                             height: height * 0.05,
                           ),
