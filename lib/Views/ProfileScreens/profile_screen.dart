@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:itienda/Widgets/text_widget.dart';
 import 'package:itienda/Views/ProfileScreens/messages_screen.dart';
 import 'package:itienda/Views/ProfileScreens/help_center_screen.dart';
@@ -78,22 +79,132 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         const MyApplicationsJobSeekerScreen(),
                                   ));
                             }, "Mis Postulaciones"),
-                            container(context, () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const MessagesScreen(),
-                                  ));
-                            }, "Mensajes"),
-                            container(context, () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const NotificationsScreen(),
-                                  ));
-                            }, "Notificaciones"),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MessagesScreen(),
+                                    ));
+                              },
+                              child: Container(
+                                height: height * 0.04,
+                                width: width * 0.7,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    width: 0.5,
+                                    color: const Color(0xFF365830),
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: width * 0.01,
+                                    ),
+                                    const Icon(
+                                      Icons.arrow_forward_outlined,
+                                      size: 25,
+                                    ),
+                                    SizedBox(
+                                      width: width * 0.03,
+                                    ),
+                                    text("Mensajes", 16),
+                                    SizedBox(
+                                      width: width * 0.02,
+                                    ),
+                                    badges.Badge(
+                                      showBadge: true,
+                                      onTap: () {},
+                                      badgeContent: const Text(
+                                        "1",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      badgeAnimation:
+                                          const badges.BadgeAnimation.rotation(
+                                        animationDuration: Duration(seconds: 1),
+                                        colorChangeAnimationDuration:
+                                            Duration(seconds: 1),
+                                        loopAnimation: false,
+                                        curve: Curves.fastOutSlowIn,
+                                      ),
+                                      badgeStyle: badges.BadgeStyle(
+                                        shape: badges.BadgeShape.circle,
+                                        badgeColor: Colors.red,
+                                        padding: const EdgeInsets.all(5),
+                                        borderRadius: BorderRadius.circular(4),
+                                        elevation: 0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const NotificationsScreen(),
+                                    ));
+                              },
+                              child: Container(
+                                height: height * 0.04,
+                                width: width * 0.7,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    width: 0.5,
+                                    color: const Color(0xFF365830),
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: width * 0.01,
+                                    ),
+                                    const Icon(
+                                      Icons.arrow_forward_outlined,
+                                      size: 25,
+                                    ),
+                                    SizedBox(
+                                      width: width * 0.03,
+                                    ),
+                                    text("Notificaciones", 16),
+                                    SizedBox(
+                                      width: width * 0.02,
+                                    ),
+                                    badges.Badge(
+                                      showBadge: true,
+                                      onTap: () {},
+                                      badgeContent: const Text(
+                                        "1",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      badgeAnimation:
+                                          const badges.BadgeAnimation.rotation(
+                                        animationDuration: Duration(seconds: 1),
+                                        colorChangeAnimationDuration:
+                                            Duration(seconds: 1),
+                                        loopAnimation: false,
+                                        curve: Curves.fastOutSlowIn,
+                                      ),
+                                      badgeStyle: badges.BadgeStyle(
+                                        shape: badges.BadgeShape.circle,
+                                        badgeColor: Colors.red,
+                                        padding: const EdgeInsets.all(5),
+                                        borderRadius: BorderRadius.circular(4),
+                                        elevation: 0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                             container(context, () {
                               Navigator.push(
                                   context,

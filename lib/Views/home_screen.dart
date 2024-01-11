@@ -239,10 +239,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: height * 0.03,
+                  height: height * 0.02,
                 ),
                 SizedBox(
-                  height: height * 0.15,
+                  height: height * 0.16,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: images.length,
@@ -252,19 +252,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           top: height * 0.01,
                           left: width * 0.03),
                       margin: EdgeInsets.only(right: width * 0.06),
-                      height: height * 0.20,
-                      width: width * 0.26,
+                      width: width * 0.30,
                       decoration: BoxDecoration(
                         color: Theme.of(context)
                             .colorScheme
                             .primary
-                            .withOpacity(.09),
+                            .withOpacity(.10),
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image.asset(images[index]),
+                          Image.asset(
+                            images[index],
+                            fit: BoxFit.cover,
+                          ),
                           SizedBox(
                             height: height * 0.02,
                           ),
@@ -272,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Text(
                               categoryName[index],
                               style: const TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w500),
+                                  fontSize: 14, fontWeight: FontWeight.w400),
                             ),
                           )
                         ],
