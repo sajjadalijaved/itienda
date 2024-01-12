@@ -1,10 +1,15 @@
+import 'dart:io';
 import '../../Utils/appcolors.dart';
 import 'package:flutter/material.dart';
 import '../../Utils/Validation/validation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:itienda/Widgets/text_widget.dart';
 import 'package:itienda/Widgets/custombutton.dart';
 import 'package:itienda/Widgets/pick_file_widget.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:itienda/Widgets/custom_textfield_for_edit_profile.dart';
+// ignore_for_file: use_build_context_synchronously
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -54,6 +59,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   ValueNotifier<bool> tecnologiacheckbox = ValueNotifier<bool>(false);
   ValueNotifier<bool> ventascheckbox = ValueNotifier<bool>(false);
   ValueNotifier<bool> otroscheckbox = ValueNotifier<bool>(false);
+
+  File? newImage;
+  XFile? image;
+  String? tempImage;
 
   @override
   void initState() {
@@ -153,30 +162,48 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       child: ListView(
                         scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        cacheExtent: height,
+                        // shrinkWrap: true,
                         children: [
-                          Row(
-                            children: [
-                              Container(
-                                height: height * 0.14,
-                                width: width * 0.14,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white24,
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: AssetImage("assets/user.png"),
-                                    filterQuality: FilterQuality.high,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: width * 0.01,
-                              ),
-                              text("Editar Perfil", 18,
-                                  fontWeight: FontWeight.w500)
-                            ],
+                          SizedBox(
+                            height: height * 0.03,
                           ),
+                          GestureDetector(
+                            onTap: () {
+                              showBottomSheet();
+                            },
+                            child: Row(
+                              children: [
+                                tempImage != null
+                                    ? ClipOval(
+                                        child: Image.file(
+                                          File(tempImage!),
+                                          fit: BoxFit.fill,
+                                          height: height * .10,
+                                          width: height * .10,
+                                        ),
+                                      )
+                                    :
+                                    // profile picture
+                                    ClipOval(
+                                        child: Image.asset(
+                                          ("assets/user.png"),
+                                          height: height * .10,
+                                          width: height * .10,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                SizedBox(
+                                  width: width * 0.01,
+                                ),
+                                GestureDetector(
+                                  onTap: () => showBottomSheet,
+                                  child: text("Editar Perfil", 18,
+                                      fontWeight: FontWeight.w500),
+                                )
+                              ],
+                            ),
+                          ),
+
                           text("PERSONAL", 18, fontWeight: FontWeight.w500),
                           SizedBox(
                             height: height * 0.01,
@@ -643,7 +670,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 width: width,
                                 height: height * 0.06,
                                 press: () {
-                                  if (key.currentState!.validate()) {}
+                                  // if (key.currentState!.validate()) {}
                                 },
                                 color: AppColors.buttonColor,
                                 title: "Guardar"),
@@ -659,6 +686,112 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  // show bottom sheet for pick user profile picture
+  void showBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+      builder: (context) {
+        return ListView(
+          shrinkWrap: true,
+          padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height * .02,
+              bottom: MediaQuery.of(context).size.height * .05),
+          children: [
+            // picture label
+            const Text(
+              "Please Pick Profile Picture",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            // buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // gallery pick image button
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shape: const CircleBorder(),
+                        fixedSize: Size(MediaQuery.of(context).size.width * .3,
+                            MediaQuery.of(context).size.height * .15)),
+                    onPressed: () async {
+                      image = await ImagePicker().pickImage(
+                        source: ImageSource.gallery,
+                      );
+                      if (image == null) return;
+
+                      final dir = await path_provider.getTemporaryDirectory();
+                      final targetPath = '${dir.absolute.path}/temp.jpg';
+                      final result =
+                          await FlutterImageCompress.compressAndGetFile(
+                        image!.path,
+                        targetPath,
+                        minHeight: 1080,
+                        minWidth: 1080,
+                        quality: 90,
+                      );
+                      newImage = File(result!.path);
+                      setState(() {
+                        tempImage = image!.path;
+                      });
+
+                      // Apis.profilePictureUpdate(newImage!);
+
+                      Navigator.of(context).pop();
+                    },
+                    child: Image.asset(
+                      "assets/image.png",
+                      fit: BoxFit.fill,
+                    )),
+                // camera pick image button
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shape: const CircleBorder(),
+                        fixedSize: Size(MediaQuery.of(context).size.width * .3,
+                            MediaQuery.of(context).size.height * .15)),
+                    onPressed: () async {
+                      image = await ImagePicker().pickImage(
+                        source: ImageSource.camera,
+                      );
+                      if (image == null) return;
+
+                      final dir = await path_provider.getTemporaryDirectory();
+                      final targetPath = '${dir.absolute.path}/temp.jpg';
+                      final result =
+                          await FlutterImageCompress.compressAndGetFile(
+                        image!.path,
+                        targetPath,
+                        minHeight: 1080,
+                        minWidth: 1080,
+                        quality: 90,
+                      );
+                      newImage = File(result!.path);
+                      setState(() {
+                        tempImage = image!.path;
+                      });
+
+                      Navigator.of(context).pop();
+                    },
+                    child: Image.asset(
+                      "assets/camera.png",
+                      fit: BoxFit.fill,
+                    )),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

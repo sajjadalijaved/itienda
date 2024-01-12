@@ -242,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: height * 0.02,
                 ),
                 SizedBox(
-                  height: height * 0.16,
+                  height: height * 0.18,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: images.length,
