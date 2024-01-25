@@ -670,7 +670,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 width: width,
                                 height: height * 0.06,
                                 press: () {
-                                  // if (key.currentState!.validate()) {}
+                                  if (key.currentState!.validate()) {}
                                 },
                                 color: AppColors.buttonColor,
                                 title: "Guardar"),
