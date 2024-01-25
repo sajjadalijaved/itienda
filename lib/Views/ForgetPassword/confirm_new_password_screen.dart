@@ -9,6 +9,7 @@ import '../../Utils/no_connection_page.dart';
 import '../../Utils/Validation/validation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itienda/Bloc/bloc/connectivity_bloc.dart';
+import 'package:itienda/Views/AuthenticationScreens/login.dart';
 import 'package:itienda/Views/ForgetPassword/code_verification_screen.dart';
 
 class CheckConnectivityConfirmPasswordScreen extends StatelessWidget {
@@ -307,6 +308,13 @@ class _ConfirmNewPasswordScreenState extends State<ConfirmNewPasswordScreen> {
                           height: height * 0.07,
                           press: () async {
                             if (_key.currentState!.validate()) {
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const CheckConnectivityLogin(),
+                                  ),
+                                  (route) => false);
                               // Map data = {
                               //   'email': _emailController.text.trim(),
                               // };
