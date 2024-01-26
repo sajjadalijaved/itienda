@@ -11,6 +11,7 @@ import 'package:itienda/Utils/appcolors.dart';
 import '../../Bloc/bloc/connectivity_bloc.dart';
 import '../../Utils/Validation/validation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:itienda/Widgets/text_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:itienda/Views/AuthenticationScreens/login.dart';
 
@@ -321,16 +322,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           duration: const Duration(milliseconds: 1000),
                           child: SizedBox(
                             height: height * .03,
-                            child: const Center(
-                              child: Text(
-                                "Al registrarte aceptas nuestros términos, política",
-                                style: TextStyle(
-                                  color: AppColors.textBlackColor,
-                                  fontFamily: "Montserrat",
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
+                            child: Center(
+                                child: profileScreenText(
+                                    "Al registrarte aceptas nuestros términos, política",
+                                    14,
+                                    12,
+                                    14)),
                           ),
                         ),
                       ),
@@ -341,16 +338,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           duration: const Duration(milliseconds: 1000),
                           child: SizedBox(
                             height: height * .028,
-                            child: const Center(
-                              child: Text(
-                                "de privacidad y política de cookies.",
-                                style: TextStyle(
-                                  color: AppColors.textBlackColor,
-                                  fontFamily: "Montserrat",
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
+                            child: Center(
+                                child: profileScreenText(
+                                    "de privacidad y política de cookies.",
+                                    14,
+                                    12,
+                                    14)),
                           ),
                         ),
                       ),

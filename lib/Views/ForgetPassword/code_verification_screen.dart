@@ -131,7 +131,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                                       color: AppColors.textBlackColor,
                                       fontSize: 24,
                                       fontWeight: FontWeight.w500,
-                                      fontFamily: "Medium"),
+                                      fontFamily: "Montserrat"),
                                 ),
                               ),
                             ),
@@ -142,19 +142,21 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                         ),
                         Padding(
                           padding:
-                              EdgeInsets.only(left: width * 0.10, right: 10),
+                              EdgeInsets.only(left: width * 0.09, right: 09),
                           child: FadeInUp(
                             delay: const Duration(milliseconds: 1200),
                             duration: const Duration(milliseconds: 1000),
                             child: SizedBox(
                               height: height * 0.03,
                               width: width,
-                              child: const Text(
-                                "Ingresa el código de 4 dígitos que recibiste en la",
-                                style: TextStyle(
-                                    color: AppColors.textBlackColor,
-                                    fontSize: 14,
-                                    fontFamily: "Regular"),
+                              child: const Center(
+                                child: Text(
+                                  "Ingresa el código de 4 dígitos que recibiste en la",
+                                  style: TextStyle(
+                                      color: AppColors.textBlackColor,
+                                      fontSize: 14,
+                                      fontFamily: "Montserrat"),
+                                ),
                               ),
                             ),
                           ),
@@ -175,7 +177,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                                       color: AppColors.textBlackColor,
                                       fontSize: 14,
                                       height: 1,
-                                      fontFamily: "Regular"),
+                                      fontFamily: "Montserrat"),
                                 ),
                               ),
                             ),

@@ -8,6 +8,7 @@ import '../../Utils/no_connection_page.dart';
 import 'package:itienda/Utils/appcolors.dart';
 import '../../Utils/Validation/validation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:itienda/Widgets/text_widget.dart';
 import 'package:itienda/Bloc/bloc/connectivity_bloc.dart';
 import 'package:itienda/Views/AuthenticationScreens/login.dart';
 import 'package:itienda/Views/ForgetPassword/code_verification_screen.dart';
@@ -132,19 +133,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                             child: SizedBox(
                               height: height * 0.04,
                               width: width,
-                              child: const Center(
-                                child: Text(
-                                  "¿Olvidaste tu contraseña?",
-                                  style: TextStyle(
-                                      color: AppColors.textBlackColor,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Montserrat"),
-                                ),
-                              ),
+                              child: Center(
+                                  child: profileScreenText(
+                                      "¿Olvidaste tu contraseña?", 24, 22, 24,
+                                      fontWeight: FontWeight.w500)),
                             ),
                           ),
                         ),
+
                         SizedBox(
                           height: height * 0.01,
                         ),
@@ -157,12 +153,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                             child: SizedBox(
                               height: height * 0.02,
                               width: width,
-                              child: const Text(
-                                "Ingresa la direción de correo registrada para recibir",
-                                style: TextStyle(
-                                    color: AppColors.textBlackColor,
-                                    fontSize: 13,
-                                    fontFamily: "Montserrat"),
+                              child: const Center(
+                                child: Text(
+                                  "Ingresa la direción de correo registrada para recibir",
+                                  style: TextStyle(
+                                      color: AppColors.textBlackColor,
+                                      fontSize: 13,
+                                      fontFamily: "Montserrat"),
+                                ),
                               ),
                             ),
                           ),
@@ -177,13 +175,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                             child: SizedBox(
                               height: height * 0.02,
                               width: width,
-                              child: const Text(
-                                "un código de verficación.",
-                                style: TextStyle(
-                                    color: AppColors.textBlackColor,
-                                    fontSize: 14,
-                                    height: 1,
-                                    fontFamily: "Montserrat"),
+                              child: const Center(
+                                child: Text(
+                                  "un código de verficación.",
+                                  style: TextStyle(
+                                      color: AppColors.textBlackColor,
+                                      fontSize: 14,
+                                      height: 1,
+                                      fontFamily: "Montserrat"),
+                                ),
                               ),
                             ),
                           ),

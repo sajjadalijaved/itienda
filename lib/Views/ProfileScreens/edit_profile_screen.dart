@@ -329,17 +329,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
                           //// Municipio
                           SizedBox(
-                              height: height * 0.02,
-                              child: text("Municipio de Residencia", 14,
+                              height: height * 0.03,
+                              child: profileScreenText(
+                                  "Municipio de Residencia", 14, 12, 14,
                                   fontWeight: FontWeight.w500)),
                           SizedBox(
                             height: height * 0.08,
                             child: Column(
                               children: [
-                                SizedBox(
-                                  height: height * 0.01,
-                                  width: width,
-                                ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -516,9 +513,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           Padding(
                             padding: EdgeInsets.only(left: width * 0.016),
                             child: SizedBox(
-                                height: height * 0.02,
-                                child: text(
-                                    "¿Tienes domínio de otros idiomas?", 14,
+                                height: height * 0.03,
+                                child: profileScreenText(
+                                    "¿Tienes domínio de otros idiomas?",
+                                    14,
+                                    12,
+                                    14,
                                     fontWeight: FontWeight.w500)),
                           ),
                           Padding(
@@ -555,9 +555,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           Padding(
                             padding: EdgeInsets.only(left: width * 0.020),
                             child: SizedBox(
-                                height: height * 0.02,
-                                child: text(
-                                    "¿Estás trabajando actualmente?", 14,
+                                height: height * 0.03,
+                                width: width,
+                                child: profileScreenText(
+                                    "¿Estás trabajando actualmente?",
+                                    14,
+                                    12,
+                                    14,
                                     fontWeight: FontWeight.w500)),
                           ),
                           Padding(
@@ -584,9 +588,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           Padding(
                             padding: EdgeInsets.only(left: width * 0.020),
                             child: SizedBox(
-                                height: height * 0.02,
-                                child: text(
+                                height: height * 0.03,
+                                child: profileScreenText(
                                     "¿Tienes disponibilidad para empezar de inmediato?",
+                                    14,
+                                    12,
                                     14,
                                     fontWeight: FontWeight.w500)),
                           ),
@@ -616,8 +622,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             padding: EdgeInsets.only(left: width * 0.020),
                             child: SizedBox(
                                 height: height * 0.06,
-                                child: text(
+                                child: profileScreenText(
                                     "¿En cuales areas te gustaria actuar? Escoge hasta 3 opciones",
+                                    14,
+                                    12,
                                     14,
                                     fontWeight: FontWeight.w500)),
                           ),
