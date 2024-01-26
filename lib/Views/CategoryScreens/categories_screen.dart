@@ -92,12 +92,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         SizedBox(
                           width: width * 0.03,
                         ),
-                        const Text(
-                          "Selecciona una Categoría",
-                          style: TextStyle(
-                              color: Color(0xFF000000),
-                              fontSize: 18,
-                              fontFamily: "Montserrat"),
+                        const FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(
+                            "Selecciona una Categoría",
+                            style: TextStyle(
+                                color: Color(0xFF000000),
+                                fontSize: 18,
+                                fontFamily: "Montserrat"),
+                          ),
                         ),
                       ],
                     ),
@@ -148,20 +151,27 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                         SizedBox(
                                           width: width * 0.03,
                                         ),
-                                        Text(
-                                          name[index],
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              fontFamily: "Montserrat",
-                                              color: AppColors.textBlackColor),
+                                        FittedBox(
+                                          fit: BoxFit.contain,
+                                          child: Text(
+                                            name[index],
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                fontFamily: "Montserrat",
+                                                color:
+                                                    AppColors.textBlackColor),
+                                          ),
                                         ),
                                         const Spacer(),
-                                        Text(
-                                          "${number[index]}  vacantes",
-                                          style: const TextStyle(
-                                              fontSize: 12,
-                                              fontFamily: "Montserrat",
-                                              color: Color(0xFF006341)),
+                                        FittedBox(
+                                          fit: BoxFit.contain,
+                                          child: Text(
+                                            "${number[index]}  vacantes",
+                                            style: const TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: "Montserrat",
+                                                color: Color(0xFF006341)),
+                                          ),
                                         ),
                                         SizedBox(
                                           width: width * 0.03,

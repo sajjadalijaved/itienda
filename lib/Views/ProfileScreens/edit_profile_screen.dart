@@ -197,8 +197,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 ),
                                 GestureDetector(
                                   onTap: () => showBottomSheet,
-                                  child: text("Editar Perfil", 18,
-                                      fontWeight: FontWeight.w500),
+                                  child: FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: text("Editar Perfil", 18,
+                                        fontWeight: FontWeight.w500),
+                                  ),
                                 )
                               ],
                             ),
@@ -278,12 +281,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  row(mancheckbox, text("Masculino", 12),
+                                  row(
+                                      mancheckbox,
+                                      profileScreenText(
+                                          "Masculino", 12, 10, 12),
                                       context),
                                   SizedBox(
                                     width: width * 0.16,
                                   ),
-                                  row(womancheckbox, text("Feminino", 12),
+                                  row(
+                                      womancheckbox,
+                                      profileScreenText("Feminino", 12, 10, 12),
                                       context),
                                 ],
                               ),
@@ -302,13 +310,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                row(mexicanocheckbox, text("Mexicano(a)", 12),
+                                row(
+                                    mexicanocheckbox,
+                                    profileScreenText(
+                                        "Mexicano(a)", 12, 10, 12),
                                     context),
                                 SizedBox(
                                   width: width * 0.131,
                                 ),
-                                row(extranjerocheckbox,
-                                    text("Extranjero(a)", 12), context),
+                                row(
+                                    extranjerocheckbox,
+                                    profileScreenText(
+                                        "Extranjero(a)", 12, 10, 12),
+                                    context),
                               ],
                             ),
                           ),
@@ -333,7 +347,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     SizedBox(
                                       child: row(
                                           puertocheckbox,
-                                          text("Puerto Vallarta, Jal.", 12),
+                                          profileScreenText(
+                                              "Puerto Vallarta, Jal.",
+                                              12,
+                                              10,
+                                              12),
                                           context),
                                     ),
                                     SizedBox(
@@ -341,15 +359,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     ),
                                     row(
                                         cabocheckbox,
-                                        text("Cabo Corrientes, Jal.", 12),
+                                        profileScreenText(
+                                            "Cabo Corrientes, Jal.",
+                                            12,
+                                            10,
+                                            12),
                                         context),
                                   ],
                                 ),
                                 SizedBox(
                                   height: height * 0.005,
                                 ),
-                                row(bahiacheckbox,
-                                    text("Bahia Banderas, Nay.", 12), context),
+                                row(
+                                    bahiacheckbox,
+                                    profileScreenText(
+                                        "Bahia Banderas, Nay.", 12, 10, 12),
+                                    context),
                               ],
                             ),
                           ),
@@ -386,13 +411,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      row(bsicocheckbox, text("Básico", 12),
+                                      row(
+                                          bsicocheckbox,
+                                          profileScreenText(
+                                              "Básico", 12, 10, 12),
                                           context),
                                       SizedBox(
                                         width: width * 0.21,
                                       ),
-                                      row(mediocheckbox,
-                                          text("Medio Superior", 12), context),
+                                      row(
+                                          mediocheckbox,
+                                          profileScreenText(
+                                              "Medio Superior", 12, 10, 12),
+                                          context),
                                     ],
                                   ),
                                   SizedBox(
@@ -402,13 +433,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      row(superiorcheckbox,
-                                          text("Superior", 12), context),
+                                      row(
+                                          superiorcheckbox,
+                                          profileScreenText(
+                                              "Superior", 12, 10, 12),
+                                          context),
                                       SizedBox(
                                         width: width * 0.19,
                                       ),
-                                      row(postgradocheckbox,
-                                          text("Postgrado", 12), context),
+                                      row(
+                                          postgradocheckbox,
+                                          profileScreenText(
+                                              "Postgrado", 12, 10, 12),
+                                          context),
                                     ],
                                   ),
                                 ],
@@ -433,12 +470,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      row(nulocheckbox, text("Nulo", 12),
+                                      row(
+                                          nulocheckbox,
+                                          profileScreenText("Nulo", 12, 10, 12),
                                           context),
                                       SizedBox(
                                         width: width * 0.248,
                                       ),
-                                      row(bsicocheckbox1, text("Básico", 12),
+                                      row(
+                                          bsicocheckbox1,
+                                          profileScreenText(
+                                              "Básico", 12, 10, 12),
                                           context),
                                     ],
                                   ),
@@ -449,13 +491,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      row(intermediocheckbox,
-                                          text("Intermedio", 12), context),
+                                      row(
+                                          intermediocheckbox,
+                                          profileScreenText(
+                                              "Intermedio", 12, 10, 12),
+                                          context),
                                       SizedBox(
                                         width: width * 0.164,
                                       ),
-                                      row(avanzadocheckbox,
-                                          text("Avanzado", 12), context),
+                                      row(
+                                          avanzadocheckbox,
+                                          profileScreenText(
+                                              "Avanzado", 12, 10, 12),
+                                          context),
                                     ],
                                   ),
                                 ],
@@ -480,11 +528,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    row(sicheckbox1, text("Sí", 12), context),
+                                    row(
+                                        sicheckbox1,
+                                        profileScreenText("Sí", 12, 10, 12),
+                                        context),
                                     SizedBox(
                                       width: width * 0.29,
                                     ),
-                                    row(nocheckbox1, text("No", 12), context),
+                                    row(
+                                        nocheckbox1,
+                                        profileScreenText("No", 12, 10, 12),
+                                        context),
                                   ],
                                 ),
                               ))
@@ -513,11 +567,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    row(sicheckbox2, text("Sí", 12), context),
+                                    row(
+                                        sicheckbox2,
+                                        profileScreenText("Sí", 12, 10, 12),
+                                        context),
                                     SizedBox(
                                       width: width * 0.29,
                                     ),
-                                    row(nocheckbox2, text("No", 12), context),
+                                    row(
+                                        nocheckbox2,
+                                        profileScreenText("No", 12, 10, 12),
+                                        context),
                                   ],
                                 ),
                               )),
@@ -537,11 +597,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    row(sicheckbox3, text("Sí", 12), context),
+                                    row(
+                                        sicheckbox3,
+                                        profileScreenText("Sí", 12, 10, 12),
+                                        context),
                                     SizedBox(
                                       width: width * 0.29,
                                     ),
-                                    row(nocheckbox3, text("No", 12), context),
+                                    row(
+                                        nocheckbox3,
+                                        profileScreenText("No", 12, 10, 12),
+                                        context),
                                   ],
                                 ),
                               )),
@@ -563,17 +629,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      row(administrativocheckbox,
-                                          text("Administrativo", 12), context),
+                                      row(
+                                          administrativocheckbox,
+                                          profileScreenText(
+                                              "Administrativo", 12, 10, 12),
+                                          context),
                                       SizedBox(
                                         width: width * 0.12,
                                       ),
                                       row(
                                           atencioncheckbox,
-                                          text(
-                                            "Atención al Cliente",
-                                            12,
-                                          ),
+                                          profileScreenText(
+                                              "Atención al Cliente",
+                                              12,
+                                              10,
+                                              12),
                                           context),
                                     ],
                                   ),
@@ -584,13 +654,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      row(construccioncheckbox,
-                                          text("Construcción", 12), context),
+                                      row(
+                                          construccioncheckbox,
+                                          profileScreenText(
+                                              "Construcción", 12, 10, 12),
+                                          context),
                                       SizedBox(
                                         width: width * 0.14,
                                       ),
-                                      row(gastronomiacheckbox2,
-                                          text("Gastronomia", 12), context),
+                                      row(
+                                          gastronomiacheckbox2,
+                                          profileScreenText(
+                                              "Gastronomia", 12, 10, 12),
+                                          context),
                                     ],
                                   ),
                                   SizedBox(
@@ -600,12 +676,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      row(mantenimientocheckbox3,
-                                          text("Mantenimiento", 12), context),
+                                      row(
+                                          mantenimientocheckbox3,
+                                          profileScreenText(
+                                              "Mantenimiento", 12, 10, 12),
+                                          context),
                                       SizedBox(
                                         width: width * 0.12,
                                       ),
-                                      row(saludcheckbox3, text("Salud", 12),
+                                      row(
+                                          saludcheckbox3,
+                                          profileScreenText(
+                                              "Salud", 12, 10, 12),
                                           context),
                                     ],
                                   ),
@@ -614,13 +696,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   ),
                                   Row(
                                     children: [
-                                      row(seguridadcheckbox,
-                                          text("Seguridad", 12), context),
+                                      row(
+                                          seguridadcheckbox,
+                                          profileScreenText(
+                                              "Seguridad", 12, 10, 12),
+                                          context),
                                       SizedBox(
                                         width: width * 0.194,
                                       ),
-                                      row(servicioscheckbox,
-                                          text("Servicios", 12), context),
+                                      row(
+                                          servicioscheckbox,
+                                          profileScreenText(
+                                              "Servicios", 12, 10, 12),
+                                          context),
                                     ],
                                   ),
                                   SizedBox(
@@ -628,19 +716,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   ),
                                   Row(
                                     children: [
-                                      row(tecnologiacheckbox,
-                                          text("Tecnología", 12), context),
+                                      row(
+                                          tecnologiacheckbox,
+                                          profileScreenText(
+                                              "Tecnología", 12, 10, 12),
+                                          context),
                                       SizedBox(
                                         width: width * 0.184,
                                       ),
-                                      row(ventascheckbox, text("Ventas", 12),
+                                      row(
+                                          ventascheckbox,
+                                          profileScreenText(
+                                              "Ventas", 12, 10, 12),
                                           context),
                                     ],
                                   ),
                                   SizedBox(
                                     height: height * 0.01,
                                   ),
-                                  row(otroscheckbox, text("Otros", 12),
+                                  row(
+                                      otroscheckbox,
+                                      profileScreenText("Otros", 12, 10, 12),
                                       context),
                                 ],
                               )),

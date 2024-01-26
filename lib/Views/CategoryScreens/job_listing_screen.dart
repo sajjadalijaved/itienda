@@ -1,6 +1,7 @@
 import '../../Utils/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:itienda/Widgets/text_widget.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ignore_for_file: must_be_immutable
@@ -85,16 +86,12 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                right: width * 0.12,
+                right: width * 0.10,
                 left: width * 0.06,
               ),
-              child: SizedBox(
-                height: height * 0.08,
-                width: width,
-                child: text(
-                    "Encuentra las vacantes de empleo en abierto para el area de Puerto Vallarta,   Jalisco.",
-                    16),
-              ),
+              child: text(
+                  "Encuentra las vacantes de empleo en abierto para el area de Puerto Vallarta, Jalisco.",
+                  16),
             ),
             SizedBox(
               height: height * 0.02,
@@ -155,7 +152,9 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
                         width: width,
                         child: Row(
                           children: [
-                            text("Auxiliar Administrativo(a)", 16),
+                            FittedBox(
+                                fit: BoxFit.contain,
+                                child: text("Auxiliar Administrativo(a)", 16)),
                             const Spacer(),
                             Container(
                               margin: EdgeInsets.only(right: width * 0.02),
@@ -166,12 +165,15 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: const Center(
-                                  child: Text(
-                                "Postularme",
-                                style: TextStyle(
-                                    color: Color(0xFFFFFFFF),
-                                    fontSize: 14,
-                                    fontFamily: "Montserrat"),
+                                  child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Text(
+                                  "Postularme",
+                                  style: TextStyle(
+                                      color: Color(0xFFFFFFFF),
+                                      fontSize: 14,
+                                      fontFamily: "Montserrat"),
+                                ),
                               )),
                             )
                           ],
@@ -182,14 +184,17 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              "Company Name Sample",
-                              style: TextStyle(
-                                  color: Color(0xFF3E34B5),
-                                  decoration: TextDecoration.underline,
-                                  decorationThickness: 2,
-                                  fontSize: 14,
-                                  fontFamily: "Montserrat"),
+                            const FittedBox(
+                              fit: BoxFit.contain,
+                              child: Text(
+                                "Company Name Sample",
+                                style: TextStyle(
+                                    color: Color(0xFF3E34B5),
+                                    decoration: TextDecoration.underline,
+                                    decorationThickness: 2,
+                                    fontSize: 14,
+                                    fontFamily: "Montserrat"),
+                              ),
                             ),
                             Padding(
                               padding: EdgeInsets.only(right: width * 0.04),
@@ -199,12 +204,15 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
                                     "assets/pin.png",
                                     height: height * 0.02,
                                   ),
-                                  const Text(
-                                    "Puerto Vallarta,Jalisco",
-                                    style: TextStyle(
-                                        color: Color(0xFF333333),
-                                        fontSize: 10,
-                                        fontFamily: "Montserrat"),
+                                  const FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: Text(
+                                      "Puerto Vallarta,Jalisco",
+                                      style: TextStyle(
+                                          color: Color(0xFF333333),
+                                          fontSize: 10,
+                                          fontFamily: "Montserrat"),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -239,12 +247,15 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
                                   width: width * 0.01,
                                 ),
                                 SizedBox(
-                                  width: width * 0.45,
-                                  height: height * 0.05,
-                                  child: text(
-                                      "Lunes a Sábado.9am - 6pm.  Con 1h de intervalo.",
-                                      12),
-                                ),
+                                    width: width * 0.45,
+                                    height: height * 0.05,
+                                    child: const AutoSizeText(
+                                        "Lunes a Sábado.9am - 6pm.  Con 1h de intervalo.",
+                                        minFontSize: 10,
+                                        maxFontSize: 12,
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: AppColors.textBlackColor))),
                               ],
                             ),
                             Padding(
@@ -272,8 +283,10 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
                                   SizedBox(
                                       height: height * 0.05,
                                       width: width * 0.220,
-                                      child: const Text(
+                                      child: const AutoSizeText(
                                         "\$8,000 más bonificaciones",
+                                        maxFontSize: 12,
+                                        minFontSize: 10,
                                         style: TextStyle(
                                             fontSize: 12,
                                             color: AppColors.textBlackColor,

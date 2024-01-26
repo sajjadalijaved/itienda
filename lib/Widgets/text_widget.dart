@@ -1,9 +1,25 @@
 import '../Utils/appcolors.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 Widget text(String text, double fontsize, {FontWeight? fontWeight}) {
   return Text(
     text.toString(),
+    style: TextStyle(
+        color: AppColors.textBlackColor,
+        fontSize: fontsize,
+        fontWeight: fontWeight,
+        fontFamily: "Montserrat"),
+  );
+}
+
+Widget profileScreenText(
+    String text, double fontsize, double minSize, double maxSize,
+    {FontWeight? fontWeight}) {
+  return AutoSizeText(
+    text.toString(),
+    maxFontSize: maxSize,
+    minFontSize: minSize,
     style: TextStyle(
         color: AppColors.textBlackColor,
         fontSize: fontsize,

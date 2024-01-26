@@ -104,12 +104,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       EdgeInsets.only(left: width * 0.08, top: height * 0.004),
                   child: SizedBox(
                     height: height * 0.02,
-                    child: const Text(
-                      "Puesto, palabra-clabe o empresa",
-                      style: TextStyle(
-                          color: Color(0xFF333333),
-                          fontSize: 12,
-                          fontFamily: "Montserrat"),
+                    child: const FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        "Puesto, palabra-clabe o empresa",
+                        style: TextStyle(
+                            color: Color(0xFF333333),
+                            fontSize: 12,
+                            fontFamily: "Montserrat"),
+                      ),
                     ),
                   ),
                 ),
@@ -128,13 +131,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           "assets/pin.png",
                           height: height * 0.03,
                         ),
-                        const Text(
-                          "Puerto Vallarta, Jalisco, Mexico",
-                          style: TextStyle(
-                              color: Color(0xFF333333),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: "Montserrat"),
+                        const FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(
+                            "Puerto Vallarta, Jalisco, Mexico",
+                            style: TextStyle(
+                                color: Color(0xFF333333),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: "Montserrat"),
+                          ),
                         ),
                       ],
                     ),
@@ -147,9 +153,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: EdgeInsets.only(
                     left: width * 0.09,
                   ),
-                  child: SizedBox(
-                    height: height * 0.03,
-                    child: const Text(
+                  child: const FittedBox(
+                    fit: BoxFit.contain,
+                    child: Text(
                       "(incluye Cabo Corrientes y Bahia Banderas)",
                       style: TextStyle(
                           color: Color(0xFF333333),
@@ -177,24 +183,30 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          "‌¿Mejores Resultados?",
-                          style: TextStyle(
-                              color: AppColors.textWhiteColor,
-                              fontSize: 14,
-                              fontFamily: "Montserrat"),
+                        FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(
+                            "‌¿Mejores Resultados?",
+                            style: TextStyle(
+                                color: AppColors.textWhiteColor,
+                                fontSize: 14,
+                                fontFamily: "Montserrat"),
+                          ),
                         ),
                         SizedBox(
                           height: 5,
                         ),
                         Row(
                           children: [
-                            Text(
-                              "Actualizar perfil",
-                              style: TextStyle(
-                                  color: AppColors.textWhiteColor,
-                                  fontSize: 10,
-                                  fontFamily: "Montserrat"),
+                            FittedBox(
+                              fit: BoxFit.contain,
+                              child: Text(
+                                "Actualizar perfil",
+                                style: TextStyle(
+                                    color: AppColors.textWhiteColor,
+                                    fontSize: 10,
+                                    fontFamily: "Montserrat"),
+                              ),
                             ),
                             SizedBox(
                               width: 10,
@@ -271,10 +283,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: height * 0.02,
                           ),
                           Center(
-                            child: Text(
-                              categoryName[index],
-                              style: const TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w400),
+                            child: FittedBox(
+                              fit: BoxFit.contain,
+                              child: Text(
+                                categoryName[index],
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
                             ),
                           )
                         ],

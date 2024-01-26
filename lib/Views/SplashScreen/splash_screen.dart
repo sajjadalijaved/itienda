@@ -118,7 +118,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 height: height * 0.03,
               ),
               Padding(
-                padding: EdgeInsets.only(left: width * 0.10),
+                padding: EdgeInsets.only(left: width * 0.09),
                 child: SizedBox(
                   height: height * 0.05,
                   width: width,
@@ -126,15 +126,18 @@ class _SplashScreenState extends State<SplashScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        "Bienvenido(a)!",
-                        style: TextStyle(
-                            color: Color(
-                              0xFF000000,
-                            ),
-                            fontSize: 30,
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w400),
+                      const FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          "Bienvenido(a)!",
+                          style: TextStyle(
+                              color: Color(
+                                0xFF000000,
+                              ),
+                              fontSize: 32,
+                              fontFamily: "Montserrat",
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                       SizedBox(
                         width: width * 0.03,
