@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itienda/Utils/appcolors.dart';
+import 'package:itienda/Widgets/text_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<String> categoryName = <String>[
     "Atencion al Cliente",
-    "Gastronomy",
+    "Gastronomia",
     "Construction",
   ];
   List<String> images = <String>[
@@ -73,10 +74,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: const Color(0xFFF2F2F2),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
-                        color: Colors.grey.shade500,
-                        offset: const Offset(
+                        color: Colors.black26,
+                        offset: Offset(
                           0.5,
                           2.0,
                         ),
@@ -88,12 +89,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: const Color(0xFF000000),
                     ),
                   ),
-                  child: const TextField(
-                    decoration: InputDecoration(
+                  child: TextField(
+                    controller: searchController,
+                    decoration: const InputDecoration(
                       hintText: 'Buscar Empleo',
                       hintStyle: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
+                          color: Colors.black,
                           fontFamily: "Montserrat"),
                       border: InputBorder.none,
                     ),
@@ -168,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: height * 0.03,
                 ),
                 Container(
-                  height: height * 0.10,
+                  height: height * 0.14,
                   width: width,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
@@ -254,15 +257,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: height * 0.02,
                 ),
                 SizedBox(
-                  height: height * 0.18,
+                  height: height * 0.17,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: images.length,
                     itemBuilder: (context, index) => Container(
                       padding: EdgeInsets.only(
-                          right: width * 0.03,
+                          right: width * 0.02,
                           top: height * 0.01,
-                          left: width * 0.03),
+                          left: width * 0.02),
                       margin: EdgeInsets.only(right: width * 0.06),
                       width: width * 0.30,
                       decoration: BoxDecoration(
@@ -283,15 +286,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: height * 0.02,
                           ),
                           Center(
-                            child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(
-                                categoryName[index],
-                                style: const TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                          )
+                              child: profileScreenText(
+                                  categoryName[index], 15, 13, 15,
+                                  fontWeight: FontWeight.w400))
                         ],
                       ),
                     ),
