@@ -141,13 +141,16 @@ class _ConfirmNewPasswordScreenState extends State<ConfirmNewPasswordScreen> {
                         child: SizedBox(
                           height: height * 0.04,
                           width: width,
-                          child: const Text(
-                            "Cambiar Contraseña",
-                            style: TextStyle(
-                                color: AppColors.textBlackColor,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Montserrat"),
+                          child: const FittedBox(
+                            fit: BoxFit.contain,
+                            child: Text(
+                              "Cambiar Contraseña",
+                              style: TextStyle(
+                                  color: AppColors.textBlackColor,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: "Montserrat"),
+                            ),
                           ),
                         ),
                       ),

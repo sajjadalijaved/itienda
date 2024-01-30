@@ -150,12 +150,15 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                               height: height * 0.03,
                               width: width,
                               child: const Center(
-                                child: Text(
-                                  "Ingresa el código de 4 dígitos que recibiste en la",
-                                  style: TextStyle(
-                                      color: AppColors.textBlackColor,
-                                      fontSize: 14,
-                                      fontFamily: "Montserrat"),
+                                child: FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    "Ingresa el código de 4 dígitos que recibiste en la",
+                                    style: TextStyle(
+                                        color: AppColors.textBlackColor,
+                                        fontSize: 14,
+                                        fontFamily: "Montserrat"),
+                                  ),
                                 ),
                               ),
                             ),
@@ -171,13 +174,16 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                               height: height * 0.02,
                               width: width,
                               child: const Center(
-                                child: Text(
-                                  "dirección de correo registrada.",
-                                  style: TextStyle(
-                                      color: AppColors.textBlackColor,
-                                      fontSize: 14,
-                                      height: 1,
-                                      fontFamily: "Montserrat"),
+                                child: FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    "dirección de correo registrada.",
+                                    style: TextStyle(
+                                        color: AppColors.textBlackColor,
+                                        fontSize: 14,
+                                        height: 1,
+                                        fontFamily: "Montserrat"),
+                                  ),
                                 ),
                               ),
                             ),
@@ -264,24 +270,28 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                               height: height * 0.02,
                               width: width,
                               child: Center(
-                                child: RichText(
-                                    text: const TextSpan(children: <InlineSpan>[
-                                  TextSpan(
-                                      text: "El código expira en ",
+                                child: FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: RichText(
+                                      text:
+                                          const TextSpan(children: <InlineSpan>[
+                                    TextSpan(
+                                        text: "El código expira en ",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 14)),
+                                    TextSpan(
+                                      text: "24h",
                                       style: TextStyle(
-                                          color: Colors.black, fontSize: 14)),
-                                  TextSpan(
-                                    text: "24h",
-                                    style: TextStyle(
-                                        color: AppColors.textBlackColor,
-                                        fontSize: 14,
-                                        decoration: TextDecoration.underline,
-                                        decorationColor:
-                                            AppColors.textBlackColor,
-                                        decorationThickness: 3,
-                                        fontWeight: FontWeight.w500),
-                                  )
-                                ])),
+                                          color: AppColors.textBlackColor,
+                                          fontSize: 14,
+                                          decoration: TextDecoration.underline,
+                                          decorationColor:
+                                              AppColors.textBlackColor,
+                                          decorationThickness: 3,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                  ])),
+                                ),
                               ),
                             ),
                           ),

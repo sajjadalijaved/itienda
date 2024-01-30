@@ -67,9 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: height * 0.03,
                 ),
                 Container(
-                  padding: const EdgeInsets.only(left: 15, top: 15),
+                  padding: const EdgeInsets.only(left: 15, top: 16),
                   margin: EdgeInsets.symmetric(horizontal: width * 0.03),
-                  height: height * 0.05,
+                  height: height * 0.06,
                   width: width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -257,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: height * 0.02,
                 ),
                 SizedBox(
-                  height: height * 0.17,
+                  height: height * 0.18,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: images.length,

@@ -154,12 +154,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                               height: height * 0.02,
                               width: width,
                               child: const Center(
-                                child: Text(
-                                  "Ingresa la direción de correo registrada para recibir",
-                                  style: TextStyle(
-                                      color: AppColors.textBlackColor,
-                                      fontSize: 13,
-                                      fontFamily: "Montserrat"),
+                                child: FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    "Ingresa la direción de correo registrada para recibir",
+                                    style: TextStyle(
+                                        color: AppColors.textBlackColor,
+                                        fontSize: 13,
+                                        fontFamily: "Montserrat"),
+                                  ),
                                 ),
                               ),
                             ),
@@ -176,13 +179,16 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                               height: height * 0.02,
                               width: width,
                               child: const Center(
-                                child: Text(
-                                  "un código de verficación.",
-                                  style: TextStyle(
-                                      color: AppColors.textBlackColor,
-                                      fontSize: 14,
-                                      height: 1,
-                                      fontFamily: "Montserrat"),
+                                child: FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    "un código de verficación.",
+                                    style: TextStyle(
+                                        color: AppColors.textBlackColor,
+                                        fontSize: 14,
+                                        height: 1,
+                                        fontFamily: "Montserrat"),
+                                  ),
                                 ),
                               ),
                             ),
