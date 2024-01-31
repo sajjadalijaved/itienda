@@ -27,7 +27,7 @@ class _MyApplicationsJobSeekerScreenState
       backgroundColor: Colors.white,
       body: Container(
         padding: EdgeInsets.only(
-          top: height * 0.03,
+          top: height * 0.02,
         ),
         height: height,
         width: width,
@@ -43,7 +43,7 @@ class _MyApplicationsJobSeekerScreenState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: width * 0.07),
+              padding: const EdgeInsets.only(left: 22),
               child: SizedBox(
                 height: height * 0.05,
                 child: Row(
@@ -70,12 +70,12 @@ class _MyApplicationsJobSeekerScreenState
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                left: width * 0.06,
+              padding: const EdgeInsets.only(
+                left: 22,
               ),
               child: SizedBox(
-                height: height * 0.09,
-                width: width * 0.6,
+                height: 73,
+                width: 182,
                 child: Image.asset(
                   "assets/splash.png",
                   fit: BoxFit.fill,
@@ -83,21 +83,18 @@ class _MyApplicationsJobSeekerScreenState
               ),
             ),
             SizedBox(
-              height: height * 0.06,
+              height: height * 0.05,
             ),
             Padding(
-              padding: EdgeInsets.only(
-                left: width * 0.20,
+              padding: const EdgeInsets.only(
+                left: 48,
               ),
               child: SizedBox(
                 height: height * 0.05,
                 width: width,
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.mobile_friendly_outlined,
-                      size: height * 0.05,
-                    ),
+                    Image.asset("assets/phone.png", height: 40, width: 40),
                     SizedBox(
                       width: width * 0.02,
                     ),

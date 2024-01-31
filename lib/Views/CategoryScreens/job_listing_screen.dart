@@ -29,7 +29,7 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
       backgroundColor: Colors.white,
       body: Container(
         padding: EdgeInsets.only(
-          top: height * 0.03,
+          top: height * 0.01,
         ),
         height: height,
         width: width,
@@ -46,38 +46,33 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
           children: [
             Padding(
               padding: EdgeInsets.only(left: width * 0.07),
-              child: SizedBox(
-                height: height * 0.05,
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Icon(
-                        Icons.arrow_back_ios,
-                        size: 30,
-                        color: AppColors.buttonColor,
-                      ),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Icon(
+                      Icons.arrow_back_ios,
+                      size: 30,
+                      color: AppColors.buttonColor,
                     ),
-                    const Text(
-                      "Regresar",
-                      style: TextStyle(
-                          color: AppColors.appbarTitleColor,
-                          fontSize: 20,
-                          fontFamily: "Montserrat"),
-                    ),
-                  ],
-                ),
+                  ),
+                  const Text(
+                    "Regresar",
+                    style: TextStyle(
+                        color: AppColors.appbarTitleColor,
+                        fontSize: 20,
+                        fontFamily: "Montserrat"),
+                  ),
+                ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                left: width * 0.06,
-              ),
+              padding: EdgeInsets.only(left: width * 0.06, top: height * 0.01),
               child: SizedBox(
-                height: height * 0.09,
-                width: width * 0.6,
+                height: 73,
+                width: 182,
                 child: Image.asset(
                   "assets/splash.png",
                   fit: BoxFit.fill,
@@ -87,7 +82,7 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
             Padding(
               padding: EdgeInsets.only(
                 right: width * 0.10,
-                left: width * 0.06,
+                left: width * 0.07,
               ),
               child: text(
                   "Encuentra las vacantes de empleo en abierto para el area de Puerto Vallarta, Jalisco.",
@@ -100,35 +95,34 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
               padding: EdgeInsets.only(
                 left: width * 0.07,
               ),
-              child: SizedBox(
-                height: height * 0.08,
-                width: width,
-                child: RichText(
-                  text: TextSpan(
-                    children: <InlineSpan>[
-                      const TextSpan(
-                        text: "Categoría: ",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontFamily: "Montserrat"),
-                      ),
-                      TextSpan(
-                        text: widget.name,
-                        style: const TextStyle(
-                            color: AppColors.textBlackColor,
-                            fontSize: 18,
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
+              child: RichText(
+                text: TextSpan(
+                  children: <InlineSpan>[
+                    const TextSpan(
+                      text: "Categoría: ",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontFamily: "Montserrat"),
+                    ),
+                    TextSpan(
+                      text: widget.name,
+                      style: const TextStyle(
+                          color: AppColors.textBlackColor,
+                          fontSize: 18,
+                          fontFamily: "Montserrat",
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
               ),
             ),
+            SizedBox(
+              height: height * 0.01,
+            ),
             Expanded(
                 child: ListView.builder(
-              itemCount: 3,
+              itemCount: 5,
               itemBuilder: (context, index) {
                 return Container(
                   margin: EdgeInsets.only(

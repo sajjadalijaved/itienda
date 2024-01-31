@@ -36,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SingleChildScrollView(
         child: Container(
             height: height,
-            width: width,
+            width: width - 2,
             decoration: const BoxDecoration(
               color: Colors.white,
               image: DecorationImage(
@@ -44,22 +44,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   alignment: Alignment.bottomRight),
             ),
             child: Padding(
-              padding: EdgeInsets.only(
-                  left: width * 0.08, right: width * 0.05, top: height * 0.08),
+              padding: EdgeInsets.only(left: 22, right: width * 0.08, top: 76),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: height * 0.09,
-                      width: width * 0.6,
+                      height: 73,
+                      width: 182,
                       child: Image.asset(
                         "assets/splash.png",
                         fit: BoxFit.fill,
                       ),
                     ),
                     Padding(
-                        padding: EdgeInsets.only(
-                            top: height * 0.12, left: width * 0.08),
+                        padding: EdgeInsets.only(top: height * 0.10, left: 17),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -90,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               },
                               child: Container(
                                 height: height * 0.04,
-                                width: width * 0.7,
+                                width: width * 0.9,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   border: Border.all(
@@ -153,7 +151,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               },
                               child: Container(
                                 height: height * 0.04,
-                                width: width * 0.7,
+                                width: width * 0.9,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   border: Border.all(

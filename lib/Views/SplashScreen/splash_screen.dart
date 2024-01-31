@@ -107,8 +107,8 @@ class _SplashScreenState extends State<SplashScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.10),
                 child: SizedBox(
-                  height: height * 0.15,
-                  width: width,
+                  height: 125,
+                  width: 311,
                   child: Image.asset(
                     "assets/splash.png",
                     fit: BoxFit.cover,

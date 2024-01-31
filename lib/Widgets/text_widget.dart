@@ -74,7 +74,7 @@ Widget container(BuildContext context, void Function()? press, String text1) {
     onTap: press,
     child: Container(
       height: height * 0.04,
-      width: width * 0.7,
+      width: width * 0.9,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(

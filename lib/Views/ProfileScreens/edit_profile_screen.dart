@@ -91,7 +91,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(
-            left: width * 0.06,
+            left: 22,
             right: width * 0.04,
             top: height * 0.03,
           ),
@@ -108,39 +108,36 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: width * 0.01),
-                child: SizedBox(
-                  height: height * 0.05,
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Icon(
-                          Icons.arrow_back_ios,
-                          size: 30,
-                          color: AppColors.buttonColor,
-                        ),
+              SizedBox(
+                height: height * 0.05,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios,
+                        size: 30,
+                        color: AppColors.buttonColor,
                       ),
-                      const Text(
-                        "Regresar",
-                        style: TextStyle(
-                            color: AppColors.appbarTitleColor,
-                            fontSize: 20,
-                            fontFamily: "Montserrat"),
-                      ),
-                    ],
-                  ),
+                    ),
+                    const Text(
+                      "Regresar",
+                      style: TextStyle(
+                          color: AppColors.appbarTitleColor,
+                          fontSize: 20,
+                          fontFamily: "Montserrat"),
+                    ),
+                  ],
                 ),
               ),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
               SizedBox(
-                height: height * 0.02,
-              ),
-              SizedBox(
-                height: height * 0.10,
-                width: width * 0.6,
+                height: 76,
+                width: 182,
                 child: Image.asset(
                   "assets/splash.png",
                   fit: BoxFit.fill,
@@ -154,8 +151,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   key: key,
                   child: Container(
                       padding: EdgeInsets.only(
-                          left: width * 0.04, right: width * 0.01),
-                      margin: EdgeInsets.only(left: width * 0.02),
+                          left: width * 0.02, right: width * 0.01),
+                      margin: const EdgeInsets.only(left: 10),
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage("assets/pro.png"),
@@ -179,8 +176,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           child: Image.file(
                                             File(tempImage!),
                                             fit: BoxFit.fill,
-                                            height: height * .10,
-                                            width: height * .10,
+                                            height: 40,
+                                            width: 40,
                                           ),
                                         )
                                       :
@@ -188,8 +185,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       ClipOval(
                                           child: Image.asset(
                                             ("assets/user.png"),
-                                            height: height * .10,
-                                            width: height * .10,
+                                            height: 40,
+                                            width: 40,
                                             fit: BoxFit.fill,
                                           ),
                                         ),

@@ -47,8 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(
-              left: width * 0.05,
-              top: height * 0.05,
+              left: 22,
+              top: 76,
               right: width * 0.05,
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
@@ -56,8 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: height * 0.10,
-                  width: width * 0.5,
+                  height: 73,
+                  width: 182,
                   child: Image.asset(
                     "assets/splash.png",
                     fit: BoxFit.fill,

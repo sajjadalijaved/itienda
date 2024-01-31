@@ -43,149 +43,142 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Container(
-          height: height,
-          width: width,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-                image: AssetImage("assets/back.png"),
-                alignment: Alignment.bottomRight),
+      body: Container(
+        height: height,
+        width: width,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          image: DecorationImage(
+              image: AssetImage("assets/back.png"),
+              alignment: Alignment(0.9, 3.2)),
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 22,
+            top: 76,
+            right: width * 0.05,
           ),
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: width * 0.08,
-              top: height * 0.08,
-              right: width * 0.05,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: height * 0.09,
-                  width: width * 0.6,
-                  child: Image.asset(
-                    "assets/splash.png",
-                    height: height * 0.09,
-                    width: width * 0.6,
-                    fit: BoxFit.fill,
-                  ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 73,
+                width: 182,
+                child: Image.asset(
+                  "assets/splash.png",
+                  fit: BoxFit.fill,
                 ),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: width * 0.05,
-                  ),
-                  child: SizedBox(
-                    height: height * 0.05,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/category.png",
-                          height: height * 0.04,
-                          color: Colors.black,
-                          fit: BoxFit.fill,
-                        ),
-                        SizedBox(
-                          width: width * 0.03,
-                        ),
-                        const FittedBox(
-                          fit: BoxFit.contain,
-                          child: Text(
-                            "Selecciona una Categoría",
-                            style: TextStyle(
-                                color: Color(0xFF000000),
-                                fontSize: 18,
-                                fontFamily: "Montserrat"),
-                          ),
-                        ),
-                      ],
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 18),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "assets/category.png",
+                      height: height * 0.04,
+                      color: Colors.black,
+                      fit: BoxFit.fill,
                     ),
-                  ),
+                    SizedBox(
+                      width: width * 0.03,
+                    ),
+                    const FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        "Selecciona una Categoría",
+                        style: TextStyle(
+                            color: Color(0xFF000000),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            fontFamily: "Montserrat"),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.10,
+                    )
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: height * 0.08, horizontal: width * 0.05),
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: List.generate(
-                        name.length,
-                        (index) => Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            JobListingJobSeekerScreen(
-                                          name: name[index],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    height: height * 0.04,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        width: 0.05,
-                                        color: const Color(0xFF365830),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: height * 0.06, horizontal: width * 0.05),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: List.generate(
+                      name.length,
+                      (index) => Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          JobListingJobSeekerScreen(
+                                        name: name[index],
                                       ),
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          width: width * 0.01,
-                                        ),
-                                        const Icon(
-                                          Icons.arrow_forward_outlined,
-                                          size: 25,
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.03,
-                                        ),
-                                        FittedBox(
-                                          fit: BoxFit.contain,
-                                          child: Text(
-                                            name[index],
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                fontFamily: "Montserrat",
-                                                color:
-                                                    AppColors.textBlackColor),
-                                          ),
-                                        ),
-                                        const Spacer(),
-                                        FittedBox(
-                                          fit: BoxFit.contain,
-                                          child: Text(
-                                            "${number[index]}  vacantes",
-                                            style: const TextStyle(
-                                                fontSize: 12,
-                                                fontFamily: "Montserrat",
-                                                color: Color(0xFF006341)),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.03,
-                                        ),
-                                      ],
+                                  );
+                                },
+                                child: Container(
+                                  height: height * 0.04,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    border: Border.all(
+                                      width: 0.05,
+                                      color: const Color(0xFF365830),
                                     ),
                                   ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: width * 0.01,
+                                      ),
+                                      const Icon(
+                                        Icons.arrow_forward_outlined,
+                                        size: 25,
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.03,
+                                      ),
+                                      FittedBox(
+                                        fit: BoxFit.contain,
+                                        child: Text(
+                                          name[index],
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              fontFamily: "Montserrat",
+                                              color: AppColors.textBlackColor),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      FittedBox(
+                                        fit: BoxFit.contain,
+                                        child: Text(
+                                          "${number[index]}  vacantes",
+                                          style: const TextStyle(
+                                              fontSize: 12,
+                                              fontFamily: "Montserrat",
+                                              color: Color(0xFF006341)),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.03,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            )),
-                  ),
-                )
-              ],
-            ),
+                              ),
+                            ],
+                          )),
+                ),
+              )
+            ],
           ),
         ),
       ),

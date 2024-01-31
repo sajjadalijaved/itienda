@@ -24,7 +24,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
       backgroundColor: Colors.white,
       body: Container(
         padding: EdgeInsets.only(
-          top: height * 0.03,
+          top: height * 0.02,
         ),
         height: height,
         width: width,
@@ -40,7 +40,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: width * 0.07),
+              padding: const EdgeInsets.only(left: 22),
               child: SizedBox(
                 height: height * 0.05,
                 child: Row(
@@ -67,12 +67,12 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                left: width * 0.06,
+              padding: const EdgeInsets.only(
+                left: 22,
               ),
               child: SizedBox(
-                height: height * 0.09,
-                width: width * 0.6,
+                height: 73,
+                width: 182,
                 child: Image.asset(
                   "assets/splash.png",
                   fit: BoxFit.fill,
@@ -83,8 +83,8 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
               height: height * 0.06,
             ),
             Padding(
-              padding: EdgeInsets.only(
-                left: width * 0.20,
+              padding: const EdgeInsets.only(
+                left: 42,
               ),
               child: SizedBox(
                 height: height * 0.06,
