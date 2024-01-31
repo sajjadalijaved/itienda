@@ -62,15 +62,15 @@ class FieldValidator {
   }
 
   static String? validateDate(String? input) {
-    // RegExp dateRegex = RegExp(
-    //   r'^\d{2}/\d{2}/\d{4}$',
-    // );
+    RegExp dateRegex = RegExp(
+      r'^\d{2}-\d{2}-\d{4}$',
+    );
     if (input!.isEmpty) {
       return "Birth date is required";
     }
-    // if (!dateRegex.hasMatch(input)) {
-    //   return 'Invalid date format';
-    // }
+    if (!dateRegex.hasMatch(input)) {
+      return 'Invalid date format';
+    }
 
     final parts = input.split('-');
     if (parts.length != 3) {
