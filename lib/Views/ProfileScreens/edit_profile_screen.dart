@@ -136,7 +136,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               //   height: height * 0.02,
               // ),
               SizedBox(
-                height: 76,
+                height: height * 0.09,
                 width: 182,
                 child: Image.asset(
                   "assets/splash.png",

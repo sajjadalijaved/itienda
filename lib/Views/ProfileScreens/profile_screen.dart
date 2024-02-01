@@ -49,7 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 73,
+                      height: height * 0.09,
                       width: 182,
                       child: Image.asset(
                         "assets/splash.png",

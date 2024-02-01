@@ -22,132 +22,135 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        padding: EdgeInsets.only(
-          top: height * 0.02,
-        ),
-        height: height,
-        width: width,
-        decoration: const BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-              image: AssetImage(
-                "assets/back.png",
-              ),
-              alignment: Alignment.bottomRight,
-            )),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 22),
-              child: SizedBox(
-                height: height * 0.05,
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Icon(
-                        Icons.arrow_back_ios,
-                        size: 30,
-                        color: AppColors.buttonColor,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(
+            top: height * 0.02,
+          ),
+          height: height,
+          width: width,
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              image: DecorationImage(
+                image: AssetImage(
+                  "assets/back.png",
+                ),
+                alignment: Alignment.bottomRight,
+              )),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: width * 0.06),
+                child: SizedBox(
+                  height: height * 0.05,
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Icon(
+                          Icons.arrow_back_ios,
+                          size: 30,
+                          color: AppColors.buttonColor,
+                        ),
                       ),
+                      const Text(
+                        "Regresar",
+                        style: TextStyle(
+                            color: AppColors.appbarTitleColor,
+                            fontSize: 20,
+                            fontFamily: "Montserrat"),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: width * 0.056,
+                ),
+                child: SizedBox(
+                  height: height * 0.09,
+                  width: 182,
+                  child: Image.asset(
+                    "assets/splash.png",
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.06,
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: width * 0.112,
+                ),
+                child: SizedBox(
+                  height: height * 0.06,
+                  width: width,
+                  child: Row(
+                    children: [
+                      Image.asset("assets/help.png"),
+                      SizedBox(
+                        width: width * 0.02,
+                      ),
+                      text("Central de Ayuda", 18, fontWeight: FontWeight.bold)
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              Padding(
+                padding:
+                    EdgeInsets.only(left: width * 0.112, right: width * 0.06),
+                child: SizedBox(
+                    height: height * 0.06,
+                    width: width,
+                    child: text(
+                      "Entra en contacto con nostros por uno de los medios disponibles.",
+                      16,
+                    )),
+              ),
+              SizedBox(
+                height: height * 0.10,
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: width * 0.100),
+                height: height * 0.20,
+                width: width,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/pro.png"), fit: BoxFit.cover),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "+52 (322) 308-0150",
+                      style: TextStyle(
+                          color: AppColors.regisgerColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(
+                      height: height * 0.001,
                     ),
                     const Text(
-                      "Regresar",
+                      "info@itiendamexico.com",
                       style: TextStyle(
-                          color: AppColors.appbarTitleColor,
-                          fontSize: 20,
-                          fontFamily: "Montserrat"),
+                          color: AppColors.regisgerColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 22,
-              ),
-              child: SizedBox(
-                height: 73,
-                width: 182,
-                child: Image.asset(
-                  "assets/splash.png",
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: height * 0.06,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 42,
-              ),
-              child: SizedBox(
-                height: height * 0.06,
-                width: width,
-                child: Row(
-                  children: [
-                    Image.asset("assets/help.png"),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    text("Central de Ayuda", 18, fontWeight: FontWeight.bold)
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 42, right: width * 0.06),
-              child: SizedBox(
-                  height: height * 0.05,
-                  width: width,
-                  child: text(
-                    "Entra en contacto con nostros por uno de los medios disponibles.",
-                    16,
-                  )),
-            ),
-            SizedBox(
-              height: height * 0.10,
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: width * 0.10),
-              height: height * 0.20,
-              width: width,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/pro.png"), fit: BoxFit.cover),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "+52 (322) 308-0150",
-                    style: TextStyle(
-                        color: AppColors.regisgerColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(
-                    height: height * 0.001,
-                  ),
-                  const Text(
-                    "info@itiendamexico.com",
-                    style: TextStyle(
-                        color: AppColors.regisgerColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

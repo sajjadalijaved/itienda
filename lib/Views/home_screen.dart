@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -48,15 +49,14 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Padding(
             padding: EdgeInsets.only(
               left: 22,
-              top: 76,
-              right: width * 0.05,
-              bottom: MediaQuery.of(context).viewInsets.bottom,
+              top: height * 0.06,
+              right: width * 0.04,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 73,
+                  height: height * 0.09,
                   width: 182,
                   child: Image.asset(
                     "assets/splash.png",
