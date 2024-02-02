@@ -136,7 +136,7 @@ class _MyApplicationsJobSeekerScreenState
                             Container(
                               margin: EdgeInsets.only(right: width * 0.02),
                               width: width * 0.216,
-                              height: height * 0.05,
+                              // height: height * 0.05,
                               decoration: BoxDecoration(
                                 color: const Color(0xFFFF0000),
                                 borderRadius: BorderRadius.circular(5),
@@ -212,66 +212,67 @@ class _MyApplicationsJobSeekerScreenState
                         SizedBox(
                           height: height * 0.01,
                         ),
-                        SizedBox(
-                          height: height * 0.06,
-                          width: width,
-                          child: Row(
-                            children: [
-                              Row(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.watch_later_outlined,
+                                  color: Colors.black,
+                                ),
+                                SizedBox(
+                                  width: width * 0.01,
+                                ),
+                                SizedBox(
+                                  width: width * 0.45,
+                                  child: text(
+                                      "Lunes a Sábado.9am - 6pm.Con 1h de intervalo.",
+                                      12),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              width: width * 0.02,
+                            ),
+                            Expanded(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const Icon(
-                                    Icons.watch_later_outlined,
-                                    color: Colors.black,
+                                  Container(
+                                    // height: height * 0.06,
+                                    // width: width * 0.06,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border:
+                                            Border.all(color: Colors.black)),
+                                    child: const Center(
+                                      child: Icon(
+                                        FontAwesomeIcons.dollarSign,
+                                        size: 16,
+                                      ),
+                                    ),
                                   ),
                                   SizedBox(
                                     width: width * 0.01,
                                   ),
                                   SizedBox(
-                                    width: width * 0.45,
-                                    height: height * 0.05,
-                                    child: text(
-                                        "Lunes a Sábado.9am - 6pm.  Con 1h de intervalo.",
-                                        12),
-                                  ),
+                                    width: width * 0.22,
+                                    child: const Text(
+                                      "\$8,000 más bonificaciones",
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: AppColors.textBlackColor,
+                                          fontWeight: FontWeight.w900),
+                                    ),
+                                  )
                                 ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(right: width * 0.03),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      height: height * 0.06,
-                                      width: width * 0.06,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border:
-                                              Border.all(color: Colors.black)),
-                                      child: const Center(
-                                        child: Icon(
-                                          FontAwesomeIcons.dollarSign,
-                                          size: 16,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: width * 0.01,
-                                    ),
-                                    SizedBox(
-                                        height: height * 0.05,
-                                        width: width * 0.220,
-                                        child: const Text(
-                                          "\$8,000 más bonificaciones",
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              color: AppColors.textBlackColor,
-                                              fontWeight: FontWeight.w900),
-                                        ))
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         )
                       ],
                     ),

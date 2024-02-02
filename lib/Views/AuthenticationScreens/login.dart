@@ -107,17 +107,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: FadeInUp(
                             delay: const Duration(milliseconds: 1000),
                             duration: const Duration(milliseconds: 1000),
-                            child: SizedBox(
-                              height: height * .05,
-                              child: const Center(
-                                child: Text(
-                                  "Acceda Ahora!",
-                                  style: TextStyle(
-                                      color: AppColors.textLoginColor,
-                                      fontSize: 28,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w400),
-                                ),
+                            child: const Center(
+                              child: Text(
+                                "Acceda Ahora!",
+                                style: TextStyle(
+                                    color: AppColors.textLoginColor,
+                                    fontSize: 28,
+                                    fontFamily: "Montserrat",
+                                    fontWeight: FontWeight.w400),
                               ),
                             ),
                           ),
@@ -128,16 +125,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: FadeInUp(
                             delay: const Duration(milliseconds: 1200),
                             duration: const Duration(milliseconds: 1000),
-                            child: SizedBox(
-                              height: height * .03,
-                              child: const Center(
-                                child: Text(
-                                  "Deja que tu próximo",
-                                  style: TextStyle(
-                                    color: AppColors.textBlackColor,
-                                    fontFamily: "Montserrat",
-                                    fontSize: 18,
-                                  ),
+                            child: const Center(
+                              child: Text(
+                                "Deja que tu próximo",
+                                style: TextStyle(
+                                  color: AppColors.textBlackColor,
+                                  fontFamily: "Montserrat",
+                                  fontSize: 18,
                                 ),
                               ),
                             ),
@@ -149,16 +143,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: FadeInUp(
                             delay: const Duration(milliseconds: 1400),
                             duration: const Duration(milliseconds: 1000),
-                            child: SizedBox(
-                              height: height * .028,
-                              child: const Center(
-                                child: Text(
-                                  "empleador te encuentre.",
-                                  style: TextStyle(
-                                    color: AppColors.textBlackColor,
-                                    fontFamily: "Montserrat",
-                                    fontSize: 18,
-                                  ),
+                            child: const Center(
+                              child: Text(
+                                "empleador te encuentre.",
+                                style: TextStyle(
+                                  color: AppColors.textBlackColor,
+                                  fontFamily: "Montserrat",
+                                  fontSize: 18,
                                 ),
                               ),
                             ),
@@ -243,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             delay: const Duration(milliseconds: 2000),
                             duration: const Duration(milliseconds: 1000),
                             child: SizedBox(
-                              height: height * .03,
+                              height: height * .04,
                               child: InkWell(
                                   onTap: () {
                                     Navigator.push(

@@ -115,28 +115,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
         backgroundColor: Colors.white,
         body: Consumer<AuthViewModal>(
           builder: (context, value, child) => SingleChildScrollView(
-              child: Container(
-            height: height,
-            width: width,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/back.png"),
-                  alignment: Alignment.bottomRight),
-            ),
-            child: Form(
-              key: key,
-              child: Padding(
-                padding: EdgeInsets.only(top: height * 0.06),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: width * 0.08),
-                        child: FadeInUp(
-                          delay: const Duration(milliseconds: 1000),
-                          duration: const Duration(milliseconds: 1000),
-                          child: SizedBox(
-                            height: height * .04,
+              child: SingleChildScrollView(
+            child: Container(
+              height: height,
+              width: width,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/back.png"),
+                    alignment: Alignment.bottomRight),
+              ),
+              child: Form(
+                key: key,
+                child: Padding(
+                  padding: EdgeInsets.only(top: height * 0.06),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.08),
+                          child: FadeInUp(
+                            delay: const Duration(milliseconds: 1000),
+                            duration: const Duration(milliseconds: 1000),
                             child: RichText(
                                 text: const TextSpan(children: <InlineSpan>[
                               TextSpan(
@@ -157,274 +157,279 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ])),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: height * 0.01,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: width * 0.08),
-                        child: FadeInUp(
-                          delay: const Duration(milliseconds: 1200),
-                          duration: const Duration(milliseconds: 1000),
-                          child: SizedBox(
-                            height: height * .03,
-                            child: const Center(
-                              child: Text(
-                                "Deja que tu próximo",
-                                style: TextStyle(
-                                  color: AppColors.textBlackColor,
-                                  fontFamily: "Montserrat",
-                                  fontSize: 18,
+                        SizedBox(
+                          height: height * 0.01,
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.08),
+                          child: FadeInUp(
+                            delay: const Duration(milliseconds: 1200),
+                            duration: const Duration(milliseconds: 1000),
+                            child: SizedBox(
+                              height: height * .04,
+                              child: const Center(
+                                child: Text(
+                                  "Deja que tu próximo",
+                                  style: TextStyle(
+                                    color: AppColors.textBlackColor,
+                                    fontFamily: "Montserrat",
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: width * 0.08),
-                        child: FadeInUp(
-                          delay: const Duration(milliseconds: 1400),
-                          duration: const Duration(milliseconds: 1000),
-                          child: SizedBox(
-                            height: height * .028,
-                            child: const Center(
-                              child: Text(
-                                "empleador te encuentre.",
-                                style: TextStyle(
-                                  color: AppColors.textBlackColor,
-                                  fontFamily: "Montserrat",
-                                  fontSize: 18,
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.08),
+                          child: FadeInUp(
+                            delay: const Duration(milliseconds: 1400),
+                            duration: const Duration(milliseconds: 1000),
+                            child: SizedBox(
+                              height: height * .035,
+                              child: const Center(
+                                child: Text(
+                                  "empleador te encuentre.",
+                                  style: TextStyle(
+                                    color: AppColors.textBlackColor,
+                                    fontFamily: "Montserrat",
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: height * .05,
-                      ),
-                      // first name text field
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: width * 0.08),
-                        child: FadeInUp(
-                          delay: const Duration(milliseconds: 1600),
-                          duration: const Duration(milliseconds: 1000),
-                          child: CustomTextField(
-                            textCapitalization: TextCapitalization.words,
-                            onTap: () {
-                              // setState(() {
-                              //   firstNameColor = const Color(0xFFca8e2e);
-                              //   lastNameColor = Colors.black26;
-                              //   phoneNumberColor = Colors.black26;
-                              //   emailColor = Colors.black26;
-                              //   passwordColor = Colors.black26;
-                              //   confirmPasswordColor = Colors.black26;
-                              //   eyeColor = Colors.black26;
-                              //   eyeColor1 = Colors.black26;
-                              // });
-                            },
-                            validate: (value) {
-                              return FieldValidator.validateName(
-                                  value.toString());
-                            },
-                            controller: firstNameController,
-                            fieldValidationkey: firstNameFieldKey,
-                            hintText: "Nombre Completo",
-                            textInputType: TextInputType.name,
-                            inputAction: TextInputAction.next,
-                            onChanged: (value) {
-                              firstNameFieldKey.currentState!.validate();
-                            },
+                        SizedBox(
+                          height: height * .05,
+                        ),
+                        // first name text field
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.08),
+                          child: FadeInUp(
+                            delay: const Duration(milliseconds: 1600),
+                            duration: const Duration(milliseconds: 1000),
+                            child: CustomTextField(
+                              textCapitalization: TextCapitalization.words,
+                              onTap: () {
+                                // setState(() {
+                                //   firstNameColor = const Color(0xFFca8e2e);
+                                //   lastNameColor = Colors.black26;
+                                //   phoneNumberColor = Colors.black26;
+                                //   emailColor = Colors.black26;
+                                //   passwordColor = Colors.black26;
+                                //   confirmPasswordColor = Colors.black26;
+                                //   eyeColor = Colors.black26;
+                                //   eyeColor1 = Colors.black26;
+                                // });
+                              },
+                              validate: (value) {
+                                return FieldValidator.validateName(
+                                    value.toString());
+                              },
+                              controller: firstNameController,
+                              fieldValidationkey: firstNameFieldKey,
+                              hintText: "Nombre Completo",
+                              textInputType: TextInputType.name,
+                              inputAction: TextInputAction.next,
+                              onChanged: (value) {
+                                firstNameFieldKey.currentState!.validate();
+                              },
+                            ),
                           ),
                         ),
-                      ),
 
-                      // space
-                      SizedBox(
-                        height: height * .02,
-                      ),
-                      // email text field
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: width * 0.08),
-                        child: FadeInUp(
-                          delay: const Duration(milliseconds: 1800),
-                          duration: const Duration(milliseconds: 1000),
-                          child: CustomTextField(
-                            onTap: () {},
-                            validate: (value) {
-                              return FieldValidator.validateEmail(
-                                  value.toString());
-                            },
-                            controller: emailController,
-                            fieldValidationkey: emailFieldKey,
-                            hintText: "Correo Electrónico",
-                            textInputType: TextInputType.emailAddress,
-                            inputAction: TextInputAction.next,
-                            onChanged: (value) {
-                              emailFieldKey.currentState!.validate();
-                            },
+                        // space
+                        SizedBox(
+                          height: height * .02,
+                        ),
+                        // email text field
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.08),
+                          child: FadeInUp(
+                            delay: const Duration(milliseconds: 1800),
+                            duration: const Duration(milliseconds: 1000),
+                            child: CustomTextField(
+                              onTap: () {},
+                              validate: (value) {
+                                return FieldValidator.validateEmail(
+                                    value.toString());
+                              },
+                              controller: emailController,
+                              fieldValidationkey: emailFieldKey,
+                              hintText: "Correo Electrónico",
+                              textInputType: TextInputType.emailAddress,
+                              inputAction: TextInputAction.next,
+                              onChanged: (value) {
+                                emailFieldKey.currentState!.validate();
+                              },
+                            ),
                           ),
                         ),
-                      ),
-                      // space
-                      SizedBox(
-                        height: height * .02,
-                      ),
-                      // password text field
-                      ValueListenableBuilder(
-                        valueListenable: passwordobsureText,
-                        builder: (context, value, child) => Padding(
+                        // space
+                        SizedBox(
+                          height: height * .02,
+                        ),
+                        // password text field
+                        ValueListenableBuilder(
+                          valueListenable: passwordobsureText,
+                          builder: (context, value, child) => Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: width * 0.08),
+                            child: FadeInUp(
+                              delay: const Duration(milliseconds: 2000),
+                              duration: const Duration(milliseconds: 1000),
+                              child: CustomTextField(
+                                onTap: () {},
+                                character: '*',
+                                onChanged: (value) {
+                                  passwordFieldKey.currentState!.validate();
+                                },
+                                controller: passwordController,
+                                fieldValidationkey: passwordFieldKey,
+                                hintText: "Contraseña",
+                                textInputType: TextInputType.visiblePassword,
+                                validate: (value) {
+                                  return FieldValidator.validatePassword(
+                                      value.toString());
+                                },
+                                obscureText: passwordobsureText.value,
+                                sufixIcon: InkWell(
+                                  onTap: () {
+                                    passwordobsureText.value =
+                                        !passwordobsureText.value;
+                                  },
+                                  child: Icon(
+                                      passwordobsureText.value
+                                          ? Icons.visibility_off_outlined
+                                          : Icons.visibility,
+                                      color: const Color(0xFF766B6B)),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        // space
+                        SizedBox(
+                          height: height * .05,
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.08),
+                          child: FadeInUp(
+                            delay: const Duration(milliseconds: 2200),
+                            duration: const Duration(milliseconds: 1000),
+                            child: SizedBox(
+                              height: height * .03,
+                              child: Center(
+                                  child: profileScreenText(
+                                      "Al registrarte aceptas nuestros términos, política",
+                                      14,
+                                      12,
+                                      14)),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.08),
+                          child: FadeInUp(
+                            delay: const Duration(milliseconds: 2400),
+                            duration: const Duration(milliseconds: 1000),
+                            child: SizedBox(
+                              height: height * .028,
+                              child: Center(
+                                  child: profileScreenText(
+                                      "de privacidad y política de cookies.",
+                                      14,
+                                      12,
+                                      14)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.05,
+                        ),
+                        // sign up button
+                        Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: width * 0.08),
                           child: FadeInUp(
                             delay: const Duration(milliseconds: 2000),
                             duration: const Duration(milliseconds: 1000),
-                            child: CustomTextField(
-                              onTap: () {},
-                              character: '*',
-                              onChanged: (value) {
-                                passwordFieldKey.currentState!.validate();
+                            child: CustomButton(
+                              loading: authViewModal.signinLoading,
+                              width: width,
+                              height: height * 0.07,
+                              press: () async {
+                                if (key.currentState!.validate()) {
+                                  Map data = {
+                                    'first_name':
+                                        firstNameController.text.trim(),
+                                    'email': emailController.text.trim(),
+                                    'password': passwordController.text.trim(),
+                                    'device_token': storeToken,
+                                  };
+                                  authViewModal.registerApi(data, context);
+                                }
                               },
-                              controller: passwordController,
-                              fieldValidationkey: passwordFieldKey,
-                              hintText: "Contraseña",
-                              textInputType: TextInputType.visiblePassword,
-                              validate: (value) {
-                                return FieldValidator.validatePassword(
-                                    value.toString());
-                              },
-                              obscureText: passwordobsureText.value,
-                              sufixIcon: InkWell(
-                                onTap: () {
-                                  passwordobsureText.value =
-                                      !passwordobsureText.value;
-                                },
-                                child: Icon(
-                                    passwordobsureText.value
-                                        ? Icons.visibility_off_outlined
-                                        : Icons.visibility,
-                                    color: const Color(0xFF766B6B)),
-                              ),
+                              title: "Registrarme",
+                              color: AppColors.buttonColor,
                             ),
                           ),
                         ),
-                      ),
-
-                      // space
-                      SizedBox(
-                        height: height * .05,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: width * 0.08),
-                        child: FadeInUp(
-                          delay: const Duration(milliseconds: 2200),
-                          duration: const Duration(milliseconds: 1000),
-                          child: SizedBox(
-                            height: height * .03,
-                            child: Center(
-                                child: profileScreenText(
-                                    "Al registrarte aceptas nuestros términos, política",
-                                    14,
-                                    12,
-                                    14)),
-                          ),
+                        // space
+                        SizedBox(
+                          height: height * .03,
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: width * 0.08),
-                        child: FadeInUp(
+                        FadeInUp(
+                            delay: const Duration(milliseconds: 2200),
+                            duration: const Duration(milliseconds: 1000),
+                            child: const Divider()),
+                        SizedBox(
+                          height: height * .01,
+                        ),
+                        // have already account text
+                        FadeInUp(
                           delay: const Duration(milliseconds: 2400),
                           duration: const Duration(milliseconds: 1000),
                           child: SizedBox(
-                            height: height * .028,
-                            child: Center(
-                                child: profileScreenText(
-                                    "de privacidad y política de cookies.",
-                                    14,
-                                    12,
-                                    14)),
+                            height: height * .04,
+                            child: RichText(
+                                text: TextSpan(children: <InlineSpan>[
+                              const TextSpan(
+                                  text: "¿Ya estás registrado? ",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: "Montserrat",
+                                      fontSize: 16)),
+                              TextSpan(
+                                  text: "Acceder",
+                                  style: const TextStyle(
+                                      color: AppColors.regisgerColor,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const CheckConnectivityLogin(),
+                                          ),
+                                          (route) => false);
+                                    })
+                            ])),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: height * 0.05,
-                      ),
-                      // sign up button
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: width * 0.08),
-                        child: FadeInUp(
-                          delay: const Duration(milliseconds: 2000),
-                          duration: const Duration(milliseconds: 1000),
-                          child: CustomButton(
-                            loading: authViewModal.signinLoading,
-                            width: width,
-                            height: height * 0.07,
-                            press: () async {
-                              if (key.currentState!.validate()) {
-                                Map data = {
-                                  'first_name': firstNameController.text.trim(),
-                                  'email': emailController.text.trim(),
-                                  'password': passwordController.text.trim(),
-                                  'device_token': storeToken,
-                                };
-                                authViewModal.registerApi(data, context);
-                              }
-                            },
-                            title: "Registrarme",
-                            color: AppColors.buttonColor,
-                          ),
-                        ),
-                      ),
-                      // space
-                      SizedBox(
-                        height: height * .03,
-                      ),
-                      FadeInUp(
-                          delay: const Duration(milliseconds: 2200),
-                          duration: const Duration(milliseconds: 1000),
-                          child: const Divider()),
-                      SizedBox(
-                        height: height * .01,
-                      ),
-                      // have already account text
-                      FadeInUp(
-                        delay: const Duration(milliseconds: 2400),
-                        duration: const Duration(milliseconds: 1000),
-                        child: SizedBox(
-                          height: height * .04,
-                          child: RichText(
-                              text: TextSpan(children: <InlineSpan>[
-                            const TextSpan(
-                                text: "¿Ya estás registrado? ",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: "Montserrat",
-                                    fontSize: 16)),
-                            TextSpan(
-                                text: "Acceder",
-                                style: const TextStyle(
-                                    color: AppColors.regisgerColor,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const CheckConnectivityLogin(),
-                                        ),
-                                        (route) => false);
-                                  })
-                          ])),
-                        ),
-                      ),
-                      // space
-                      SizedBox(
-                        height: height * .04,
-                      ),
-                    ]),
+                        // space
+                      ]),
+                ),
               ),
             ),
           )),

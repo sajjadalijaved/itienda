@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: height * 0.03,
                 ),
                 Container(
-                  padding: const EdgeInsets.only(left: 15, top: 16),
+                  padding: EdgeInsets.only(left: width * 0.038, top: 16),
                   margin: EdgeInsets.symmetric(horizontal: width * 0.03),
                   height: height * 0.06,
                   width: width,
@@ -257,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: height * 0.02,
                 ),
                 SizedBox(
-                  height: height * 0.18,
+                  height: height * 0.2,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: images.length,

@@ -229,72 +229,66 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
                         SizedBox(
                           height: height * 0.01,
                         ),
-                        SizedBox(
-                          height: height * 0.06,
-                          width: width,
-                          child: Row(
-                            children: [
-                              Row(
+                        Row(
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.watch_later_outlined,
+                                  color: Colors.black,
+                                ),
+                                SizedBox(
+                                  width: width * 0.01,
+                                ),
+                                SizedBox(
+                                    width: width * 0.45,
+                                    child: const Text(
+                                        "Lunes a Sábado.9am - 6pm.Con 1h de intervalo.",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: AppColors.textBlackColor))),
+                              ],
+                            ),
+                            SizedBox(
+                              width: width * 0.02,
+                            ),
+                            Expanded(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const Icon(
-                                    Icons.watch_later_outlined,
-                                    color: Colors.black,
+                                  Container(
+                                    // height: height * 0.06,
+                                    // width: width * 0.06,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border:
+                                            Border.all(color: Colors.black)),
+                                    child: const Center(
+                                      child: Icon(
+                                        FontAwesomeIcons.dollarSign,
+                                        size: 16,
+                                      ),
+                                    ),
                                   ),
                                   SizedBox(
                                     width: width * 0.01,
                                   ),
                                   SizedBox(
-                                      width: width * 0.45,
-                                      height: height * 0.05,
+                                      width: width * 0.22,
                                       child: const AutoSizeText(
-                                          "Lunes a Sábado.9am - 6pm.  Con 1h de intervalo.",
-                                          minFontSize: 10,
-                                          maxFontSize: 12,
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              color:
-                                                  AppColors.textBlackColor))),
+                                        "\$8,000 más bonificaciones",
+                                        maxFontSize: 12,
+                                        minFontSize: 10,
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: AppColors.textBlackColor,
+                                            fontWeight: FontWeight.w900),
+                                      ))
                                 ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(right: width * 0.03),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      height: height * 0.06,
-                                      width: width * 0.06,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border:
-                                              Border.all(color: Colors.black)),
-                                      child: const Center(
-                                        child: Icon(
-                                          FontAwesomeIcons.dollarSign,
-                                          size: 16,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: width * 0.01,
-                                    ),
-                                    SizedBox(
-                                        height: height * 0.05,
-                                        width: width * 0.220,
-                                        child: const AutoSizeText(
-                                          "\$8,000 más bonificaciones",
-                                          maxFontSize: 12,
-                                          minFontSize: 10,
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              color: AppColors.textBlackColor,
-                                              fontWeight: FontWeight.w900),
-                                        ))
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         )
                       ],
                     ),

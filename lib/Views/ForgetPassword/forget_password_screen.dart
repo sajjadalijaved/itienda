@@ -90,178 +90,155 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           ),
         ),
         body: SingleChildScrollView(
-          child: SafeArea(
-            child: Container(
-                height: height - kBottomNavigationBarHeight,
-                width: width,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/back.png"),
-                      alignment: Alignment.bottomRight),
-                ),
-                child: Form(
-                  key: _key,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: height * 0.09),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: width * 0.20),
-                          child: FadeInDown(
-                            duration: const Duration(milliseconds: 1500),
-                            child: SizedBox(
-                                height: height * 0.2,
-                                width: width * 0.4,
-                                child: Center(
-                                  child: Image.asset(
-                                    "assets/lock.png",
-                                    fit: BoxFit.fill,
-                                  ),
-                                )),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.08,
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: width * 0.10),
-                          child: FadeInUp(
-                            delay: const Duration(milliseconds: 1000),
-                            duration: const Duration(milliseconds: 1000),
-                            child: SizedBox(
-                              height: height * 0.04,
-                              width: width,
+          child: Container(
+              height: height,
+              width: width,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/back.png"),
+                    alignment: Alignment.bottomRight),
+              ),
+              child: Form(
+                key: _key,
+                child: Padding(
+                  padding: EdgeInsets.only(top: height * 0.09),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.20),
+                        child: FadeInDown(
+                          duration: const Duration(milliseconds: 1500),
+                          child: SizedBox(
+                              height: height * 0.2,
+                              width: width * 0.4,
                               child: Center(
-                                  child: profileScreenText(
-                                      "¿Olvidaste tu contraseña?", 24, 22, 24,
-                                      fontWeight: FontWeight.w500)),
-                            ),
-                          ),
+                                child: Image.asset(
+                                  "assets/lock.png",
+                                  fit: BoxFit.fill,
+                                ),
+                              )),
                         ),
+                      ),
+                      SizedBox(
+                        height: height * 0.08,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.10),
+                        child: FadeInUp(
+                          delay: const Duration(milliseconds: 1000),
+                          duration: const Duration(milliseconds: 1000),
+                          child: Center(
+                              child: profileScreenText(
+                                  "¿Olvidaste tu contraseña?", 24, 22, 24,
+                                  fontWeight: FontWeight.w500)),
+                        ),
+                      ),
 
-                        SizedBox(
-                          height: height * 0.01,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: width * 0.10, right: width * 0.10),
-                          child: FadeInUp(
-                            delay: const Duration(milliseconds: 1200),
-                            duration: const Duration(milliseconds: 1000),
-                            child: SizedBox(
-                              height: height * 0.02,
-                              width: width,
-                              child: const Center(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    "Ingresa la direción de correo registrada para recibir",
-                                    style: TextStyle(
-                                        color: AppColors.textBlackColor,
-                                        fontSize: 13,
-                                        fontFamily: "Montserrat"),
-                                  ),
-                                ),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: width * 0.10, right: width * 0.10),
+                        child: FadeInUp(
+                          delay: const Duration(milliseconds: 1200),
+                          duration: const Duration(milliseconds: 1000),
+                          child: const Center(
+                            child: FittedBox(
+                              fit: BoxFit.contain,
+                              child: Text(
+                                "Ingresa la direción de correo registrada para recibir",
+                                style: TextStyle(
+                                    color: AppColors.textBlackColor,
+                                    fontSize: 13,
+                                    fontFamily: "Montserrat"),
                               ),
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: width * 0.26,
-                              vertical: height * 0.01),
-                          child: FadeInUp(
-                            delay: const Duration(milliseconds: 1400),
-                            duration: const Duration(milliseconds: 1000),
-                            child: SizedBox(
-                              height: height * 0.02,
-                              width: width,
-                              child: const Center(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    "un código de verficación.",
-                                    style: TextStyle(
-                                        color: AppColors.textBlackColor,
-                                        fontSize: 14,
-                                        height: 1,
-                                        fontFamily: "Montserrat"),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.26, vertical: height * 0.01),
+                        child: FadeInUp(
+                          delay: const Duration(milliseconds: 1400),
+                          duration: const Duration(milliseconds: 1000),
+                          child: const Center(
+                            child: Text(
+                              "un código de verficación.",
+                              style: TextStyle(
+                                  color: AppColors.textBlackColor,
+                                  fontSize: 14,
+                                  fontFamily: "Montserrat"),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * .03,
+                      ),
+                      // email text field
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.10),
+                        child: FadeInUp(
+                          delay: const Duration(milliseconds: 1600),
+                          duration: const Duration(milliseconds: 1000),
+                          child: CustomTextField(
+                            onTap: () {},
+                            validate: (value) {
+                              return FieldValidator.validateEmail(
+                                  value.toString());
+                            },
+                            controller: _emailController,
+                            fieldValidationkey: _emailkey,
+                            hintText: "Correo Electrónico",
+                            textInputType: TextInputType.emailAddress,
+                            inputAction: TextInputAction.done,
+                            onChanged: (value) {
+                              _emailkey.currentState!.validate();
+                            },
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * .05,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.15),
+                        child: FadeInUp(
+                          delay: const Duration(milliseconds: 1800),
+                          duration: const Duration(milliseconds: 1000),
+                          child: CustomButton(
+                            loading: authViewModal.signinLoading,
+                            width: width,
+                            height: height * 0.07,
+                            press: () async {
+                              if (_key.currentState!.validate()) {
+                                // Map data = {
+                                //   'email': _emailController.text.trim(),
+                                // };
+                                // authViewModal.registerApi(data, context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const CheckConnectivityCodeVerififationScreen(),
                                   ),
-                                ),
-                              ),
-                            ),
+                                );
+                              }
+                            },
+                            title: "Verificar",
+                            color: AppColors.buttonColor,
                           ),
                         ),
-                        SizedBox(
-                          height: height * .03,
-                        ),
-                        // email text field
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: width * 0.10),
-                          child: FadeInUp(
-                            delay: const Duration(milliseconds: 1600),
-                            duration: const Duration(milliseconds: 1000),
-                            child: CustomTextField(
-                              onTap: () {},
-                              validate: (value) {
-                                return FieldValidator.validateEmail(
-                                    value.toString());
-                              },
-                              controller: _emailController,
-                              fieldValidationkey: _emailkey,
-                              hintText: "Correo Electrónico",
-                              textInputType: TextInputType.emailAddress,
-                              inputAction: TextInputAction.done,
-                              onChanged: (value) {
-                                _emailkey.currentState!.validate();
-                              },
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * .05,
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: width * 0.15),
-                          child: FadeInUp(
-                            delay: const Duration(milliseconds: 1800),
-                            duration: const Duration(milliseconds: 1000),
-                            child: CustomButton(
-                              loading: authViewModal.signinLoading,
-                              width: width,
-                              height: height * 0.07,
-                              press: () async {
-                                if (_key.currentState!.validate()) {
-                                  // Map data = {
-                                  //   'email': _emailController.text.trim(),
-                                  // };
-                                  // authViewModal.registerApi(data, context);
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const CheckConnectivityCodeVerififationScreen(),
-                                    ),
-                                  );
-                                }
-                              },
-                              title: "Verificar",
-                              color: AppColors.buttonColor,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.05,
-                        )
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        height: height * 0.05,
+                      )
+                    ],
                   ),
-                )),
-          ),
+                ),
+              )),
         ),
       ),
     );

@@ -99,7 +99,7 @@ class _ConfirmNewPasswordScreenState extends State<ConfirmNewPasswordScreen> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
-            height: height - kBottomNavigationBarHeight,
+            height: height,
             width: width,
             decoration: const BoxDecoration(
               image: DecorationImage(
@@ -162,15 +162,18 @@ class _ConfirmNewPasswordScreenState extends State<ConfirmNewPasswordScreen> {
                         delay: const Duration(milliseconds: 1200),
                         duration: const Duration(milliseconds: 1000),
                         child: SizedBox(
-                          height: height * 0.02,
+                          height: height * 0.03,
                           width: width,
-                          child: const Text(
-                            "Ingresa tu nueva contraseña.",
-                            style: TextStyle(
-                                color: AppColors.textBlackColor,
-                                fontSize: 14,
-                                height: 1,
-                                fontFamily: "Montserrat"),
+                          child: const FittedBox(
+                            fit: BoxFit.contain,
+                            child: Text(
+                              "Ingresa tu nueva contraseña.",
+                              style: TextStyle(
+                                  color: AppColors.textBlackColor,
+                                  fontSize: 14,
+                                  height: 1,
+                                  fontFamily: "Montserrat"),
+                            ),
                           ),
                         ),
                       ),

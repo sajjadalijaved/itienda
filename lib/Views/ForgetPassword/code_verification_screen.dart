@@ -85,7 +85,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
       body: SingleChildScrollView(
         child: SafeArea(
             child: Container(
-                height: height - kBottomNavigationBarHeight,
+                height: height,
                 width: width,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -122,7 +122,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                             delay: const Duration(milliseconds: 1000),
                             duration: const Duration(milliseconds: 1000),
                             child: SizedBox(
-                              height: height * 0.04,
+                              height: height * 0.05,
                               width: width,
                               child: const Center(
                                 child: Text(
@@ -200,7 +200,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                             delay: const Duration(milliseconds: 1600),
                             duration: const Duration(milliseconds: 1000),
                             child: SizedBox(
-                                height: height * .08,
+                                height: height * .10,
                                 child: PinCodeTextField(
                                   appContext: context,
                                   controller: _codeController,
@@ -259,7 +259,9 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                                 ),
                           ),
                         ),
-
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
                         Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: width * 0.30),

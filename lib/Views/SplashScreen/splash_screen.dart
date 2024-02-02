@@ -104,8 +104,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: width * 0.10),
+              Center(
                 child: SizedBox(
                   height: 125,
                   width: 311,
@@ -120,37 +119,33 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: width * 0.09),
-                child: SizedBox(
-                  height: height * 0.05,
-                  width: width,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const FittedBox(
-                        fit: BoxFit.contain,
-                        child: Text(
-                          "Bienvenido(a)!",
-                          style: TextStyle(
-                              color: Color(
-                                0xFF000000,
-                              ),
-                              fontSize: 32,
-                              fontFamily: "Montserrat",
-                              fontWeight: FontWeight.w400),
-                        ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        "Bienvenido(a)!",
+                        style: TextStyle(
+                            color: Color(
+                              0xFF000000,
+                            ),
+                            fontSize: 32,
+                            fontFamily: "Montserrat",
+                            fontWeight: FontWeight.w400),
                       ),
-                      SizedBox(
-                        width: width * 0.03,
-                      ),
-                      Image.asset(
-                        "assets/emoji.png",
-                        fit: BoxFit.cover,
-                        height: height * 0.036,
-                        width: width * 0.076,
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      width: width * 0.03,
+                    ),
+                    Image.asset(
+                      "assets/emoji.png",
+                      fit: BoxFit.cover,
+                      height: 40,
+                      width: 40,
+                    ),
+                  ],
                 ),
               )
             ],
