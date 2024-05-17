@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:itienda/Utils/appcolors.dart';
 import 'package:itienda/Widgets/text_widget.dart';
 import 'package:itienda/Views/ProfileScreens/messages_screen.dart';
 import 'package:itienda/Views/ProfileScreens/help_center_screen.dart';
@@ -32,43 +33,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
             height: height,
-            width: width - 2,
+            width: width,
             decoration: const BoxDecoration(
-              color: Colors.white,
               image: DecorationImage(
-                  image: AssetImage("assets/back.png"),
-                  alignment: Alignment.bottomRight),
+                  image: AssetImage("assets/back.png"), fit: BoxFit.cover),
             ),
             child: Padding(
-              padding: EdgeInsets.only(left: 22, right: width * 0.08, top: 76),
+              padding: EdgeInsets.only(left: 20, right: width * 0.08, top: 65),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: height * 0.09,
-                      width: 182,
+                      height: 40,
+                      width: 106,
                       child: Image.asset(
-                        "assets/splash.png",
+                        "assets/itienda.png",
                         fit: BoxFit.fill,
                       ),
                     ),
                     Padding(
-                        padding: EdgeInsets.only(top: height * 0.10, left: 17),
+                        padding: EdgeInsets.only(top: height * 0.08, left: 5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             container(context, () {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const EditProfileScreen(),
-                                  ));
-                            }, "Editar Mi Perfil"),
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const EditProfileScreen(),
+                                ),
+                              );
+                            },
+                                text1: "Editar Mi Perfil",
+                                image: 'assets/11.png'),
                             container(context, () {
                               Navigator.push(
                                   context,
@@ -76,7 +77,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     builder: (context) =>
                                         const MyApplicationsJobSeekerScreen(),
                                   ));
-                            }, "Mis Postulaciones"),
+                            },
+                                text1: "Mis Postulaciones",
+                                image: 'assets/12.png'),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -87,13 +90,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ));
                               },
                               child: Container(
-                                height: height * 0.04,
+                                height: 40,
                                 width: width * 0.9,
+                                margin: EdgeInsets.only(bottom: height * 0.01),
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
-                                    width: 0.5,
-                                    color: const Color(0xFF365830),
+                                    width: 2,
+                                    color: const Color(0xFFFFFFFF),
                                   ),
                                 ),
                                 child: Row(
@@ -102,14 +106,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     SizedBox(
                                       width: width * 0.01,
                                     ),
-                                    const Icon(
-                                      Icons.arrow_forward_outlined,
-                                      size: 25,
+                                    Image.asset(
+                                      "assets/13.png",
+                                      height: 25,
+                                      width: 25,
                                     ),
                                     SizedBox(
                                       width: width * 0.03,
                                     ),
-                                    text("Mensajes", 16),
+                                    const Text(
+                                      "Mensajes",
+                                      style: TextStyle(
+                                          color: AppColors.textWhiteColor,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: "Montserrat"),
+                                    ),
                                     SizedBox(
                                       width: width * 0.02,
                                     ),
@@ -150,13 +162,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ));
                               },
                               child: Container(
-                                height: height * 0.04,
+                                height: 40,
                                 width: width * 0.9,
+                                margin: EdgeInsets.only(bottom: height * 0.01),
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
-                                    width: 0.5,
-                                    color: const Color(0xFF365830),
+                                    width: 2,
+                                    color: const Color(0xFFFFFFFF),
                                   ),
                                 ),
                                 child: Row(
@@ -165,14 +178,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     SizedBox(
                                       width: width * 0.01,
                                     ),
-                                    const Icon(
-                                      Icons.arrow_forward_outlined,
-                                      size: 25,
+                                    Image.asset(
+                                      "assets/14.png",
+                                      height: 25,
+                                      width: 25,
                                     ),
                                     SizedBox(
                                       width: width * 0.03,
                                     ),
-                                    text("Notificaciones", 16),
+                                    const Text(
+                                      "Notificaciones",
+                                      style: TextStyle(
+                                          color: AppColors.textWhiteColor,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: "Montserrat"),
+                                    ),
                                     SizedBox(
                                       width: width * 0.02,
                                     ),
@@ -210,7 +231,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     builder: (context) =>
                                         const HelpCentreScreen(),
                                   ));
-                            }, "Central de Ayuda"),
+                            },
+                                text1: "Central de Ayuda",
+                                image: 'assets/15.png'),
                             container(context, () {
                               Navigator.push(
                                   context,
@@ -218,7 +241,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     builder: (context) =>
                                         const PrivacyPolicyScreen(),
                                   ));
-                            }, "Política de Privacidad"),
+                            },
+                                text1: "Política de Privacidad",
+                                image: 'assets/16.png'),
                             container(context, () {
                               Navigator.push(
                                   context,
@@ -226,7 +251,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     builder: (context) =>
                                         const TermsConditionsScreen(),
                                   ));
-                            }, "Términos y Condiciones"),
+                            },
+                                text1: "Términos y Condiciones",
+                                image: 'assets/17.png'),
                           ],
                         )),
                   ]),

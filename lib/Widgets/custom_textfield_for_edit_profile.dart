@@ -54,22 +54,22 @@ class CustomTextFieldForEditProfile extends StatelessWidget {
           fillColor: const Color(0xFFFFFFFF),
           enabledBorder: OutlineInputBorder(
               borderSide:
-                  const BorderSide(color: Color(0xFF365830), width: 0.4),
-              borderRadius: BorderRadius.circular(1)),
+                  const BorderSide(color: Color(0xFF000000), width: 0.5),
+              borderRadius: BorderRadius.circular(5)),
           focusedBorder: OutlineInputBorder(
               borderSide:
-                  const BorderSide(color: Color(0xFF365830), width: 0.4),
-              borderRadius: BorderRadius.circular(1)),
+                  const BorderSide(color: Color(0xFF000000), width: 0.5),
+              borderRadius: BorderRadius.circular(5)),
           errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(
-                width: 0.4,
+                width: 0.5,
                 color: Colors.red,
               ),
-              borderRadius: BorderRadius.circular(2)),
+              borderRadius: BorderRadius.circular(5)),
           border: OutlineInputBorder(
               borderSide:
-                  const BorderSide(color: Color(0xFF365830), width: 0.4),
-              borderRadius: BorderRadius.circular(1)),
+                  const BorderSide(color: Color(0xFF000000), width: 0.5),
+              borderRadius: BorderRadius.circular(5)),
         ),
       ),
     );

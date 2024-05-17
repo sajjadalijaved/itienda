@@ -41,7 +41,7 @@ class CustomButton extends StatelessWidget {
                         fontSize: 20,
                         fontFamily: "Montserrat",
                         color: Colors.white,
-                        fontWeight: FontWeight.w400),
+                        fontWeight: FontWeight.w500),
                   ),
           ),
         ),

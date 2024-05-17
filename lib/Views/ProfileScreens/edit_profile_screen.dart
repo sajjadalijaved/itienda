@@ -87,24 +87,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(
-            left: 22,
-            right: width * 0.04,
-            top: height * 0.03,
+            left: width * 0.05,
+            right: width * 0.05,
+            top: height * 0.02,
           ),
           height: height,
           width: width,
           decoration: const BoxDecoration(
-              color: Colors.white,
-              image: DecorationImage(
-                image: AssetImage(
-                  "assets/back.png",
-                ),
-                alignment: Alignment.bottomRight,
-              )),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage(
+                "assets/back.png",
+              ),
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -118,122 +117,141 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       },
                       child: const Icon(
                         Icons.arrow_back_ios,
-                        size: 30,
-                        color: AppColors.buttonColor,
+                        size: 20,
+                        color: AppColors.textWhiteColor,
                       ),
                     ),
                     const Text(
-                      "Regresar",
+                      "Volver",
                       style: TextStyle(
-                          color: AppColors.appbarTitleColor,
-                          fontSize: 20,
+                          color: AppColors.textWhiteColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
                           fontFamily: "Montserrat"),
                     ),
                   ],
                 ),
               ),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
               SizedBox(
-                height: height * 0.09,
-                width: 182,
+                height: height * 0.01,
+              ),
+              SizedBox(
+                height: 40,
+                width: 106,
                 child: Image.asset(
-                  "assets/splash.png",
+                  "assets/itienda.png",
                   fit: BoxFit.fill,
                 ),
               ),
               SizedBox(
                 height: height * 0.02,
               ),
+              Row(
+                children: [
+                  Image.asset(
+                    "assets/11.png",
+                    height: 25,
+                    width: 25,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Text(
+                    "Editar Perfil",
+                    style: TextStyle(
+                        color: AppColors.textWhiteColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Montserrat"),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
               Expanded(
                 child: Form(
                   key: key,
                   child: Container(
                       padding: EdgeInsets.only(
-                          left: width * 0.02, right: width * 0.01),
-                      margin: const EdgeInsets.only(left: 10),
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage("assets/pro.png"),
-                            fit: BoxFit.cover),
+                          left: width * 0.02, right: width * 0.02),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: AppColors.textWhiteColor,
                       ),
                       child: SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              height: height * 0.03,
+                              height: height * 0.01,
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                showBottomSheet();
-                              },
-                              child: Row(
-                                children: [
-                                  tempImage != null
-                                      ? ClipOval(
-                                          child: Image.file(
-                                            File(tempImage!),
-                                            fit: BoxFit.fill,
-                                            height: 40,
-                                            width: 40,
-                                          ),
-                                        )
-                                      :
-                                      // profile picture
-                                      ClipOval(
-                                          child: Image.asset(
-                                            ("assets/user.png"),
-                                            height: 40,
-                                            width: 40,
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                  SizedBox(
-                                    width: width * 0.01,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () => showBottomSheet,
-                                    child: FittedBox(
-                                      fit: BoxFit.contain,
-                                      child: text("Editar Perfil", 18,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
+                            // GestureDetector(
+                            //   onTap: () {
+                            //     showBottomSheet();
+                            //   },
+                            //   child: Row(
+                            //     children: [
+                            //       tempImage != null
+                            //           ? ClipOval(
+                            //               child: Image.file(
+                            //                 File(tempImage!),
+                            //                 fit: BoxFit.fill,
+                            //                 height: 40,
+                            //                 width: 40,
+                            //               ),
+                            //             )
+                            //           :
+                            //           // profile picture
+                            //           ClipOval(
+                            //               child: Image.asset(
+                            //                 ("assets/user.png"),
+                            //                 height: 40,
+                            //                 width: 40,
+                            //                 fit: BoxFit.fill,
+                            //               ),
+                            //             ),
+                            //       SizedBox(
+                            //         width: width * 0.01,
+                            //       ),
+                            //       GestureDetector(
+                            //         onTap: () => showBottomSheet,
+                            //         child: FittedBox(
+                            //           fit: BoxFit.contain,
+                            //           child: text("Editar Perfil", 18,
+                            //               fontWeight: FontWeight.w500),
+                            //         ),
+                            //       )
+                            //     ],
+                            //   ),
+                            // ),
 
-                            text("PERSONAL", 18, fontWeight: FontWeight.w500),
+                            text("PERSONAL", 18, fontWeight: FontWeight.w600),
                             SizedBox(
                               height: height * 0.01,
                             ),
                             text("Nombre Completo", 12,
                                 fontWeight: FontWeight.w500),
-                            Padding(
-                              padding: EdgeInsets.only(right: width * 0.02),
-                              child: CustomTextFieldForEditProfile(
-                                fieldValidationkey: nameFieldKey,
-                                onChanged: (value) {
-                                  nameFieldKey.currentState!.validate();
-                                },
-                                height: height * 0.07,
-                                hint: "",
-                                controller: nameController,
-                                inputAction: TextInputAction.next,
-                                textCapitalization: TextCapitalization.words,
-                                textInputType: TextInputType.name,
-                                validate: (value) {
-                                  return FieldValidator.validateName(
-                                      value.toString());
-                                },
-                              ),
+                            CustomTextFieldForEditProfile(
+                              fieldValidationkey: nameFieldKey,
+                              onChanged: (value) {
+                                nameFieldKey.currentState!.validate();
+                              },
+                              height: height * 0.06,
+                              hint: "",
+                              controller: nameController,
+                              inputAction: TextInputAction.next,
+                              textCapitalization: TextCapitalization.words,
+                              textInputType: TextInputType.name,
+                              validate: (value) {
+                                return FieldValidator.validateName(
+                                    value.toString());
+                              },
                             ),
                             SizedBox(
                               height: height * 0.01,
                             ),
-                            text("Teléfono", 12, fontWeight: FontWeight.w600),
+                            text("Teléfono", 12, fontWeight: FontWeight.w500),
                             Padding(
                               padding: EdgeInsets.only(right: width * 0.15),
                               child: CustomTextFieldForEditProfile(
@@ -241,7 +259,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 onChanged: (value) {
                                   phoneFieldKey.currentState!.validate();
                                 },
-                                height: height * 0.07,
+                                height: height * 0.06,
                                 hint: "",
                                 controller: phoneController,
                                 inputAction: TextInputAction.next,
@@ -264,7 +282,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 onChanged: (value) {
                                   dateFieldKey.currentState!.validate();
                                 },
-                                height: height * 0.07,
+                                height: height * 0.06,
                                 hint: "dd-mm-yyyy",
                                 controller: dateController,
                                 inputAction: TextInputAction.done,
@@ -283,37 +301,34 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             /// genero
                             SizedBox(
                                 height: height * 0.02,
-                                child: text("Género", 14,
+                                child: text("Género", 12,
                                     fontWeight: FontWeight.w500)),
-                            Padding(
-                              padding: EdgeInsets.only(right: width * 0.10),
-                              child: SizedBox(
-                                height: height * 0.04,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    row(
-                                        mancheckbox,
-                                        profileScreenText(
-                                            "Masculino", 12, 10, 12),
-                                        context),
-                                    SizedBox(
-                                      width: width * 0.16,
-                                    ),
-                                    row(
-                                        womancheckbox,
-                                        profileScreenText(
-                                            "Feminino", 12, 10, 12),
-                                        context),
-                                  ],
-                                ),
+                            SizedBox(
+                              height: height * 0.04,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  row(
+                                      mancheckbox,
+                                      profileScreenText("Masculino", 12, 10, 12,
+                                          fontWeight: FontWeight.w400),
+                                      context),
+                                  SizedBox(
+                                    width: width * 0.16,
+                                  ),
+                                  row(
+                                      womancheckbox,
+                                      profileScreenText("Feminino", 12, 10, 12,
+                                          fontWeight: FontWeight.w400),
+                                      context),
+                                ],
                               ),
                             ),
 
                             /// Nacionalidad
                             SizedBox(
                                 height: height * 0.02,
-                                child: text("Nacionalidad", 14,
+                                child: text("Nacionalidad", 12,
                                     fontWeight: FontWeight.w500)),
 
                             SizedBox(
@@ -325,7 +340,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   row(
                                       mexicanocheckbox,
                                       profileScreenText(
-                                          "Mexicano(a)", 12, 10, 12),
+                                          "Mexicano(a)", 12, 10, 12,
+                                          fontWeight: FontWeight.w400),
                                       context),
                                   SizedBox(
                                     width: width * 0.131,
@@ -333,7 +349,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   row(
                                       extranjerocheckbox,
                                       profileScreenText(
-                                          "Extranjero(a)", 12, 10, 12),
+                                          "Extranjero(a)", 12, 10, 12,
+                                          fontWeight: FontWeight.w400),
                                       context),
                                 ],
                               ),
@@ -341,9 +358,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
                             //// Municipio
                             SizedBox(
-                                height: height * 0.03,
+                                height: height * 0.022,
                                 child: profileScreenText(
-                                    "Municipio de Residencia", 14, 12, 14,
+                                    "Municipio de Residencia", 12, 12, 14,
                                     fontWeight: FontWeight.w500)),
                             SizedBox(
                               height: height * 0.08,
@@ -359,6 +376,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             puertocheckbox,
                                             profileScreenText(
                                                 "Puerto Vallarta, Jal.",
+                                                fontWeight: FontWeight.w400,
                                                 12,
                                                 10,
                                                 12),
@@ -373,6 +391,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                               "Cabo Corrientes, Jal.",
                                               12,
                                               10,
+                                              fontWeight: FontWeight.w400,
                                               12),
                                           context),
                                     ],
@@ -383,388 +402,364 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   row(
                                       bahiacheckbox,
                                       profileScreenText(
-                                          "Bahia Banderas, Nay.", 12, 10, 12),
+                                          "Bahia Banderas, Nay.", 12, 10, 12,
+                                          fontWeight: FontWeight.w400),
                                       context),
                                 ],
                               ),
                             ),
 
                             ///Academico
-                            Padding(
-                              padding: EdgeInsets.only(left: width * 0.016),
-                              child: SizedBox(
-                                  height: height * 0.028,
-                                  child: text("ACADÉMICO", 18,
-                                      fontWeight: FontWeight.w500)),
-                            ),
+                            SizedBox(
+                                height: height * 0.028,
+                                child: text("ACADÉMICO", 18,
+                                    fontWeight: FontWeight.w600)),
                             SizedBox(
                               height: height * 0.004,
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(left: width * 0.016),
-                              child: SizedBox(
-                                height: height * 0.02,
-                                child: text("Nivel de Estudios", 14,
-                                    fontWeight: FontWeight.w500),
-                              ),
+                            SizedBox(
+                              height: height * 0.02,
+                              child: text("Nivel de Estudios", 12,
+                                  fontWeight: FontWeight.w500),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(left: width * 0.016),
-                              child: SizedBox(
-                                height: height * 0.10,
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        row(
-                                            bsicocheckbox,
-                                            profileScreenText(
-                                                "Básico", 12, 10, 12),
-                                            context),
-                                        SizedBox(
-                                          width: width * 0.21,
-                                        ),
-                                        row(
-                                            mediocheckbox,
-                                            profileScreenText(
-                                                "Medio Superior", 12, 10, 12),
-                                            context),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        row(
-                                            superiorcheckbox,
-                                            profileScreenText(
-                                                "Superior", 12, 10, 12),
-                                            context),
-                                        SizedBox(
-                                          width: width * 0.19,
-                                        ),
-                                        row(
-                                            postgradocheckbox,
-                                            profileScreenText(
-                                                "Postgrado", 12, 10, 12),
-                                            context),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                            SizedBox(
+                              height: height * 0.10,
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      row(
+                                          bsicocheckbox,
+                                          profileScreenText(
+                                              "Básico", 12, 10, 12,
+                                              fontWeight: FontWeight.w400),
+                                          context),
+                                      SizedBox(
+                                        width: width * 0.21,
+                                      ),
+                                      row(
+                                          mediocheckbox,
+                                          profileScreenText(
+                                              "Medio Superior", 12, 10, 12,
+                                              fontWeight: FontWeight.w400),
+                                          context),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      row(
+                                          superiorcheckbox,
+                                          profileScreenText(
+                                              "Superior", 12, 10, 12,
+                                              fontWeight: FontWeight.w400),
+                                          context),
+                                      SizedBox(
+                                        width: width * 0.19,
+                                      ),
+                                      row(
+                                          postgradocheckbox,
+                                          profileScreenText(
+                                              "Postgrado", 12, 10, 12,
+                                              fontWeight: FontWeight.w400),
+                                          context),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
                             // Nivel de Ingles
-                            Padding(
-                              padding: EdgeInsets.only(left: width * 0.016),
-                              child: SizedBox(
-                                  height: height * 0.03,
-                                  child: text("Nivel de Inglés", 14,
-                                      fontWeight: FontWeight.w500)),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: width * 0.016),
-                              child: SizedBox(
-                                height: height * 0.08,
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        row(
-                                            nulocheckbox,
-                                            profileScreenText(
-                                                "Nulo", 12, 10, 12),
-                                            context),
-                                        SizedBox(
-                                          width: width * 0.248,
-                                        ),
-                                        row(
-                                            bsicocheckbox1,
-                                            profileScreenText(
-                                                "Básico", 12, 10, 12),
-                                            context),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        row(
-                                            intermediocheckbox,
-                                            profileScreenText(
-                                                "Intermedio", 12, 10, 12),
-                                            context),
-                                        SizedBox(
-                                          width: width * 0.164,
-                                        ),
-                                        row(
-                                            avanzadocheckbox,
-                                            profileScreenText(
-                                                "Avanzado", 12, 10, 12),
-                                            context),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                            SizedBox(
+                                height: height * 0.022,
+                                child: text("Nivel de Inglés", 12,
+                                    fontWeight: FontWeight.w500)),
+                            SizedBox(
+                              height: height * 0.08,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      row(
+                                          nulocheckbox,
+                                          profileScreenText("Nulo", 12, 10, 12,
+                                              fontWeight: FontWeight.w400),
+                                          context),
+                                      SizedBox(
+                                        width: width * 0.248,
+                                      ),
+                                      row(
+                                          bsicocheckbox1,
+                                          profileScreenText(
+                                              "Básico", 12, 10, 12,
+                                              fontWeight: FontWeight.w400),
+                                          context),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      row(
+                                          intermediocheckbox,
+                                          profileScreenText(
+                                              "Intermedio", 12, 10, 12,
+                                              fontWeight: FontWeight.w400),
+                                          context),
+                                      SizedBox(
+                                        width: width * 0.164,
+                                      ),
+                                      row(
+                                          avanzadocheckbox,
+                                          profileScreenText(
+                                              "Avanzado", 12, 10, 12,
+                                              fontWeight: FontWeight.w400),
+                                          context),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
 
                             // ¿Tienes domínio de otros idiomas?
 
-                            Padding(
-                              padding: EdgeInsets.only(left: width * 0.016),
-                              child: SizedBox(
-                                  height: height * 0.03,
-                                  child: profileScreenText(
-                                      "¿Tienes domínio de otros idiomas?",
-                                      14,
-                                      12,
-                                      14,
-                                      fontWeight: FontWeight.w500)),
-                            ),
-                            Padding(
-                                padding: EdgeInsets.only(left: width * 0.020),
-                                child: SizedBox(
-                                  height: height * 0.04,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      row(
-                                          sicheckbox1,
-                                          profileScreenText("Sí", 12, 10, 12),
-                                          context),
-                                      SizedBox(
-                                        width: width * 0.29,
-                                      ),
-                                      row(
-                                          nocheckbox1,
-                                          profileScreenText("No", 12, 10, 12),
-                                          context),
-                                    ],
+                            SizedBox(
+                                height: height * 0.022,
+                                child: profileScreenText(
+                                    "¿Tienes domínio de otros idiomas?",
+                                    12,
+                                    12,
+                                    14,
+                                    fontWeight: FontWeight.w500)),
+                            SizedBox(
+                              height: height * 0.04,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  row(
+                                      sicheckbox1,
+                                      profileScreenText("Sí", 12, 10, 12,
+                                          fontWeight: FontWeight.w400),
+                                      context),
+                                  SizedBox(
+                                    width: width * 0.29,
                                   ),
-                                ))
+                                  row(
+                                      nocheckbox1,
+                                      profileScreenText("No", 12, 10, 12,
+                                          fontWeight: FontWeight.w400),
+                                      context),
+                                ],
+                              ),
+                            ),
 
                             // PROFESIONAL
-                            ,
-                            Padding(
-                              padding: EdgeInsets.only(left: width * 0.020),
-                              child: SizedBox(
-                                  height: height * 0.03,
-                                  child: text("PROFESIONAL", 18,
-                                      fontWeight: FontWeight.w500)),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: width * 0.020),
-                              child: SizedBox(
-                                  height: height * 0.03,
-                                  width: width,
-                                  child: profileScreenText(
-                                      "¿Estás trabajando actualmente?",
-                                      14,
-                                      12,
-                                      14,
-                                      fontWeight: FontWeight.w500)),
-                            ),
-                            Padding(
-                                padding: EdgeInsets.only(left: width * 0.020),
-                                child: SizedBox(
-                                  height: height * 0.04,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      row(
-                                          sicheckbox2,
-                                          profileScreenText("Sí", 12, 10, 12),
-                                          context),
-                                      SizedBox(
-                                        width: width * 0.29,
-                                      ),
-                                      row(
-                                          nocheckbox2,
-                                          profileScreenText("No", 12, 10, 12),
-                                          context),
-                                    ],
+
+                            SizedBox(
+                                height: height * 0.03,
+                                child: text("PROFESIONAL", 18,
+                                    fontWeight: FontWeight.w600)),
+                            SizedBox(
+                                height: height * 0.03,
+                                width: width,
+                                child: profileScreenText(
+                                    "¿Estás trabajando actualmente?",
+                                    12,
+                                    12,
+                                    14,
+                                    fontWeight: FontWeight.w500)),
+                            SizedBox(
+                              height: height * 0.04,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  row(
+                                      sicheckbox2,
+                                      profileScreenText("Sí", 12, 10, 12,
+                                          fontWeight: FontWeight.w400),
+                                      context),
+                                  SizedBox(
+                                    width: width * 0.29,
                                   ),
-                                )),
-                            Padding(
-                              padding: EdgeInsets.only(left: width * 0.020),
-                              child: SizedBox(
-                                  height: height * 0.03,
-                                  child: profileScreenText(
-                                      "¿Tienes disponibilidad para empezar de inmediato?",
-                                      14,
-                                      12,
-                                      14,
-                                      fontWeight: FontWeight.w500)),
+                                  row(
+                                      nocheckbox2,
+                                      profileScreenText("No", 12, 10, 12,
+                                          fontWeight: FontWeight.w400),
+                                      context),
+                                ],
+                              ),
                             ),
-                            Padding(
-                                padding: EdgeInsets.only(left: width * 0.020),
-                                child: SizedBox(
-                                  height: height * 0.04,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      row(
-                                          sicheckbox3,
-                                          profileScreenText("Sí", 12, 10, 12),
-                                          context),
-                                      SizedBox(
-                                        width: width * 0.29,
-                                      ),
-                                      row(
-                                          nocheckbox3,
-                                          profileScreenText("No", 12, 10, 12),
-                                          context),
-                                    ],
+                            SizedBox(
+                                height: height * 0.022,
+                                child: profileScreenText(
+                                    "¿Tienes disponibilidad para empezar de inmediato?",
+                                    12,
+                                    12,
+                                    14,
+                                    fontWeight: FontWeight.w500)),
+                            SizedBox(
+                              height: height * 0.04,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  row(
+                                      sicheckbox3,
+                                      profileScreenText("Sí", 12, 10, 12,
+                                          fontWeight: FontWeight.w400),
+                                      context),
+                                  SizedBox(
+                                    width: width * 0.29,
                                   ),
-                                )),
+                                  row(
+                                      nocheckbox3,
+                                      profileScreenText("No", 12, 10, 12,
+                                          fontWeight: FontWeight.w400),
+                                      context),
+                                ],
+                              ),
+                            ),
                             // ¿En cuales areas te gustaria actuar?Escoge hasta 3 opciones
-                            Padding(
-                              padding: EdgeInsets.only(left: width * 0.020),
-                              child: SizedBox(
-                                  height: height * 0.06,
-                                  child: profileScreenText(
-                                      "¿En cuales areas te gustaria actuar? Escoge hasta 3 opciones",
-                                      14,
-                                      12,
-                                      14,
-                                      fontWeight: FontWeight.w500)),
-                            ),
-                            Padding(
-                                padding: EdgeInsets.only(left: width * 0.020),
-                                child: Column(
+                            SizedBox(
+                                height: height * 0.05,
+                                child: profileScreenText(
+                                    "¿En cuales areas te gustaria actuar? Escoge hasta 3 opciones.",
+                                    12,
+                                    12,
+                                    14,
+                                    fontWeight: FontWeight.w500)),
+                            Column(
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        row(
-                                            administrativocheckbox,
-                                            profileScreenText(
-                                                "Administrativo", 12, 10, 12),
-                                            context),
-                                        SizedBox(
-                                          width: width * 0.12,
-                                        ),
-                                        row(
-                                            atencioncheckbox,
-                                            profileScreenText(
-                                                "Atención al Cliente",
-                                                12,
-                                                10,
-                                                12),
-                                            context),
-                                      ],
-                                    ),
+                                    row(
+                                        administrativocheckbox,
+                                        profileScreenText(
+                                            "Administrativo", 12, 10, 12,
+                                            fontWeight: FontWeight.w400),
+                                        context),
                                     SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        row(
-                                            construccioncheckbox,
-                                            profileScreenText(
-                                                "Construcción", 12, 10, 12),
-                                            context),
-                                        SizedBox(
-                                          width: width * 0.14,
-                                        ),
-                                        row(
-                                            gastronomiacheckbox2,
-                                            profileScreenText(
-                                                "Gastronomia", 12, 10, 12),
-                                            context),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        row(
-                                            mantenimientocheckbox3,
-                                            profileScreenText(
-                                                "Mantenimiento", 12, 10, 12),
-                                            context),
-                                        SizedBox(
-                                          width: width * 0.12,
-                                        ),
-                                        row(
-                                            saludcheckbox3,
-                                            profileScreenText(
-                                                "Salud", 12, 10, 12),
-                                            context),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        row(
-                                            seguridadcheckbox,
-                                            profileScreenText(
-                                                "Seguridad", 12, 10, 12),
-                                            context),
-                                        SizedBox(
-                                          width: width * 0.194,
-                                        ),
-                                        row(
-                                            servicioscheckbox,
-                                            profileScreenText(
-                                                "Servicios", 12, 10, 12),
-                                            context),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        row(
-                                            tecnologiacheckbox,
-                                            profileScreenText(
-                                                "Tecnología", 12, 10, 12),
-                                            context),
-                                        SizedBox(
-                                          width: width * 0.184,
-                                        ),
-                                        row(
-                                            ventascheckbox,
-                                            profileScreenText(
-                                                "Ventas", 12, 10, 12),
-                                            context),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
+                                      width: width * 0.12,
                                     ),
                                     row(
-                                        otroscheckbox,
-                                        profileScreenText("Otros", 12, 10, 12),
+                                        atencioncheckbox,
+                                        profileScreenText(
+                                            "Atención al Cliente", 12, 10, 12,
+                                            fontWeight: FontWeight.w400),
                                         context),
                                   ],
-                                )),
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    row(
+                                        construccioncheckbox,
+                                        profileScreenText(
+                                            "Construcción", 12, 10, 12,
+                                            fontWeight: FontWeight.w400),
+                                        context),
+                                    SizedBox(
+                                      width: width * 0.14,
+                                    ),
+                                    row(
+                                        gastronomiacheckbox2,
+                                        profileScreenText(
+                                            "Gastronomia", 12, 10, 12,
+                                            fontWeight: FontWeight.w400),
+                                        context),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    row(
+                                        mantenimientocheckbox3,
+                                        profileScreenText(
+                                            "Mantenimiento", 12, 10, 12,
+                                            fontWeight: FontWeight.w400),
+                                        context),
+                                    SizedBox(
+                                      width: width * 0.12,
+                                    ),
+                                    row(
+                                        saludcheckbox3,
+                                        profileScreenText("Salud", 12, 10, 12,
+                                            fontWeight: FontWeight.w400),
+                                        context),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                Row(
+                                  children: [
+                                    row(
+                                        seguridadcheckbox,
+                                        profileScreenText(
+                                            "Seguridad", 12, 10, 12,
+                                            fontWeight: FontWeight.w400),
+                                        context),
+                                    SizedBox(
+                                      width: width * 0.194,
+                                    ),
+                                    row(
+                                        servicioscheckbox,
+                                        profileScreenText(
+                                            "Servicios", 12, 10, 12,
+                                            fontWeight: FontWeight.w400),
+                                        context),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                Row(
+                                  children: [
+                                    row(
+                                        tecnologiacheckbox,
+                                        profileScreenText(
+                                            "Tecnología", 12, 10, 12,
+                                            fontWeight: FontWeight.w400),
+                                        context),
+                                    SizedBox(
+                                      width: width * 0.184,
+                                    ),
+                                    row(
+                                        ventascheckbox,
+                                        profileScreenText("Ventas", 12, 10, 12,
+                                            fontWeight: FontWeight.w400),
+                                        context),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                row(
+                                    otroscheckbox,
+                                    profileScreenText("Otros", 12, 10, 12,
+                                        fontWeight: FontWeight.w400),
+                                    context),
+                              ],
+                            ),
                             SizedBox(
                               height: height * 0.01,
                             ),
@@ -775,7 +770,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               child: SizedBox(
                                   height: height * 0.03,
                                   child: text("Subir curriculum", 14,
-                                      fontWeight: FontWeight.w500)),
+                                      fontWeight: FontWeight.w600)),
                             ),
 
                             ///

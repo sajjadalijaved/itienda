@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import '../AuthenticationScreens/login.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Bloc/bloc/connectivity_bloc.dart';
-import 'package:itienda/Views/AuthenticationScreens/login.dart';
 
 class CheckConnectivitySplashScreen extends StatelessWidget {
   const CheckConnectivitySplashScreen({Key? key}) : super(key: key);
@@ -73,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //   });
     //   splashServices.checkAuthentication(context);
     // });
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 2), () {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
@@ -90,66 +90,17 @@ class _SplashScreenState extends State<SplashScreen> {
     double width = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-          padding: EdgeInsets.only(top: height * 0.10),
-          height: height,
-          width: width,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-              image: AssetImage("assets/splash1.png"),
-              fit: BoxFit.cover,
-            ),
+        body: SafeArea(
+      child: Container(
+        height: height,
+        width: width,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/splash.png"),
+            fit: BoxFit.fill,
           ),
-          child: Column(
-            children: [
-              Center(
-                child: SizedBox(
-                  height: 125,
-                  width: 311,
-                  child: Image.asset(
-                    "assets/splash.png",
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: height * 0.03,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: width * 0.09),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const FittedBox(
-                      fit: BoxFit.contain,
-                      child: Text(
-                        "Bienvenido(a)!",
-                        style: TextStyle(
-                            color: Color(
-                              0xFF000000,
-                            ),
-                            fontSize: 32,
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    SizedBox(
-                      width: width * 0.03,
-                    ),
-                    Image.asset(
-                      "assets/emoji.png",
-                      fit: BoxFit.cover,
-                      height: 40,
-                      width: 40,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ));
+        ),
+      ),
+    ));
   }
 }

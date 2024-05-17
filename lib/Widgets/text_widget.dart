@@ -67,19 +67,21 @@ Widget row(ValueNotifier<bool> checkbox, Widget text, BuildContext context) {
   );
 }
 
-Widget container(BuildContext context, void Function()? press, String text1) {
+Widget container(BuildContext context, void Function()? press,
+    {required String text1, required String image}) {
   double height = MediaQuery.sizeOf(context).height;
   double width = MediaQuery.sizeOf(context).width;
   return GestureDetector(
     onTap: press,
     child: Container(
-      height: height * 0.04,
+      height: 40,
       width: width * 0.9,
+      margin: EdgeInsets.only(bottom: height * 0.01),
       decoration: BoxDecoration(
-        color: Colors.white,
+        borderRadius: BorderRadius.circular(5),
         border: Border.all(
-          width: 0.5,
-          color: const Color(0xFF365830),
+          width: 2,
+          color: const Color(0xFFFFFFFF),
         ),
       ),
       child: Row(
@@ -88,14 +90,21 @@ Widget container(BuildContext context, void Function()? press, String text1) {
           SizedBox(
             width: width * 0.01,
           ),
-          const Icon(
-            Icons.arrow_forward_outlined,
-            size: 25,
+          Image.asset(
+            image,
+            height: 25,
+            width: 25,
           ),
           SizedBox(
             width: width * 0.03,
           ),
-          text(text1, 16)
+          Text(
+            text1,
+            style: const TextStyle(
+                color: AppColors.textWhiteColor,
+                fontWeight: FontWeight.w400,
+                fontSize: 16),
+          )
         ],
       ),
     ),

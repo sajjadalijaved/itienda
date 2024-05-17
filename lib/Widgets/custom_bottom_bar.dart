@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:itienda/Utils/appcolors.dart';
 import 'package:itienda/view_model/main_screen_view_model.dart';
 // ignore_for_file: use_key_in_widget_constructors
-
-// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 
 class BottomBar extends StatelessWidget {
   final MainScreenViewModel mainScreenViewModel;
@@ -16,22 +15,16 @@ class BottomBar extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.width * .230,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: const BorderDirectional(
+      height: size.height * .120,
+      width: size.width,
+      decoration: const BoxDecoration(
+        // color: Colors.white,
+        border: BorderDirectional(
           top: BorderSide(
             width: 1,
-            color: Color(0xFF766B6B),
+            color: Color(0xFFFFFFFF),
           ),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(.15),
-            blurRadius: 30,
-            offset: const Offset(0, 10),
-          ),
-        ],
       ),
       child: ListView.builder(
         itemCount: mainScreenViewModel.icons.length,
@@ -60,29 +53,26 @@ class BottomBar extends StatelessWidget {
                     ? size.width * .016
                     : 0,
                 decoration: const BoxDecoration(
-                  color: Color(0xFF365830),
+                  color: Color(0xFFFFFFFF),
                   borderRadius: BorderRadius.vertical(
                     bottom: Radius.circular(5),
                   ),
                 ),
               ),
-              Image.asset(
-                mainScreenViewModel.icons[index],
-                //width: size.width * .080,
-                color: index == mainScreenViewModel.currentTab
-                    ? const Color(0xFF365830)
-                    : const Color(0xFF766B6B),
-              ),
+              Image.asset(mainScreenViewModel.icons[index],
+                  height: 40, width: 40, color: AppColors.textWhiteColor
+                  // index == mainScreenViewModel.currentTab
+                  //     ? const Color(0xFF365830)
+                  //     : const Color(0xFF766B6B),
+                  ),
               Text(
                 mainScreenViewModel.lables[index],
-                style: TextStyle(
-                  fontSize: 14,
-                  color: index == mainScreenViewModel.currentTab
-                      ? const Color(0xFF365830)
-                      : const Color(0xFF766B6B),
-                ),
+                style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textWhiteColor),
               ),
-              SizedBox(height: size.width * .02),
+              SizedBox(height: size.height * .001),
             ],
           ),
         ),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../Widgets/custombutton.dart';
 import '../../view_model/view_modal.dart';
-import 'package:animate_do/animate_do.dart';
 import '../../Utils/no_connection_page.dart';
 import 'package:itienda/Utils/appcolors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,32 +55,6 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
     double width = MediaQuery.sizeOf(context).width;
     final authViewModal = Provider.of<AuthViewModal>(context);
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        const CheckConnectivityForgetPassword(),
-                  ),
-                  (route) => false);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: AppColors.buttonColor,
-            )),
-        title: const Text(
-          "Acceda Ahora!",
-          style: TextStyle(
-              color: AppColors.appbarTitleColor,
-              fontSize: 20,
-              fontFamily: "Montserrat"),
-        ),
-      ),
       body: SingleChildScrollView(
         child: SafeArea(
             child: Container(
@@ -89,106 +62,76 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                 width: width,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/back.png"),
-                      alignment: Alignment.bottomRight),
+                      image: AssetImage("assets/back.png"), fit: BoxFit.cover),
                 ),
                 child: Form(
                   key: _key,
                   child: Padding(
-                    padding: EdgeInsets.only(top: height * 0.09),
+                    padding: EdgeInsets.only(top: height * 0.02),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: width * 0.26),
-                          child: FadeInDown(
-                            duration: const Duration(milliseconds: 1500),
-                            child: SizedBox(
-                                height: height * 0.2,
-                                width: width,
-                                child: Image.asset(
-                                  "assets/code.png",
-                                )),
+                          padding: EdgeInsets.only(
+                            left: width * 0.07,
+                          ),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const CheckConnectivityForgetPassword(),
+                                      ),
+                                      (route) => false);
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_back_ios,
+                                  color: AppColors.textWhiteColor,
+                                ),
+                              ),
+                              const Text(
+                                "Acceda Ahora",
+                                style: TextStyle(
+                                    color: AppColors.textWhiteColor,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: "Montserrat"),
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(
-                          height: height * 0.04,
+                          height: height * 0.12,
                         ),
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: width * 0.25),
-                          child: FadeInUp(
-                            delay: const Duration(milliseconds: 1000),
-                            duration: const Duration(milliseconds: 1000),
-                            child: SizedBox(
-                              height: height * 0.05,
-                              width: width,
-                              child: const Center(
-                                child: Text(
-                                  "Verificación",
-                                  style: TextStyle(
-                                      color: AppColors.textBlackColor,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Montserrat"),
-                                ),
-                              ),
-                            ),
+                        const Center(
+                          child: Text(
+                            "Verificación",
+                            style: TextStyle(
+                                color: AppColors.textWhiteColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Montserrat"),
                           ),
                         ),
                         SizedBox(
-                          height: height * 0.02,
+                          height: height * 0.03,
                         ),
                         Padding(
                           padding:
-                              EdgeInsets.only(left: width * 0.09, right: 09),
-                          child: FadeInUp(
-                            delay: const Duration(milliseconds: 1200),
-                            duration: const Duration(milliseconds: 1000),
-                            child: SizedBox(
-                              height: height * 0.03,
-                              width: width,
-                              child: const Center(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    "Ingresa el código de 4 dígitos que recibiste en la",
-                                    style: TextStyle(
-                                        color: AppColors.textBlackColor,
-                                        fontSize: 14,
-                                        fontFamily: "Montserrat"),
-                                  ),
-                                ),
-                              ),
-                            ),
+                              EdgeInsets.symmetric(horizontal: width * 0.08),
+                          child: const Text(
+                            textAlign: TextAlign.center,
+                            "Ingresa el código de 4 dígitos que recibiste en la dirección de correo registrada.",
+                            style: TextStyle(
+                                color: AppColors.textWhiteColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Montserrat"),
                           ),
                         ),
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: width * 0.24),
-                          child: FadeInUp(
-                            delay: const Duration(milliseconds: 1400),
-                            duration: const Duration(milliseconds: 1000),
-                            child: SizedBox(
-                              height: height * 0.02,
-                              width: width,
-                              child: const Center(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    "dirección de correo registrada.",
-                                    style: TextStyle(
-                                        color: AppColors.textBlackColor,
-                                        fontSize: 14,
-                                        height: 1,
-                                        fontFamily: "Montserrat"),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+
                         SizedBox(
                           height: height * .03,
                         ),
@@ -196,141 +139,96 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                         Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: width * 0.10),
-                          child: FadeInUp(
-                            delay: const Duration(milliseconds: 1600),
-                            duration: const Duration(milliseconds: 1000),
-                            child: SizedBox(
-                                height: height * .10,
-                                child: PinCodeTextField(
-                                  appContext: context,
-                                  controller: _codeController,
-                                  autoDisposeControllers: false,
-                                  cursorColor: const Color(0xFF365830),
-                                  blinkWhenObscuring: true,
-                                  keyboardType: TextInputType.number,
-                                  obscuringCharacter: "*",
-                                  length: 4,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      value1 = value;
-                                    });
-                                  },
-                                  validator: (value) {
-                                    return FieldValidator.validatePinCode(
-                                        value);
-                                  },
-                                  onCompleted: (value) => log(value),
-                                  pinTheme: PinTheme(
-                                      shape: PinCodeFieldShape.box,
-                                      borderRadius: BorderRadius.circular(5),
-                                      inactiveColor: const Color(0xFF365830),
-                                      activeColor: const Color(0xFF365830),
-                                      selectedColor: const Color(0xFF766B6B),
-                                      borderWidth: 1,
-                                      fieldHeight: 50,
-                                      fieldWidth: 50),
-                                )
+                          child: SizedBox(
+                              height: height * .10,
+                              child: PinCodeTextField(
+                                enableActiveFill: true,
+                                appContext: context,
+                                controller: _codeController,
+                                autoDisposeControllers: false,
+                                cursorColor: const Color(0xFF365830),
+                                blinkWhenObscuring: true,
+                                keyboardType: TextInputType.number,
+                                obscuringCharacter: "*",
+                                length: 4,
+                                onChanged: (value) {
+                                  setState(() {
+                                    value1 = value;
+                                  });
+                                },
+                                validator: (value) {
+                                  return FieldValidator.validatePinCode(value);
+                                },
+                                onCompleted: (value) => log(value),
+                                pinTheme: PinTheme(
+                                    disabledBorderWidth: 1,
+                                    shape: PinCodeFieldShape.box,
+                                    borderRadius: BorderRadius.circular(5),
+                                    inactiveColor: const Color(0xFF365830),
+                                    activeColor: const Color(0xFF365830),
+                                    selectedColor: const Color(0xFF365830),
+                                    activeFillColor: AppColors.textWhiteColor,
+                                    inactiveFillColor: AppColors.textWhiteColor,
+                                    fieldHeight: 50,
+                                    fieldWidth: 50),
+                              )),
+                        ),
 
-                                //  PinCodeTextField(
-
-                                //   autofocus: false,
-                                //   controller: _codeController,
-                                //   hideCharacter: true,
-                                //   highlight: true,
-                                //   highlightColor: const Color(0xFF006341),
-                                //   defaultBorderColor: Colors.black38,
-                                //   highlightPinBoxColor: Colors.white,
-                                //   maxLength: 4,
-                                //   maskCharacter: "*",
-                                //   onDone: (text) {},
-                                //   pinBoxWidth: 50,
-                                //   pinBoxHeight: 50,
-                                //   wrapAlignment: WrapAlignment.spaceBetween,
-                                //   pinBoxDecoration: ProvidedPinBoxDecoration
-                                //       .roundedPinBoxDecoration,
-                                //   pinTextStyle: const TextStyle(fontSize: 22.0),
-                                //   pinTextAnimatedSwitcherTransition:
-                                //       ProvidedPinBoxTextAnimation.scalingTransition,
-                                //   pinTextAnimatedSwitcherDuration:
-                                //       const Duration(milliseconds: 300),
-                                //   highlightAnimationEndColor: Colors.white12,
-                                //   keyboardType: TextInputType.number,
-                                // ),
-                                ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.02,
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: width * 0.30),
-                          child: FadeInUp(
-                            delay: const Duration(milliseconds: 1800),
-                            duration: const Duration(milliseconds: 1000),
-                            child: SizedBox(
-                              height: height * 0.02,
-                              width: width,
-                              child: Center(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: RichText(
-                                      text:
-                                          const TextSpan(children: <InlineSpan>[
-                                    TextSpan(
-                                        text: "El código expira en ",
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 14)),
-                                    TextSpan(
-                                      text: "24h",
-                                      style: TextStyle(
-                                          color: AppColors.textBlackColor,
-                                          fontSize: 14,
-                                          decoration: TextDecoration.underline,
-                                          decorationColor:
-                                              AppColors.textBlackColor,
-                                          decorationThickness: 3,
-                                          fontWeight: FontWeight.w500),
-                                    )
-                                  ])),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        RichText(
+                            text: const TextSpan(children: <InlineSpan>[
+                          TextSpan(
+                              text: "El código expira en ",
+                              style: TextStyle(
+                                  color: AppColors.textWhiteColor,
+                                  fontFamily: "Montserrat",
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14)),
+                          TextSpan(
+                            text: "24h",
+                            style: TextStyle(
+                                color: AppColors.textWhiteColor,
+                                fontSize: 16,
+                                decoration: TextDecoration.underline,
+                                decorationColor: AppColors.textWhiteColor,
+                                decorationThickness: 3,
+                                fontWeight: FontWeight.w500),
+                          )
+                        ])),
                         SizedBox(
                           height: height * .05,
                         ),
                         Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: width * 0.15),
-                          child: FadeInUp(
-                            delay: const Duration(milliseconds: 2000),
-                            duration: const Duration(milliseconds: 1000),
-                            child: CustomButton(
-                              loading: authViewModal.signinLoading,
-                              width: width,
-                              height: height * 0.07,
-                              press: () async {
-                                if (_key.currentState!.validate()) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const CheckConnectivityConfirmPasswordScreen(),
-                                    ),
-                                  );
-                                  // Map data = {
-                                  //   'email': _emailController.text.trim(),
-                                  // };
-                                  // authViewModal.registerApi(data, context);
-                                }
-                              },
-                              title: "Confirmar",
-                              color: AppColors.buttonColor,
-                            ),
+                          child: CustomButton(
+                            loading: authViewModal.signinLoading,
+                            width: width,
+                            height: height * 0.06,
+                            press: () async {
+                              if (_key.currentState!.validate()) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const CheckConnectivityConfirmPasswordScreen(),
+                                  ),
+                                );
+                                // Map data = {
+                                //   'email': _emailController.text.trim(),
+                                // };
+                                // authViewModal.registerApi(data, context);
+                              }
+                            },
+                            title: "Confirmar",
+                            color: AppColors.buttonColor,
                           ),
                         ),
+                        SizedBox(
+                          height: height * 0.16,
+                        ),
+                        const Divider(
+                          color: AppColors.textWhiteColor,
+                        )
                       ],
                     ),
                   ),

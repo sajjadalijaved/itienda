@@ -10,31 +10,22 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  List<String> name = <String>[
-    "Administrativo",
-    "Atención al Cliente",
-    "Construcción",
-    "Gastronomía",
-    "Mantenimiento",
-    "Salud",
-    "Seguridad",
-    "Servicios",
-    "Tecnología",
-    "Ventas",
-    "Otros",
-  ];
-  List<String> number = <String>[
-    "4",
-    "19",
-    "11",
-    "23",
-    "7",
-    "3",
-    "5",
-    "9",
-    "3",
-    "8",
-    "4",
+  final List<dynamic> jobs = [
+    {'image': 'assets/1.png', 'title': 'Administrativo', 'vacancies': 5},
+    {
+      'image': 'assets/service.png',
+      'title': 'Atención al Cliente',
+      'vacancies': 3
+    },
+    {'image': 'assets/pl.png', 'title': 'Construcción', 'vacancies': 4},
+    {'image': 'assets/shef.png', 'title': 'Gastronomía', 'vacancies': 2},
+    {'image': 'assets/2.png', 'title': 'Mantenimiento', 'vacancies': 6},
+    {'image': 'assets/3.png', 'title': 'Salud', 'vacancies': 6},
+    {'image': 'assets/4.png', 'title': 'Seguridad', 'vacancies': 6},
+    {'image': 'assets/5.png', 'title': 'Servicios', 'vacancies': 6},
+    {'image': 'assets/6.png', 'title': 'Tecnología', 'vacancies': 6},
+    {'image': 'assets/7.png', 'title': 'Ventas', 'vacancies': 6},
+    {'image': 'assets/8.png', 'title': 'Otros', 'vacancies': 6},
   ];
 
   @override
@@ -42,31 +33,28 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           height: height,
           width: width,
           decoration: const BoxDecoration(
-            color: Colors.white,
             image: DecorationImage(
-                image: AssetImage("assets/back.png"),
-                alignment: Alignment.bottomRight),
+                image: AssetImage("assets/back.png"), fit: BoxFit.cover),
           ),
           child: Padding(
             padding: EdgeInsets.only(
               left: 22,
-              top: height * 0.07,
+              top: height * 0.05,
               right: width * 0.05,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: height * 0.09,
-                  width: 182,
+                  height: 40,
+                  width: 106,
                   child: Image.asset(
-                    "assets/splash.png",
+                    "assets/itienda.png",
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -76,12 +64,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 18),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
                         "assets/category.png",
-                        height: height * 0.04,
-                        color: Colors.black,
-                        fit: BoxFit.fill,
+                        height: 20,
+                        width: 20,
+                        color: AppColors.textWhiteColor,
                       ),
                       SizedBox(
                         width: width * 0.03,
@@ -91,8 +80,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         child: Text(
                           "Selecciona una Categoría",
                           style: TextStyle(
-                              color: Color(0xFF000000),
-                              fontWeight: FontWeight.w500,
+                              color: AppColors.textWhiteColor,
+                              fontWeight: FontWeight.w400,
                               fontSize: 18,
                               fontFamily: "Montserrat"),
                         ),
@@ -103,82 +92,88 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: height * 0.06, horizontal: width * 0.05),
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: List.generate(
-                        name.length,
-                        (index) => Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            JobListingJobSeekerScreen(
-                                          name: name[index],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    height: height * 0.04,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        width: 0.05,
-                                        color: const Color(0xFF365830),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          width: width * 0.01,
-                                        ),
-                                        const Icon(
-                                          Icons.arrow_forward_outlined,
-                                          size: 25,
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.03,
-                                        ),
-                                        FittedBox(
-                                          fit: BoxFit.contain,
-                                          child: Text(
-                                            name[index],
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                fontFamily: "Montserrat",
-                                                color:
-                                                    AppColors.textBlackColor),
-                                          ),
-                                        ),
-                                        const Spacer(),
-                                        FittedBox(
-                                          fit: BoxFit.contain,
-                                          child: Text(
-                                            "${number[index]}  vacantes",
-                                            style: const TextStyle(
-                                                fontSize: 12,
-                                                fontFamily: "Montserrat",
-                                                color: Color(0xFF006341)),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.03,
-                                        ),
-                                      ],
-                                    ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                SizedBox(
+                  height: height * .7,
+                  width: width,
+                  child: ListView.builder(
+                    itemCount: jobs.length,
+                    itemBuilder: (context, index) => Padding(
+                      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      JobListingJobSeekerScreen(
+                                    name: jobs[index]['title'].toString(),
                                   ),
                                 ),
-                              ],
-                            )),
+                              );
+                            },
+                            child: Container(
+                              height: 40,
+                              margin: EdgeInsets.only(bottom: height * 0.01),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                border: Border.all(
+                                  width: 1,
+                                  color: const Color(0xFFFFFFFF),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: width * 0.01,
+                                  ),
+                                  Image.asset(
+                                    jobs[index]['image'],
+                                    height: 25,
+                                    width: 25,
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.03,
+                                  ),
+                                  FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: Text(
+                                      jobs[index]['title'],
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "Montserrat",
+                                          color: AppColors.textWhiteColor),
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: Text(
+                                      "${jobs[index]['vacancies']}  vacantes",
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: "Montserrat",
+                                          color: AppColors.textWhiteColor),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.03,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 )
               ],

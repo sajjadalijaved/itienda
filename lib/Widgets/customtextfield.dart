@@ -51,7 +51,10 @@ class CustomTextField extends StatelessWidget {
         validator: validate,
         textInputAction: inputAction,
         decoration: InputDecoration(
+          errorStyle:
+              const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
           hintText: hintText,
+          isDense: true,
           filled: true,
           fillColor: const Color(0xFFFFFFFF),
           hintStyle: const TextStyle(color: Color(0xFF766B6B)),
@@ -64,8 +67,11 @@ class CustomTextField extends StatelessWidget {
                 color: Colors.red,
               ),
               borderRadius: BorderRadius.circular(5)),
+          disabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Color(0xFF365830), width: 1),
+              borderRadius: BorderRadius.circular(5)),
           focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Color(0xFF766B6B), width: 1),
+              borderSide: const BorderSide(color: Color(0xFF365830), width: 1),
               borderRadius: BorderRadius.circular(5)),
           border: OutlineInputBorder(
               borderSide: const BorderSide(color: Color(0xFF365830), width: 1),

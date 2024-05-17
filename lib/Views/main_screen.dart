@@ -16,13 +16,20 @@ class _MainScreenState extends State<MainScreen> {
     final MainScreenViewModel mainScreenViewModel =
         Provider.of<MainScreenViewModel>(context);
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: SafeArea(
-        child: Consumer<MainScreenViewModel>(
-            builder: (context, value, child) =>
-                mainScreenViewModel.currentScreen),
-      ),
-      bottomNavigationBar: BottomBar(
-        mainScreenViewModel: mainScreenViewModel,
+        child: Stack(
+          children: [
+            Consumer<MainScreenViewModel>(
+                builder: (context, value, child) =>
+                    mainScreenViewModel.currentScreen),
+            Positioned(
+                bottom: 0,
+                child: BottomBar(
+                  mainScreenViewModel: mainScreenViewModel,
+                ))
+          ],
+        ),
       ),
     );
   }
