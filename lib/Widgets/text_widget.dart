@@ -80,7 +80,7 @@ Widget container(BuildContext context, void Function()? press,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
-          width: 2,
+          width: 0.5,
           color: const Color(0xFFFFFFFF),
         ),
       ),

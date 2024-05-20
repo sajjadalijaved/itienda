@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:itienda/Widgets/text_widget.dart';
 import 'package:itienda/Widgets/custombutton.dart';
 import 'package:itienda/Widgets/pick_file_widget.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:itienda/Widgets/custom_textfield_for_edit_profile.dart';
@@ -100,7 +101,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             image: DecorationImage(
               fit: BoxFit.cover,
               image: AssetImage(
-                "assets/back.png",
+                "assets/profile.png",
               ),
             ),
           ),
@@ -252,22 +253,34 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               height: height * 0.01,
                             ),
                             text("Teléfono", 12, fontWeight: FontWeight.w500),
-                            Padding(
-                              padding: EdgeInsets.only(right: width * 0.15),
-                              child: CustomTextFieldForEditProfile(
-                                fieldValidationkey: phoneFieldKey,
-                                onChanged: (value) {
-                                  phoneFieldKey.currentState!.validate();
-                                },
-                                height: height * 0.06,
-                                hint: "",
-                                controller: phoneController,
-                                inputAction: TextInputAction.next,
-                                textInputType: TextInputType.phone,
-                                validate: (value) {
-                                  return FieldValidator.validatePhoneNumber(
-                                      value.toString());
-                                },
+                            SizedBox(
+                              width: width,
+                              child: IntlPhoneField(
+                                decoration: InputDecoration(
+                                  hintStyle: const TextStyle(
+                                      fontSize: 12, color: Color(0xFF766B6B)),
+                                  isDense: true,
+                                  filled: true,
+                                  fillColor: const Color(0xFFFFFFFF),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: Color(0xFF000000), width: 0.5),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: Color(0xFF000000), width: 0.5),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  errorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                        width: 0.5,
+                                        color: Colors.red,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  border: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: Color(0xFF000000), width: 0.5),
+                                      borderRadius: BorderRadius.circular(5)),
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -275,24 +288,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             text("Fecha de Nacimiento", 12,
                                 fontWeight: FontWeight.w500),
-                            Padding(
-                              padding: EdgeInsets.only(right: width * 0.15),
-                              child: CustomTextFieldForEditProfile(
-                                fieldValidationkey: dateFieldKey,
-                                onChanged: (value) {
-                                  dateFieldKey.currentState!.validate();
-                                },
-                                height: height * 0.06,
-                                hint: "dd-mm-yyyy",
-                                controller: dateController,
-                                inputAction: TextInputAction.done,
-                                textInputType: TextInputType.datetime,
-                                inputparameter: [DateInputFormatter()],
-                                validate: (value) {
-                                  return FieldValidator.validateDate(
-                                      value.toString());
-                                },
-                              ),
+                            CustomTextFieldForEditProfile(
+                              fieldValidationkey: dateFieldKey,
+                              onChanged: (value) {
+                                dateFieldKey.currentState!.validate();
+                              },
+                              height: height * 0.06,
+                              hint: "dd-mm-yyyy",
+                              controller: dateController,
+                              inputAction: TextInputAction.done,
+                              textInputType: TextInputType.datetime,
+                              inputparameter: [DateInputFormatter()],
+                              validate: (value) {
+                                return FieldValidator.validateDate(
+                                    value.toString());
+                              },
                             ),
                             SizedBox(
                               height: height * 0.01,

@@ -39,7 +39,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           width: width,
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/back.png"), fit: BoxFit.cover),
+                image: AssetImage("assets/edit.png"), fit: BoxFit.cover),
           ),
           child: Padding(
             padding: EdgeInsets.only(
@@ -123,7 +123,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 border: Border.all(
-                                  width: 1,
+                                  width: 0.5,
                                   color: const Color(0xFFFFFFFF),
                                 ),
                               ),

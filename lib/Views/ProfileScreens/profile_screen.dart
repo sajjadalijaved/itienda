@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             width: width,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/back.png"), fit: BoxFit.cover),
+                  image: AssetImage("assets/profile.png"), fit: BoxFit.cover),
             ),
             child: Padding(
               padding: EdgeInsets.only(left: 20, right: width * 0.08, top: 65),
@@ -96,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
-                                    width: 2,
+                                    width: 0.5,
                                     color: const Color(0xFFFFFFFF),
                                   ),
                                 ),
@@ -168,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
-                                    width: 2,
+                                    width: 0.5,
                                     color: const Color(0xFFFFFFFF),
                                   ),
                                 ),
