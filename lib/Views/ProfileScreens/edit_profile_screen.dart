@@ -1,10 +1,13 @@
 import 'dart:io';
+import 'dart:developer';
 import '../../Utils/appcolors.dart';
 import 'package:flutter/material.dart';
+import 'package:itienda/Utils/utils.dart';
 import '../../Utils/Validation/validation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:itienda/Widgets/text_widget.dart';
 import 'package:itienda/Widgets/custombutton.dart';
+import 'package:intl_phone_field/phone_number.dart';
 import 'package:itienda/Widgets/pick_file_widget.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
@@ -21,6 +24,8 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+  String countryCode = '';
+  bool showError = false;
   late final TextEditingController nameController;
   late final TextEditingController phoneController;
   late final TextEditingController dateController;
@@ -235,10 +240,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 fontWeight: FontWeight.w500),
                             CustomTextFieldForEditProfile(
                               fieldValidationkey: nameFieldKey,
-                              onChanged: (value) {
-                                nameFieldKey.currentState!.validate();
-                              },
-                              height: height * 0.06,
                               hint: "",
                               controller: nameController,
                               inputAction: TextInputAction.next,
@@ -256,11 +257,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             SizedBox(
                               width: width,
                               child: IntlPhoneField(
+                                key: phoneFieldKey,
+                                controller: phoneController,
+                                textInputAction: TextInputAction.next,
+                                initialCountryCode: "MX",
+                                onChanged: (value) {
+                                  countryCode = value.completeNumber.toString();
+                                },
+                                validator: (value) {
+                                  if (value == null ||
+                                      value.completeNumber.isEmpty) {
+                                    return 'Número de teléfono es requerido';
+                                  }
+                                  return null;
+                                },
+                                dropdownIconPosition: IconPosition.trailing,
                                 decoration: InputDecoration(
-                                  hintStyle: const TextStyle(
-                                      fontSize: 12, color: Color(0xFF766B6B)),
                                   isDense: true,
                                   filled: true,
+                                  errorText:
+                                      showError && phoneController.text.isEmpty
+                                          ? 'Número de teléfono es requerido'
+                                          : null,
                                   fillColor: const Color(0xFFFFFFFF),
                                   enabledBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
@@ -293,7 +311,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               onChanged: (value) {
                                 dateFieldKey.currentState!.validate();
                               },
-                              height: height * 0.06,
                               hint: "dd-mm-yyyy",
                               controller: dateController,
                               inputAction: TextInputAction.done,
@@ -796,7 +813,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   width: width,
                                   height: height * 0.06,
                                   press: () {
-                                    if (key.currentState!.validate()) {}
+                                    if (key.currentState!.validate() &&
+                                        phoneController.text.length >= 10) {
+                                      log("Phone Number:$countryCode}");
+                                    } else {
+                                      setState(() {
+                                        showError = true;
+                                        Utils.toastMessage(
+                                            "Kindly fill the all required fields.");
+                                      });
+                                    }
                                   },
                                   color: AppColors.buttonColor,
                                   title: "Guardar"),

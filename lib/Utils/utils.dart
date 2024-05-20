@@ -6,6 +6,7 @@ import 'package:another_flushbar/flushbar_route.dart';
 class Utils {
   static toastMessage(String message) {
     Fluttertoast.showToast(
+      backgroundColor: Colors.black,
       msg: message,
       gravity: ToastGravity.BOTTOM,
     );

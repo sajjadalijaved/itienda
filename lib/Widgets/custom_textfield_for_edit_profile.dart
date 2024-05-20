@@ -14,15 +14,13 @@ class CustomTextFieldForEditProfile extends StatelessWidget {
       this.hint,
       this.textCapitalization = TextCapitalization.none,
       required this.controller,
-      required this.height,
       required this.fieldValidationkey,
-      required this.onChanged});
+      this.onChanged});
 
   TextEditingController controller;
 
   TextInputType? textInputType;
   TextInputAction? inputAction;
-  double height;
   TextCapitalization textCapitalization;
   String? hint;
   var validate;
@@ -33,44 +31,38 @@ class CustomTextFieldForEditProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      child: TextFormField(
-        inputFormatters: inputparameter,
-        textCapitalization: textCapitalization,
-        cursorColor: AppColors.buttonColor,
-        onChanged: onChanged,
-        key: fieldValidationkey,
-        onTap: onTap,
-        keyboardType: textInputType,
-        controller: controller,
-        validator: validate,
-        textInputAction: inputAction,
-        decoration: InputDecoration(
-          hintStyle: const TextStyle(fontSize: 12, color: Color(0xFF766B6B)),
-          hintText: hint,
-          isDense: true,
-          filled: true,
-          fillColor: const Color(0xFFFFFFFF),
-          enabledBorder: OutlineInputBorder(
-              borderSide:
-                  const BorderSide(color: Color(0xFF000000), width: 0.5),
-              borderRadius: BorderRadius.circular(5)),
-          focusedBorder: OutlineInputBorder(
-              borderSide:
-                  const BorderSide(color: Color(0xFF000000), width: 0.5),
-              borderRadius: BorderRadius.circular(5)),
-          errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                width: 0.5,
-                color: Colors.red,
-              ),
-              borderRadius: BorderRadius.circular(5)),
-          border: OutlineInputBorder(
-              borderSide:
-                  const BorderSide(color: Color(0xFF000000), width: 0.5),
-              borderRadius: BorderRadius.circular(5)),
-        ),
+    return TextFormField(
+      inputFormatters: inputparameter,
+      textCapitalization: textCapitalization,
+      cursorColor: AppColors.buttonColor,
+      onChanged: onChanged,
+      key: fieldValidationkey,
+      onTap: onTap,
+      keyboardType: textInputType,
+      controller: controller,
+      validator: validate,
+      textInputAction: inputAction,
+      decoration: InputDecoration(
+        hintStyle: const TextStyle(fontSize: 12, color: Color(0xFF766B6B)),
+        hintText: hint,
+        isDense: true,
+        filled: true,
+        fillColor: const Color(0xFFFFFFFF),
+        enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Color(0xFF000000), width: 0.5),
+            borderRadius: BorderRadius.circular(5)),
+        focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Color(0xFF000000), width: 0.5),
+            borderRadius: BorderRadius.circular(5)),
+        errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              width: 0.5,
+              color: Colors.red,
+            ),
+            borderRadius: BorderRadius.circular(5)),
+        border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Color(0xFF000000), width: 0.5),
+            borderRadius: BorderRadius.circular(5)),
       ),
     );
   }

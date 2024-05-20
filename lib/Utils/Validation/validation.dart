@@ -66,10 +66,10 @@ class FieldValidator {
       r'^\d{2}-\d{2}-\d{4}$',
     );
     if (input!.isEmpty) {
-      return "Birth date is required";
+      return "Se requiere fecha de nacimiento";
     }
     if (!dateRegex.hasMatch(input)) {
-      return 'Invalid date format';
+      return 'Por favor ingrese este tipo 24-12-2023 de fecha';
     }
 
     final parts = input.split('-');
