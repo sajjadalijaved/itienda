@@ -7,7 +7,6 @@ import '../../Utils/Validation/validation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:itienda/Widgets/text_widget.dart';
 import 'package:itienda/Widgets/custombutton.dart';
-import 'package:intl_phone_field/phone_number.dart';
 import 'package:itienda/Widgets/pick_file_widget.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
