@@ -39,7 +39,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           width: width,
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/edit.png"), fit: BoxFit.cover),
+                image: AssetImage("assets/edit.jpg"), fit: BoxFit.cover),
           ),
           child: Padding(
             padding: EdgeInsets.only(

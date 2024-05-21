@@ -105,7 +105,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             image: DecorationImage(
               fit: BoxFit.cover,
               image: AssetImage(
-                "assets/profile.png",
+                "assets/profile.jpg",
               ),
             ),
           ),

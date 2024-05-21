@@ -34,7 +34,7 @@ class _JobListingJobSeekerScreenState extends State<JobListingJobSeekerScreen> {
             image: DecorationImage(
               fit: BoxFit.cover,
               image: AssetImage(
-                "assets/edit.png",
+                "assets/edit.jpg",
               ),
             ),
           ),
