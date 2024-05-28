@@ -1,6 +1,6 @@
-import 'appurl.dart';
 import 'dart:convert';
 import 'dart:developer';
+import '../config/appurl.dart';
 import 'package:http/http.dart';
 import 'package:flutter/foundation.dart';
 

@@ -1,38 +1,22 @@
+import '../../Utils/enum.dart';
+import '../../Utils/utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../Widgets/custombutton.dart';
 import '../../view_model/view_modal.dart';
 import '../../Widgets/customtextfield.dart';
-import '../../Utils/no_connection_page.dart';
+import '../../Bloc/loginBloc/login_bloc.dart';
 import 'package:itienda/Utils/appcolors.dart';
+import '../../Widgets/connectivity_check.dart';
 import 'package:itienda/Views/main_screen.dart';
 import '../../Utils/Validation/validation.dart';
-import '../../Bloc/bloc/connectivity_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:itienda/config/componants/loading_widget.dart';
 import 'package:itienda/Views/AuthenticationScreens/signupscreen.dart';
 import 'package:itienda/Views/ForgetPassword/forget_password_screen.dart';
 
 // ignore_for_file: depend_on_referenced_packages
-
-class CheckConnectivityLogin extends StatelessWidget {
-  const CheckConnectivityLogin({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ConnectivityBloc, ConnectivityState>(
-      builder: (context, state) {
-        if (state is ConnectedState) {
-          return const LoginScreen();
-        } else if (state is DisConnectedState) {
-          return const NoConnectionPage();
-        } else {
-          return Container();
-        }
-      },
-    );
-  }
-}
 
 // login Screen
 class LoginScreen extends StatefulWidget {
@@ -43,43 +27,62 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late final TextEditingController emailController;
-  late final TextEditingController passwordController;
+  late LoginBloc loginBloc;
+  final emailFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
   final GlobalKey<FormState> key = GlobalKey<FormState>();
   final GlobalKey<FormFieldState> emailFieldKey = GlobalKey<FormFieldState>();
   final GlobalKey<FormFieldState> passwordFieldKey =
       GlobalKey<FormFieldState>();
-  // show password icon provider
-  ValueNotifier<bool> obscureText = ValueNotifier<bool>(true);
 
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
+    loginBloc = LoginBloc();
   }
 
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
     super.dispose();
+    loginBloc.close();
   }
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
-    AuthViewModal authViewModal = Provider.of<AuthViewModal>(context);
 
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      // scaffold
-      child: Scaffold(
-        // singlechildscrollview
-        body: Consumer<AuthViewModal>(
-          builder: (context, value, child) => SingleChildScrollView(
-              child: Container(
+    return BlocProvider(
+      create: (context) => LoginBloc(),
+      child: BlocListener<LoginBloc, LoginStates>(
+        listener: (context, state) {
+          if (state.postApiStatus == PostApiStatus.loading) {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return const LoadingWidget();
+                });
+          }
+          if (state.postApiStatus == PostApiStatus.error) {
+            Utils.errorMessageFlush(state.message, context);
+          }
+          if (state.postApiStatus == PostApiStatus.success) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MainScreen(),
+                ),
+                (route) => false);
+            Utils.successMessageFlush(state.message, context);
+          }
+        },
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          // scaffold
+          child: Scaffold(
+            // singlechildscrollview
+            body: Consumer<AuthViewModal>(
+              builder: (context, value, child) => Container(
                   height: height,
                   width: width,
                   decoration: const BoxDecoration(
@@ -131,63 +134,83 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: height * .05,
                             ),
                             // email text-field
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: width * 0.08),
-                              child: CustomTextField(
-                                onTap: () {},
-                                validate: (value) {
-                                  return FieldValidator.validateEmail(
-                                      value.toString());
-                                },
-                                style: const TextStyle(color: Colors.black),
-                                controller: emailController,
-                                fieldValidationkey: emailFieldKey,
-                                hintText: "Usuario",
-                                textInputType: TextInputType.emailAddress,
-                                inputAction: TextInputAction.next,
-                                onChanged: (value) {
-                                  emailFieldKey.currentState!.validate();
-                                },
-                              ),
+                            BlocBuilder<LoginBloc, LoginStates>(
+                              buildWhen: (previous, current) =>
+                                  previous.email != current.email,
+                              builder: (context, state) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.08),
+                                  child: CustomTextField(
+                                    validate: (value) {
+                                      return FieldValidator.validateEmail(
+                                          value.toString());
+                                    },
+                                    style: const TextStyle(color: Colors.black),
+                                    fieldValidationkey: emailFieldKey,
+                                    hintText: "Usuario",
+                                    textInputType: TextInputType.emailAddress,
+                                    inputAction: TextInputAction.next,
+                                    onChanged: (value) {
+                                      context
+                                          .read<LoginBloc>()
+                                          .add(EmailChanged(email: value));
+                                      emailFieldKey.currentState!.validate();
+                                    },
+                                  ),
+                                );
+                              },
                             ),
                             // space
                             SizedBox(
                               height: height * .02,
                             ),
                             // password text-field
-                            ValueListenableBuilder(
-                              valueListenable: obscureText,
-                              builder: (context, value, child) => Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.08),
-                                child: CustomTextField(
-                                  onTap: () {},
-                                  character: '*',
-                                  onChanged: (value) {
-                                    passwordFieldKey.currentState!.validate();
-                                  },
-                                  controller: passwordController,
-                                  fieldValidationkey: passwordFieldKey,
-                                  hintText: "Contraseña",
-                                  textInputType: TextInputType.visiblePassword,
-                                  inputAction: TextInputAction.done,
-                                  validate: (value) {
-                                    return FieldValidator.validatePassword(
-                                        value.toString());
-                                  },
-                                  obscureText: obscureText.value,
-                                  sufixIcon: InkWell(
-                                      onTap: () {
-                                        obscureText.value = !obscureText.value;
+                            BlocBuilder<LoginBloc, LoginStates>(
+                              buildWhen: (previous, current) =>
+                                  previous.password != current.password,
+                              builder: (context, state) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.08),
+                                  child: CustomTextField(
+                                    character: '*',
+                                    onChanged: (value) {
+                                      context.read<LoginBloc>().add(
+                                            PasswordChanged(password: value),
+                                          );
+                                      passwordFieldKey.currentState!.validate();
+                                    },
+                                    fieldValidationkey: passwordFieldKey,
+                                    hintText: "Contraseña",
+                                    textInputType:
+                                        TextInputType.visiblePassword,
+                                    inputAction: TextInputAction.done,
+                                    validate: (value) {
+                                      return FieldValidator.validatePassword(
+                                          value.toString());
+                                    },
+                                    obscureText: state.obsecure,
+                                    sufixIcon:
+                                        BlocBuilder<LoginBloc, LoginStates>(
+                                      builder: (context, state) {
+                                        return InkWell(
+                                          onTap: () {
+                                            context.read<LoginBloc>().add(
+                                                const PasswordVisibility());
+                                          },
+                                          child: Icon(
+                                            state.obsecure
+                                                ? Icons.visibility_off_outlined
+                                                : Icons.visibility,
+                                            color: const Color(0xFF766B6B),
+                                          ),
+                                        );
                                       },
-                                      child: Icon(
-                                          obscureText.value
-                                              ? Icons.visibility_off_outlined
-                                              : Icons.visibility,
-                                          color: const Color(0xFF766B6B))),
-                                ),
-                              ),
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                             const SizedBox(
                               height: 4,
@@ -232,34 +255,29 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: height * .04,
                             ),
                             // login button
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: width * 0.08),
-                              child: CustomButton(
-                                  loading: authViewModal.loginloading,
-                                  width: 137,
-                                  color: AppColors.buttonColor,
-                                  height: height * 0.06,
-                                  press: () {
-                                    // if (key.currentState!.validate()) {
-                                    //   Map data = {
-                                    //     'email': emailController.text.trim(),
-                                    //     'password': passwordController.text.trim()
-                                    //   };
-                                    //   authViewModal.loginApi(data, context);
-                                    // } else {
-                                    //   Utils.errorMessageFlush(
-                                    //       "Failed to login", context);
-                                    // }
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const MainScreen(),
-                                        ),
-                                        (route) => false);
-                                  },
-                                  title: "Acceder"),
+                            BlocBuilder<LoginBloc, LoginStates>(
+                              buildWhen: (previous, current) => false,
+                              builder: (context, state) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.08),
+                                  child: CustomButton(
+                                      width: 137,
+                                      color: AppColors.buttonColor,
+                                      height: height * 0.06,
+                                      press: () {
+                                        if (key.currentState!.validate()) {
+                                          context
+                                              .read<LoginBloc>()
+                                              .add(const LoginButtonEvent());
+                                        } else {
+                                          Utils.snackbar(context,
+                                              "Kindly fill the all required fields.");
+                                        }
+                                      },
+                                      title: "Acceder"),
+                                );
+                              },
                             ),
 
                             // space
@@ -267,31 +285,43 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: height * .06,
                             ),
                             // google login button
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: width * 0.08,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    "assets/google.png",
-                                    height: 35,
-                                    width: 35,
+                            BlocBuilder<LoginBloc, LoginStates>(
+                              buildWhen: (previous, current) => false,
+                              builder: (context, state) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    context.read<LoginBloc>().add(
+                                        GoogleSignInEvent(context: context));
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.08,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/google.png",
+                                          height: 35,
+                                          width: 35,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        const Text(
+                                          'Acceder con Google',
+                                          style: TextStyle(
+                                              color: AppColors.textWhiteColor,
+                                              fontFamily: "Montserrat",
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 20),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  const Text(
-                                    'Acceder con Google',
-                                    style: TextStyle(
-                                        color: AppColors.textWhiteColor,
-                                        fontFamily: "Montserrat",
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 20),
-                                  ),
-                                ],
-                              ),
+                                );
+                              },
                             ),
                             SizedBox(
                               height: height * .02,
@@ -367,7 +397,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const CheckConnectivitySignUp(),
+                                                    const CheckConnectivity(
+                                                  child: SignUpScreen(),
+                                                ),
                                               ),
                                               (route) => false);
                                         })
@@ -382,7 +414,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                  ))),
+                  )),
+            ),
+          ),
         ),
       ),
     );

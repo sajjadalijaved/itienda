@@ -1,15 +1,22 @@
+import 'firebase_options.dart';
 import 'view_model/view_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'Widgets/connectivity_check.dart';
 import 'view_model/user_view_model.dart';
-import 'Bloc/bloc/connectivity_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'Bloc/conectivityBloc/connectivity_bloc.dart';
 import 'package:itienda/Views/SplashScreen/splash_screen.dart';
 import 'package:itienda/view_model/main_screen_view_model.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white, statusBarIconBrightness: Brightness.dark));
@@ -47,7 +54,9 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF006341)),
         ),
-        home: const CheckConnectivitySplashScreen(),
+        home: const CheckConnectivity(
+          child: SplashScreen(),
+        ),
       ),
     );
   }

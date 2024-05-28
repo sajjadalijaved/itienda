@@ -1,40 +1,19 @@
 import 'dart:developer';
+import '../main_screen.dart';
+import '../../Utils/enum.dart';
+import '../../Utils/utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../Widgets/custombutton.dart';
-import '../../view_model/view_modal.dart';
 import '../../Widgets/customtextfield.dart';
-import '../../Utils/no_connection_page.dart';
 import 'package:itienda/Utils/appcolors.dart';
-import '../../Bloc/bloc/connectivity_bloc.dart';
+import '../../Widgets/connectivity_check.dart';
 import '../../Utils/Validation/validation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../config/componants/loading_widget.dart';
+import 'package:itienda/Bloc/signUpBloc/sign_up_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:itienda/Views/AuthenticationScreens/login.dart';
-
-// ignore_for_file: unused_local_variable
-
-// ignore_for_file: use_build_context_synchronously
-
-class CheckConnectivitySignUp extends StatelessWidget {
-  const CheckConnectivitySignUp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ConnectivityBloc, ConnectivityState>(
-      builder: (context, state) {
-        if (state is ConnectedState) {
-          return const SignUpScreen();
-        } else if (state is DisConnectedState) {
-          return const NoConnectionPage();
-        } else {
-          return Container();
-        }
-      },
-    );
-  }
-}
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -44,11 +23,11 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  // controllers
-  late final TextEditingController firstNameController;
-  late final TextEditingController emailController;
-  late final TextEditingController passwordController;
-  late final TextEditingController confirmPasswordController;
+  late SignUpBloc signUpBloc;
+  final nameFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
+  final emailFocusNode = FocusNode();
+  final confirmPasswordFocusNode = FocusNode();
 
   // global keys
   final GlobalKey<FormState> key = GlobalKey<FormState>();
@@ -59,10 +38,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       GlobalKey<FormFieldState>();
   final GlobalKey<FormFieldState> firstNameFieldKey =
       GlobalKey<FormFieldState>();
-
-  // show password icon control provider
-  ValueNotifier<bool> passwordobsureText = ValueNotifier<bool>(true);
-  ValueNotifier<bool> confirmPasswordobsureText = ValueNotifier<bool>(true);
 
   static String storeToken = "";
 
@@ -76,20 +51,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void initState() {
     super.initState();
-    firstNameController = TextEditingController();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-    confirmPasswordController = TextEditingController();
+    signUpBloc = SignUpBloc();
     _tokenRetriever();
   }
 
 // dispose method
   @override
   void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    firstNameController.dispose();
-    confirmPasswordController.dispose();
+    signUpBloc.close();
 
     super.dispose();
   }
@@ -98,15 +67,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
-    AuthViewModal authViewModal = Provider.of<AuthViewModal>(context);
 
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      // scaffold
-      child: Scaffold(
-        body: Consumer<AuthViewModal>(
-          builder: (context, value, child) => SingleChildScrollView(
-              child: SafeArea(
+    return BlocProvider(
+      create: (context) => SignUpBloc(),
+      child: BlocListener<SignUpBloc, SignUpStates>(
+        listener: (context, state) {
+          if (state.postApiStatus == PostApiStatus.loading) {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return const LoadingWidget();
+                });
+          }
+          if (state.postApiStatus == PostApiStatus.error) {
+            Utils.errorMessageFlush(state.message, context);
+          }
+          if (state.postApiStatus == PostApiStatus.success) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MainScreen(),
+                ),
+                (route) => false);
+            Utils.successMessageFlush(state.message, context);
+          }
+        },
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          // scaffold
+          child: Scaffold(
+              body: SafeArea(
             child: Container(
               height: height,
               width: width,
@@ -168,25 +158,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: height * .02,
                           ),
                           // first name text field
-                          Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: width * 0.08),
-                            child: CustomTextField(
-                              textCapitalization: TextCapitalization.words,
-                              onTap: () {},
-                              validate: (value) {
-                                return FieldValidator.validateName(
-                                    value.toString());
-                              },
-                              controller: firstNameController,
-                              fieldValidationkey: firstNameFieldKey,
-                              hintText: "Nombre Completo",
-                              textInputType: TextInputType.name,
-                              inputAction: TextInputAction.next,
-                              onChanged: (value) {
-                                firstNameFieldKey.currentState!.validate();
-                              },
-                            ),
+                          BlocBuilder<SignUpBloc, SignUpStates>(
+                            buildWhen: (previous, current) =>
+                                previous.name != current.name,
+                            builder: (context, state) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: width * 0.08),
+                                child: CustomTextField(
+                                  textCapitalization: TextCapitalization.words,
+                                  validate: (value) {
+                                    return FieldValidator.validateName(
+                                        value.toString());
+                                  },
+                                  fieldValidationkey: firstNameFieldKey,
+                                  hintText: "Nombre Completo",
+                                  textInputType: TextInputType.name,
+                                  inputAction: TextInputAction.next,
+                                  onChanged: (value) {
+                                    context.read<SignUpBloc>().add(
+                                          NameChanged(name: value),
+                                        );
+                                    firstNameFieldKey.currentState!.validate();
+                                  },
+                                ),
+                              );
+                            },
                           ),
 
                           // space
@@ -194,103 +191,130 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: height * .02,
                           ),
                           // email text field
-                          Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: width * 0.08),
-                            child: CustomTextField(
-                              onTap: () {},
-                              validate: (value) {
-                                return FieldValidator.validateEmail(
-                                    value.toString());
-                              },
-                              controller: emailController,
-                              fieldValidationkey: emailFieldKey,
-                              hintText: "Correo Electrónico",
-                              textInputType: TextInputType.emailAddress,
-                              inputAction: TextInputAction.next,
-                              onChanged: (value) {
-                                emailFieldKey.currentState!.validate();
-                              },
-                            ),
+                          BlocBuilder<SignUpBloc, SignUpStates>(
+                            buildWhen: (previous, current) =>
+                                previous.email != current.email,
+                            builder: (context, state) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: width * 0.08),
+                                child: CustomTextField(
+                                  validate: (value) {
+                                    return FieldValidator.validateEmail(
+                                        value.toString());
+                                  },
+                                  fieldValidationkey: emailFieldKey,
+                                  hintText: "Correo Electrónico",
+                                  textInputType: TextInputType.emailAddress,
+                                  inputAction: TextInputAction.next,
+                                  onChanged: (value) {
+                                    context.read<SignUpBloc>().add(
+                                          EmailSignUpChanged(email: value),
+                                        );
+                                    emailFieldKey.currentState!.validate();
+                                  },
+                                ),
+                              );
+                            },
                           ),
                           // space
                           SizedBox(
                             height: height * .02,
                           ),
                           // password text field
-                          ValueListenableBuilder(
-                            valueListenable: passwordobsureText,
-                            builder: (context, value, child) => Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: width * 0.08),
-                              child: CustomTextField(
-                                onTap: () {},
-                                character: '*',
-                                onChanged: (value) {
-                                  passwordFieldKey.currentState!.validate();
-                                },
-                                controller: passwordController,
-                                fieldValidationkey: passwordFieldKey,
-                                hintText: "Contraseña",
-                                textInputType: TextInputType.visiblePassword,
-                                validate: (value) {
-                                  return FieldValidator.validatePassword(
-                                      value.toString());
-                                },
-                                obscureText: passwordobsureText.value,
-                                sufixIcon: InkWell(
-                                  onTap: () {
-                                    passwordobsureText.value =
-                                        !passwordobsureText.value;
+                          BlocBuilder<SignUpBloc, SignUpStates>(
+                            buildWhen: (previous, current) =>
+                                previous.password != current.password,
+                            builder: (context, state) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: width * 0.08),
+                                child: CustomTextField(
+                                  character: '*',
+                                  onChanged: (value) {
+                                    context.read<SignUpBloc>().add(
+                                          PasswordSignUpChanged(
+                                              password: value),
+                                        );
+                                    passwordFieldKey.currentState!.validate();
                                   },
-                                  child: Icon(
-                                      passwordobsureText.value
-                                          ? Icons.visibility_off_outlined
-                                          : Icons.visibility,
-                                      color: const Color(0xFF766B6B)),
+                                  fieldValidationkey: passwordFieldKey,
+                                  hintText: "Contraseña",
+                                  textInputType: TextInputType.visiblePassword,
+                                  validate: (value) {
+                                    return FieldValidator.validatePassword(
+                                        value.toString());
+                                  },
+                                  obscureText: state.obsecure,
+                                  sufixIcon:
+                                      BlocBuilder<SignUpBloc, SignUpStates>(
+                                    builder: (context, state) {
+                                      return InkWell(
+                                        onTap: () {
+                                          context.read<SignUpBloc>().add(
+                                              const PasswordVisibilitySignUp());
+                                        },
+                                        child: Icon(
+                                            state.obsecure
+                                                ? Icons.visibility_off_outlined
+                                                : Icons.visibility,
+                                            color: const Color(0xFF766B6B)),
+                                      );
+                                    },
+                                  ),
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                           ),
                           SizedBox(
                             height: height * 0.02,
                           ),
                           // password confirm text field
-                          ValueListenableBuilder(
-                            valueListenable: confirmPasswordobsureText,
-                            builder: (context, value, child) => Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: width * 0.08),
-                              child: CustomTextField(
-                                onTap: () {},
-                                character: '*',
-                                onChanged: (value) {
-                                  confirmPasswordFieldKey.currentState!
-                                      .validate();
-                                },
-                                controller: confirmPasswordController,
-                                fieldValidationkey: confirmPasswordFieldKey,
-                                hintText: "Repetir contraseña",
-                                textInputType: TextInputType.visiblePassword,
-                                validate: (value) {
-                                  return FieldValidator.validatePasswordMatch(
-                                      value.toString(),
-                                      passwordController.text);
-                                },
-                                obscureText: confirmPasswordobsureText.value,
-                                sufixIcon: InkWell(
-                                  onTap: () {
-                                    confirmPasswordobsureText.value =
-                                        !confirmPasswordobsureText.value;
+                          BlocBuilder<SignUpBloc, SignUpStates>(
+                            buildWhen: (previous, current) =>
+                                previous.confirmPassword !=
+                                current.confirmPassword,
+                            builder: (context, state) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: width * 0.08),
+                                child: CustomTextField(
+                                  character: '*',
+                                  onChanged: (value) {
+                                    context.read<SignUpBloc>().add(
+                                          ConfirmPasswordSignUpChanged(
+                                              confirmPassword: value),
+                                        );
+                                    confirmPasswordFieldKey.currentState!
+                                        .validate();
                                   },
-                                  child: Icon(
-                                      confirmPasswordobsureText.value
-                                          ? Icons.visibility_off_outlined
-                                          : Icons.visibility,
-                                      color: const Color(0xFF766B6B)),
+                                  fieldValidationkey: confirmPasswordFieldKey,
+                                  hintText: "Repetir contraseña",
+                                  textInputType: TextInputType.visiblePassword,
+                                  validate: (value) {
+                                    return FieldValidator.validatePasswordMatch(
+                                        value.toString(), state.password);
+                                  },
+                                  obscureText: state.obsecure1,
+                                  sufixIcon:
+                                      BlocBuilder<SignUpBloc, SignUpStates>(
+                                    builder: (context, state) {
+                                      return InkWell(
+                                        onTap: () {
+                                          context.read<SignUpBloc>().add(
+                                              const ConfirmPasswordVisibilitySignUp());
+                                        },
+                                        child: Icon(
+                                            state.obsecure1
+                                                ? Icons.visibility_off_outlined
+                                                : Icons.visibility,
+                                            color: const Color(0xFF766B6B)),
+                                      );
+                                    },
+                                  ),
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                           ),
 
                           // space
@@ -316,58 +340,72 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: height * 0.03,
                           ),
                           // sign up button
-                          Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: width * 0.08),
-                            child: CustomButton(
-                              loading: authViewModal.signinLoading,
-                              width: width,
-                              height: height * 0.06,
-                              press: () async {
-                                if (key.currentState!.validate()) {
-                                  Map data = {
-                                    'first_name':
-                                        firstNameController.text.trim(),
-                                    'email': emailController.text.trim(),
-                                    'password': passwordController.text.trim(),
-                                    'device_token': storeToken,
-                                  };
-                                  authViewModal.registerApi(data, context);
-                                }
-                              },
-                              title: "Registrarme",
-                              color: AppColors.buttonColor,
-                            ),
+                          BlocBuilder<SignUpBloc, SignUpStates>(
+                            buildWhen: (previous, current) => false,
+                            builder: (context, state) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: width * 0.08),
+                                child: CustomButton(
+                                  width: width,
+                                  height: height * 0.06,
+                                  press: () async {
+                                    if (key.currentState!.validate()) {
+                                      context
+                                          .read<SignUpBloc>()
+                                          .add(const SignUpButtonEvent());
+                                    } else {
+                                      Utils.snackbar(context,
+                                          "Kindly fill the all required fields.");
+                                    }
+                                  },
+                                  title: "Registrarme",
+                                  color: AppColors.buttonColor,
+                                ),
+                              );
+                            },
                           ),
                           SizedBox(
                             height: height * 0.04,
                           ),
                           // google login button
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: width * 0.08,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  "assets/google.png",
-                                  height: 35,
-                                  width: 35,
+                          BlocBuilder<SignUpBloc, SignUpStates>(
+                            buildWhen: (previous, current) => false,
+                            builder: (context, state) {
+                              return GestureDetector(
+                                onTap: () {
+                                  context.read<SignUpBloc>().add(
+                                        GoogleSignUpEvent(context: context),
+                                      );
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: width * 0.08,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        "assets/google.png",
+                                        height: 35,
+                                        width: 35,
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      const Text(
+                                        'Acceder con Google',
+                                        style: TextStyle(
+                                            color: AppColors.textWhiteColor,
+                                            fontFamily: "Montserrat",
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 20),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                const Text(
-                                  'Acceder con Google',
-                                  style: TextStyle(
-                                      color: AppColors.textWhiteColor,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 20),
-                                ),
-                              ],
-                            ),
+                              );
+                            },
                           ),
                           SizedBox(
                             height: height * .02,
@@ -434,7 +472,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                const CheckConnectivityLogin(),
+                                                const CheckConnectivity(
+                                              child: LoginScreen(),
+                                            ),
                                           ),
                                           (route) => false);
                                     })

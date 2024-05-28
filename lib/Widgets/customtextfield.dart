@@ -14,14 +14,14 @@ class CustomTextField extends StatelessWidget {
       this.sufixIcon,
       this.style,
       this.textCapitalization = TextCapitalization.none,
-      required this.controller,
+      this.controller,
       this.onChanged,
       this.obscureText = false,
       required this.fieldValidationkey});
 
   Widget? sufixIcon;
   String character;
-  TextEditingController controller;
+  TextEditingController? controller;
   GlobalKey<FormFieldState> fieldValidationkey;
   TextInputType? textInputType;
   TextInputAction? inputAction;

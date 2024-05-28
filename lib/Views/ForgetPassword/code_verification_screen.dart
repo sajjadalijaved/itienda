@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../Widgets/custombutton.dart';
 import '../../view_model/view_modal.dart';
-import '../../Utils/no_connection_page.dart';
 import 'package:itienda/Utils/appcolors.dart';
+import '../../Widgets/no_connection_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:itienda/Utils/Validation/validation.dart';
-import 'package:itienda/Bloc/bloc/connectivity_bloc.dart';
+import 'package:itienda/Bloc/conectivityBloc/connectivity_bloc.dart';
 import 'package:itienda/Views/ForgetPassword/forget_password_screen.dart';
 import 'package:itienda/Views/ForgetPassword/confirm_new_password_screen.dart';
 

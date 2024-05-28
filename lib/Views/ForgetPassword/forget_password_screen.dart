@@ -3,12 +3,13 @@ import 'package:provider/provider.dart';
 import '../../Widgets/custombutton.dart';
 import '../../view_model/view_modal.dart';
 import '../../Widgets/customtextfield.dart';
-import '../../Utils/no_connection_page.dart';
 import 'package:itienda/Utils/appcolors.dart';
+import '../../Widgets/connectivity_check.dart';
+import '../../Widgets/no_connection_page.dart';
 import '../../Utils/Validation/validation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:itienda/Bloc/bloc/connectivity_bloc.dart';
 import 'package:itienda/Views/AuthenticationScreens/login.dart';
+import 'package:itienda/Bloc/conectivityBloc/connectivity_bloc.dart';
 import 'package:itienda/Views/ForgetPassword/code_verification_screen.dart';
 
 class CheckConnectivityForgetPassword extends StatelessWidget {
@@ -86,7 +87,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          const CheckConnectivityLogin(),
+                                          const CheckConnectivity(
+                                        child: LoginScreen(),
+                                      ),
                                     ),
                                     (route) => false);
                               },

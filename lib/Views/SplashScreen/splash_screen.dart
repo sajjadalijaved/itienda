@@ -1,27 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../AuthenticationScreens/login.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Bloc/bloc/connectivity_bloc.dart';
-
-class CheckConnectivitySplashScreen extends StatelessWidget {
-  const CheckConnectivitySplashScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ConnectivityBloc, ConnectivityState>(
-      builder: (context, state) {
-        if (state is ConnectedState) {
-          return const SplashScreen();
-        } else if (state is DisConnectedState) {
-          return const Center(child: Text("No Internet! Please Try Again"));
-        } else {
-          return Container();
-        }
-      },
-    );
-  }
-}
+import 'package:itienda/Widgets/connectivity_check.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -77,7 +57,9 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-            builder: (context) => const CheckConnectivityLogin(),
+            builder: (context) => const CheckConnectivity(
+              child: LoginScreen(),
+            ),
           ),
           (route) => false);
     });

@@ -1,4 +1,4 @@
-package com.example.itienda
+package app.urated.itienda
 
 import io.flutter.embedding.android.FlutterActivity
 

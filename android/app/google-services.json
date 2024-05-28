@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "843062927229",
+    "project_id": "itienda-585d8",
+    "storage_bucket": "itienda-585d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843062927229:android:dc227f366f9e3ffa70f614",
+        "android_client_info": {
+          "package_name": "app.urated.itienda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843062927229-ksl0n62v7q94c0n23mpndmonkq9ogor8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.urated.itienda",
+            "certificate_hash": "19c19b53e01d92e43a11daa8d1bcd045d5af8517"
+          }
+        },
+        {
+          "client_id": "843062927229-uvc0qbglk5nknd9o38jkifbod10t44h9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwpKwao0OYhWQ3qdrBhaWxK7SVH0IpKVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843062927229-uvc0qbglk5nknd9o38jkifbod10t44h9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "843062927229-cl37fuc818mu1hjhdeb2du73g0ulabjk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.itienda"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

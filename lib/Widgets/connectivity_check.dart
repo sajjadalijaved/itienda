@@ -1,31 +1,26 @@
+import 'no_connection_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../Bloc/conectivityBloc/connectivity_bloc.dart';
 
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// // ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable
 
-// class CheckConnectivityHome extends StatelessWidget {
-//   dynamic data;
-//   dynamic lat;
-//   dynamic long;
-//   CheckConnectivityHome({Key? key, this.data, this.lat, this.long})
-//       : super(key: key);
+class CheckConnectivity extends StatelessWidget {
+  final Widget child;
+  const CheckConnectivity({Key? key, required this.child}) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocBuilder<ConnectivityBloc, ConnectivityState>(
-//       builder: (context, state) {
-//         if (state is ConnectedState) {
-//           return HomeScreen(
-//             lat: lat.toString(),
-//             long: long.toString(),
-//             user_id: data,
-//           );
-//         } else if (state is DisConnectedState) {
-//           return const NoConnectionPage();
-//         } else {
-//           return Container();
-//         }
-//       },
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ConnectivityBloc, ConnectivityState>(
+      builder: (context, state) {
+        if (state is ConnectedState) {
+          return child;
+        } else if (state is DisConnectedState) {
+          return const NoConnectionPage();
+        } else {
+          return Container();
+        }
+      },
+    );
+  }
+}
