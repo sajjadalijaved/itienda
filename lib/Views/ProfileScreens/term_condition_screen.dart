@@ -1,6 +1,5 @@
 import '../../Utils/appcolors.dart';
 import 'package:flutter/material.dart';
-import 'package:itienda/Widgets/text_widget.dart';
 
 // ignore_for_file: must_be_immutable
 
@@ -21,85 +20,80 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.only(
-            top: height * 0.02,
-          ),
-          height: height,
-          width: width,
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              image: DecorationImage(
+      body: Container(
+        padding: EdgeInsets.only(
+            top: height * 0.02, left: width * 0.05, right: width * 0.04),
+        height: height,
+        width: width,
+        decoration: const BoxDecoration(
+            image: DecorationImage(
                 image: AssetImage(
-                  "assets/back.png",
+                  "assets/priv.jpg",
                 ),
-                alignment: Alignment.bottomRight,
-              )),
+                fit: BoxFit.fill)),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: width * 0.06),
-                child: SizedBox(
-                  height: height * 0.05,
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Icon(
-                          Icons.arrow_back_ios,
-                          size: 30,
-                          color: AppColors.buttonColor,
-                        ),
+              SizedBox(
+                height: height * 0.05,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios,
+                        size: 20,
+                        color: AppColors.textWhiteColor,
                       ),
-                      const Text(
-                        "Regresar",
-                        style: TextStyle(
-                            color: AppColors.appbarTitleColor,
-                            fontSize: 20,
-                            fontFamily: "Montserrat"),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: width * 0.056,
-                ),
-                child: SizedBox(
-                  height: height * 0.09,
-                  width: 182,
-                  child: Image.asset(
-                    "assets/splash.png",
-                    fit: BoxFit.fill,
-                  ),
+                    ),
+                    const Text(
+                      "Volver",
+                      style: TextStyle(
+                          color: AppColors.textWhiteColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Montserrat"),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(
-                height: height * 0.06,
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: width * 0.124,
+                height: 40,
+                width: 106,
+                child: Image.asset(
+                  "assets/itienda.png",
+                  fit: BoxFit.fill,
                 ),
-                child: SizedBox(
-                  height: height * 0.06,
-                  width: width,
-                  child: Row(
-                    children: [
-                      Image.asset("assets/term.png"),
-                      SizedBox(
-                        width: width * 0.02,
-                      ),
-                      text("Términos y Condiciones", 18,
-                          fontWeight: FontWeight.bold)
-                    ],
-                  ),
+              ),
+              SizedBox(
+                height: height * 0.05,
+              ),
+              SizedBox(
+                height: height * 0.05,
+                width: width,
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "assets/17.png",
+                      height: 25,
+                      width: 25,
+                      fit: BoxFit.fill,
+                    ),
+                    SizedBox(
+                      width: width * 0.05,
+                    ),
+                    const Text(
+                      "Términos y Condiciones",
+                      style: TextStyle(
+                          color: AppColors.textWhiteColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Montserrat"),
+                    ),
+                  ],
                 ),
               ),
             ],

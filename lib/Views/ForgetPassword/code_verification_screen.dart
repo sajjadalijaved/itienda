@@ -62,7 +62,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                 width: width,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/back.png"), fit: BoxFit.cover),
+                      image: AssetImage("assets/back.png"), fit: BoxFit.fill),
                 ),
                 child: Form(
                   key: _key,

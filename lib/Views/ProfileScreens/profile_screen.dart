@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             width: width,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/profile.jpg"), fit: BoxFit.cover),
+                  image: AssetImage("assets/profile.jpg"), fit: BoxFit.fill),
             ),
             child: Padding(
               padding: EdgeInsets.only(left: 20, right: width * 0.08, top: 65),

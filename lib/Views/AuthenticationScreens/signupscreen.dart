@@ -106,15 +106,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: Scaffold(
         body: Consumer<AuthViewModal>(
           builder: (context, value, child) => SingleChildScrollView(
+              child: SafeArea(
+            child: Container(
+              height: height,
+              width: width,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/back.png"), fit: BoxFit.fill),
+              ),
               child: SingleChildScrollView(
-            child: SafeArea(
-              child: Container(
-                height: height,
-                width: width,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/back.png"), fit: BoxFit.cover),
-                ),
                 child: Form(
                   key: key,
                   child: Padding(

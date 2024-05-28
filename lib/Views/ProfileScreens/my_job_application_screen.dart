@@ -28,81 +28,78 @@ class _MyApplicationsJobSeekerScreenState
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(
-            top: height * 0.02,
-          ),
+              top: height * 0.01, left: width * 0.04, right: width * 0.04),
           height: height,
           width: width,
           decoration: const BoxDecoration(
-              color: Colors.white,
-              image: DecorationImage(
+            image: DecorationImage(
                 image: AssetImage(
-                  "assets/back.png",
+                  "assets/noti.png",
                 ),
-                alignment: Alignment.bottomRight,
-              )),
+                fit: BoxFit.cover),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: width * 0.06),
-                child: SizedBox(
-                  height: height * 0.05,
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Icon(
-                          Icons.arrow_back_ios,
-                          size: 30,
-                          color: AppColors.buttonColor,
-                        ),
+              SizedBox(
+                height: height * 0.05,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios,
+                        size: 20,
+                        color: AppColors.textWhiteColor,
                       ),
-                      const Text(
-                        "Regresar",
-                        style: TextStyle(
-                            color: AppColors.appbarTitleColor,
-                            fontSize: 20,
-                            fontFamily: "Montserrat"),
-                      ),
-                    ],
-                  ),
+                    ),
+                    const Text(
+                      "Volver",
+                      style: TextStyle(
+                          color: AppColors.textWhiteColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Montserrat"),
+                    ),
+                  ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: width * 0.056,
-                ),
-                child: SizedBox(
-                  height: height * 0.09,
-                  width: 182,
-                  child: Image.asset(
-                    "assets/splash.png",
-                    fit: BoxFit.fill,
-                  ),
+              SizedBox(
+                height: 40,
+                width: 106,
+                child: Image.asset(
+                  "assets/itienda.png",
+                  fit: BoxFit.fill,
                 ),
               ),
               SizedBox(
                 height: height * 0.05,
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: width * 0.122,
-                ),
-                child: SizedBox(
-                  height: height * 0.05,
-                  width: width,
-                  child: Row(
-                    children: [
-                      Image.asset("assets/phone.png",
-                          height: height * 0.102, width: width * 0.102),
-                      SizedBox(
-                        width: width * 0.02,
-                      ),
-                      text("Mis Postulaciones", 18, fontWeight: FontWeight.bold)
-                    ],
-                  ),
+              SizedBox(
+                height: height * 0.05,
+                width: width,
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "assets/12.png",
+                      height: 25,
+                      width: 25,
+                      fit: BoxFit.fill,
+                    ),
+                    SizedBox(
+                      width: width * 0.05,
+                    ),
+                    const Text(
+                      "Mis Postulaciones",
+                      style: TextStyle(
+                          color: AppColors.textWhiteColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Montserrat"),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(
@@ -110,18 +107,18 @@ class _MyApplicationsJobSeekerScreenState
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: 1,
+                itemCount: 2,
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: EdgeInsets.only(
-                      left: width * 0.040,
-                      right: width * 0.040,
-                    ),
+                    margin: const EdgeInsets.only(bottom: 5),
                     padding: EdgeInsets.symmetric(horizontal: width * 0.02),
                     width: width,
                     decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
                       border: Border.all(
-                        color: const Color(0xFF365830),
+                        width: 0.5,
+                        color: const Color(0xFF006341),
                       ),
                     ),
                     child: Column(
@@ -131,7 +128,14 @@ class _MyApplicationsJobSeekerScreenState
                         ),
                         Row(
                           children: [
-                            text("Auxiliar Administrativo(a)", 16),
+                            const Text(
+                              "Auxiliar Administrativo(a)",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: "Montserrat",
+                              ),
+                            ),
                             const Spacer(),
                             Container(
                               margin: EdgeInsets.only(right: width * 0.02),

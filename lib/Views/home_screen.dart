@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: const BoxDecoration(
                 color: Colors.transparent,
                 image: DecorationImage(
-                    image: AssetImage("assets/back.png"), fit: BoxFit.cover)),
+                    image: AssetImage("assets/back.png"), fit: BoxFit.fill)),
             child: Padding(
               padding: EdgeInsets.only(
                 left: 22,

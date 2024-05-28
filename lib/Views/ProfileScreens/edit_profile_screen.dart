@@ -103,7 +103,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           width: width,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
               image: AssetImage(
                 "assets/profile.jpg",
               ),
@@ -401,7 +401,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         child: row(
                                             puertocheckbox,
                                             profileScreenText(
-                                                "Puerto Vallarta, Jal.",
+                                                "Puerto Vallarta,Jal.",
                                                 fontWeight: FontWeight.w400,
                                                 12,
                                                 10,
@@ -413,12 +413,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       ),
                                       row(
                                           cabocheckbox,
-                                          profileScreenText(
-                                              "Cabo Corrientes, Jal.",
-                                              12,
-                                              10,
-                                              fontWeight: FontWeight.w400,
-                                              12),
+                                          FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: profileScreenText(
+                                                "Cabo Corrientes,Jal.",
+                                                12,
+                                                10,
+                                                fontWeight: FontWeight.w400,
+                                                12),
+                                          ),
                                           context),
                                     ],
                                   ),

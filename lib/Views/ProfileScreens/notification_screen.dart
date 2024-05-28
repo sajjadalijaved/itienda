@@ -21,92 +21,82 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.only(
-            top: height * 0.02,
-          ),
-          height: height,
-          width: width,
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              image: DecorationImage(
-                image: AssetImage(
-                  "assets/back.png",
-                ),
-                alignment: Alignment.bottomRight,
-              )),
+      body: Container(
+        padding: EdgeInsets.only(
+            top: height * 0.02, left: width * 0.05, right: width * 0.05),
+        height: height,
+        width: width,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(
+                "assets/noti.png",
+              ),
+              fit: BoxFit.cover),
+        ),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: width * 0.06),
-                child: SizedBox(
-                  height: height * 0.05,
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Icon(
-                          Icons.arrow_back_ios,
-                          size: 30,
-                          color: AppColors.buttonColor,
-                        ),
+              SizedBox(
+                height: height * 0.05,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios,
+                        size: 20,
+                        color: AppColors.textWhiteColor,
                       ),
-                      const Text(
-                        "Regresar",
-                        style: TextStyle(
-                            color: AppColors.appbarTitleColor,
-                            fontSize: 20,
-                            fontFamily: "Montserrat"),
-                      ),
-                    ],
-                  ),
+                    ),
+                    const Text(
+                      "Volver",
+                      style: TextStyle(
+                          color: AppColors.textWhiteColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Montserrat"),
+                    ),
+                  ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: width * 0.056,
-                ),
-                child: SizedBox(
-                  height: height * 0.09,
-                  width: 182,
-                  child: Image.asset(
-                    "assets/splash.png",
-                    fit: BoxFit.fill,
-                  ),
+              SizedBox(
+                height: 40,
+                width: 106,
+                child: Image.asset(
+                  "assets/itienda.png",
+                  fit: BoxFit.fill,
                 ),
               ),
               SizedBox(
                 height: height * 0.05,
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: width * 0.108,
+              SizedBox(
+                height: height * 0.05,
+                width: width,
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "assets/14.png",
+                      height: 25,
+                      width: 25,
+                      fit: BoxFit.fill,
+                    ),
+                    SizedBox(
+                      width: width * 0.05,
+                    ),
+                    const Text(
+                      "Notificaciones",
+                      style: TextStyle(
+                          color: AppColors.textWhiteColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Montserrat"),
+                    ),
+                  ],
                 ),
-                child: SizedBox(
-                    height: height * 0.05,
-                    width: width,
-                    child: Row(
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.notifications,
-                              size: height * 0.05,
-                            ),
-                            SizedBox(
-                              width: width * 0.02,
-                            ),
-                            text("Notificaciones", 18,
-                                fontWeight: FontWeight.bold)
-                          ],
-                        ),
-                      ],
-                    )),
               ),
               SizedBox(
                 height: height * 0.04,
@@ -116,14 +106,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 itemCount: 6,
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: EdgeInsets.only(
-                        left: width * 0.068,
-                        right: width * 0.02,
-                        bottom: height * 0.02),
+                    margin: const EdgeInsets.only(bottom: 10),
                     padding: EdgeInsets.symmetric(horizontal: width * 0.02),
                     width: width,
                     decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
                       border: Border.all(
+                        width: 0.5,
                         color: const Color(0xFF365830),
                       ),
                     ),
@@ -148,12 +138,15 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: const Center(
-                                  child: Text(
-                                    "¡Nueva Vacante!",
-                                    style: TextStyle(
-                                        color: Color(0xFFFFFFFF),
-                                        fontSize: 14,
-                                        fontFamily: "Montserrat"),
+                                  child: FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: Text(
+                                      "¡Nueva Vacante!",
+                                      style: TextStyle(
+                                          color: Color(0xFFFFFFFF),
+                                          fontSize: 14,
+                                          fontFamily: "Montserrat"),
+                                    ),
                                   ),
                                 ),
                               )
