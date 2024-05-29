@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:itienda/Utils/enum.dart';
 import 'package:equatable/equatable.dart';
 import 'package:itienda/repository/auth_repository.dart';
+import 'package:itienda/config/sessionManager/session_manager.dart';
 
 // ignore_for_file: unnecessary_null_comparison
 
@@ -45,12 +46,14 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
     );
     Map data = {'email': state.email, 'password': state.password};
 
-    await authRepository.loginApi(data).then((value) {
+    await authRepository.loginApi(data).then((value) async {
       if (value['status'] == 'false') {
         emit(state.copyWith(
             message: "Invalid email or password.",
             postApiStatus: PostApiStatus.error));
       } else {
+        await SessionManager().saveUserInPreferance(value);
+        await SessionManager().getsaveUserInPreferance();
         emit(state.copyWith(
             message: "User Login Succcessful",
             postApiStatus: PostApiStatus.success));

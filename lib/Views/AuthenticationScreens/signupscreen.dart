@@ -1,4 +1,3 @@
-import 'dart:developer';
 import '../main_screen.dart';
 import '../../Utils/enum.dart';
 import '../../Utils/utils.dart';
@@ -12,7 +11,6 @@ import '../../Utils/Validation/validation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../config/componants/loading_widget.dart';
 import 'package:itienda/Bloc/signUpBloc/sign_up_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:itienda/Views/AuthenticationScreens/login.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -24,6 +22,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   late SignUpBloc signUpBloc;
+  String token = '';
   final nameFocusNode = FocusNode();
   final passwordFocusNode = FocusNode();
   final emailFocusNode = FocusNode();
@@ -39,20 +38,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormFieldState> firstNameFieldKey =
       GlobalKey<FormFieldState>();
 
-  static String storeToken = "";
-
-  _tokenRetriever() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    storeToken = prefs.getString('token') ?? '';
-
-    log("Get Token in RegisterScreen: $storeToken");
-  }
+  // get token
+  // Future<String> getToken() async {
+  //   await messaging.getToken().then((value) {
+  //     if (value != null) {
+  //       setState(() {
+  //         token = value;
+  //       });
+  //       log('Push Token: $token');
+  //     }
+  //   });
+  //   return token;
+  // }
 
   @override
   void initState() {
     super.initState();
     signUpBloc = SignUpBloc();
-    _tokenRetriever();
   }
 
 // dispose method
@@ -71,6 +73,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return BlocProvider(
       create: (context) => SignUpBloc(),
       child: BlocListener<SignUpBloc, SignUpStates>(
+        listenWhen: (previous, current) =>
+            current.postApiStatus != previous.postApiStatus,
         listener: (context, state) {
           if (state.postApiStatus == PostApiStatus.loading) {
             showDialog(
@@ -86,7 +90,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const MainScreen(),
+                  builder: (context) =>
+                      const CheckConnectivity(child: MainScreen()),
                 ),
                 (route) => false);
             Utils.successMessageFlush(state.message, context);
@@ -341,7 +346,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           // sign up button
                           BlocBuilder<SignUpBloc, SignUpStates>(
-                            buildWhen: (previous, current) => false,
+                            buildWhen: (previous, current) =>
+                                current.postApiStatus != previous.postApiStatus,
                             builder: (context, state) {
                               return Padding(
                                 padding: EdgeInsets.symmetric(
@@ -370,7 +376,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           // google login button
                           BlocBuilder<SignUpBloc, SignUpStates>(
-                            buildWhen: (previous, current) => false,
+                            buildWhen: (previous, current) =>
+                                current.postApiStatus != previous.postApiStatus,
                             builder: (context, state) {
                               return GestureDetector(
                                 onTap: () {

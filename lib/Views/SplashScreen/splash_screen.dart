@@ -1,7 +1,5 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import '../AuthenticationScreens/login.dart';
-import 'package:itienda/Widgets/connectivity_check.dart';
+import 'SplashScreenModel/splash_services.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,58 +9,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-//   SplashServices splashServices = SplashServices();
-//   FirebaseMessaging messaging = FirebaseMessaging.instance;
-//   String token = '';
-
-//   // get token
-//   Future<String> getToken() async {
-//     await messaging.getToken().then((value) {
-//       if (value != null) {
-//         setState(() {
-//           token = value;
-//         });
-//         log('Push Token: $token');
-//       }
-//     });
-//     return token;
-//   }
-
-// // save token
-//   Future<String> _tokenSaver() async {
-//     SharedPreferences prefs = await SharedPreferences.getInstance();
-//     prefs.setString('token', token);
-
-//     return 'saved';
-//   }
-
-// // token get through sharePreferences
-//   _tokenRetriever() async {
-//     SharedPreferences prefs = await SharedPreferences.getInstance();
-//     String storeToken = prefs.getString('token') ?? '';
-
-//     log("Get Token in splashScreen: $storeToken");
-//   }
+  SplashServices splashServices = SplashServices();
 
   @override
   void initState() {
     super.initState();
-    // getToken().then((value) {
-    //   _tokenSaver().then((_) {
-    //     _tokenRetriever();
-    //   });
-    //   splashServices.checkAuthentication(context);
-    // });
-    Timer(const Duration(seconds: 2), () {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const CheckConnectivity(
-              child: LoginScreen(),
-            ),
-          ),
-          (route) => false);
-    });
+
+    splashServices.checkAuthentication(context);
   }
 
   @override

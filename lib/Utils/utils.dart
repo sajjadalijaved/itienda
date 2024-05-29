@@ -16,7 +16,7 @@ class Utils {
     showFlushbar(
         context: context,
         flushbar: Flushbar(
-          duration: const Duration(seconds: 2),
+          duration: const Duration(seconds: 3),
           message: message,
           titleColor: Colors.white,
           backgroundColor: Colors.red,
@@ -38,7 +38,7 @@ class Utils {
     showFlushbar(
         context: context,
         flushbar: Flushbar(
-          duration: const Duration(seconds: 2),
+          duration: const Duration(seconds: 3),
           message: message,
           titleColor: Colors.white,
           backgroundColor: Colors.green,
@@ -46,7 +46,7 @@ class Utils {
           padding: const EdgeInsets.all(10),
           forwardAnimationCurve: Curves.decelerate,
           reverseAnimationCurve: Curves.easeInOut,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(8),
           icon: const Icon(
             Icons.done,
             color: Colors.white,

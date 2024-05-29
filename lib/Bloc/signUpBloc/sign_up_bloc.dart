@@ -4,6 +4,7 @@ import 'package:itienda/Utils/enum.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itienda/repository/auth_repository.dart';
+import 'package:itienda/config/sessionManager/session_manager.dart';
 
 // ignore_for_file: unnecessary_null_comparison
 
@@ -76,12 +77,14 @@ class SignUpBloc extends Bloc<SignUpEvents, SignUpStates> {
       'device_token': "null",
     };
 
-    await authRepository.registerApi(data).then((value) {
+    await authRepository.registerApi(data).then((value) async {
       if (value['status'] == 'false') {
         emit(state.copyWith(
             message: "User with this email already exists.",
             postApiStatus: PostApiStatus.error));
       } else {
+        await SessionManager().saveUserInPreferance(value);
+        await SessionManager().getsaveUserInPreferance();
         emit(state.copyWith(
             message: "User Register Succcessfully.",
             postApiStatus: PostApiStatus.success));

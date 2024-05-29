@@ -55,6 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocProvider(
       create: (context) => LoginBloc(),
       child: BlocListener<LoginBloc, LoginStates>(
+        listenWhen: (previous, current) =>
+            current.postApiStatus != previous.postApiStatus,
         listener: (context, state) {
           if (state.postApiStatus == PostApiStatus.loading) {
             showDialog(
@@ -228,7 +230,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const CheckConnectivityForgetPassword(),
+                                              const CheckConnectivity(
+                                            child: ForgetPasswordScreen(),
+                                          ),
                                         ),
                                       );
                                     },
@@ -256,7 +260,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             // login button
                             BlocBuilder<LoginBloc, LoginStates>(
-                              buildWhen: (previous, current) => false,
+                              buildWhen: (previous, current) =>
+                                  current.postApiStatus !=
+                                  previous.postApiStatus,
                               builder: (context, state) {
                                 return Padding(
                                   padding: EdgeInsets.symmetric(
@@ -286,7 +292,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             // google login button
                             BlocBuilder<LoginBloc, LoginStates>(
-                              buildWhen: (previous, current) => false,
+                              buildWhen: (previous, current) =>
+                                  current.postApiStatus !=
+                                  previous.postApiStatus,
                               builder: (context, state) {
                                 return GestureDetector(
                                   onTap: () {
