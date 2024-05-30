@@ -163,43 +163,44 @@ class _ConfirmNewPasswordScreenState extends State<ConfirmNewPasswordScreen> {
                           buildWhen: (previous, current) =>
                               current.password != previous.password,
                           builder: (context, state) {
-                            return Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: width * 0.10),
-                              child: CustomTextField(
-                                character: '*',
-                                onChanged: (value) {
-                                  context.read<ForgetPasswordBloc>().add(
-                                        PasswordChanged(password: value),
-                                      );
-                                  _newPasswordKey.currentState!.validate();
-                                },
-                                fieldValidationkey: _newPasswordKey,
-                                hintText: "Nueva Contraseña",
-                                textInputType: TextInputType.visiblePassword,
-                                validate: (value) {
-                                  return FieldValidator.validatePassword(
-                                      value.toString());
-                                },
-                                obscureText: state.obsecure,
-                                sufixIcon: BlocBuilder<ForgetPasswordBloc,
-                                    ForgetPasswordStates>(
-                                  builder: (context, state) {
-                                    return InkWell(
-                                      onTap: () {
+                            return BlocBuilder<ForgetPasswordBloc,
+                                ForgetPasswordStates>(
+                              builder: (context, state) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.10),
+                                  child: CustomTextField(
+                                      character: '*',
+                                      onChanged: (value) {
                                         context.read<ForgetPasswordBloc>().add(
-                                            const PasswordVisibilityEvent());
+                                              PasswordChanged(password: value),
+                                            );
+                                        _newPasswordKey.currentState!
+                                            .validate();
                                       },
-                                      child: Icon(
-                                        state.obsecure
-                                            ? Icons.visibility_off_outlined
-                                            : Icons.visibility,
-                                        color: const Color(0xFF766B6B),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
+                                      fieldValidationkey: _newPasswordKey,
+                                      hintText: "Nueva Contraseña",
+                                      textInputType:
+                                          TextInputType.visiblePassword,
+                                      validate: (value) {
+                                        return FieldValidator.validatePassword(
+                                            value.toString());
+                                      },
+                                      obscureText: state.obsecure,
+                                      sufixIcon: InkWell(
+                                        onTap: () {
+                                          context.read<ForgetPasswordBloc>().add(
+                                              const PasswordVisibilityEvent());
+                                        },
+                                        child: Icon(
+                                          state.obsecure
+                                              ? Icons.visibility_off_outlined
+                                              : Icons.visibility,
+                                          color: const Color(0xFF766B6B),
+                                        ),
+                                      )),
+                                );
+                              },
                             );
                           },
                         ),
@@ -213,46 +214,51 @@ class _ConfirmNewPasswordScreenState extends State<ConfirmNewPasswordScreen> {
                               current.confirmPassword !=
                               previous.confirmPassword,
                           builder: (context, state) {
-                            return Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: width * 0.10),
-                              child: CustomTextField(
-                                character: '*',
-                                onChanged: (value) {
-                                  context.read<ForgetPasswordBloc>().add(
-                                        ConfirmPasswordChanged(
-                                            confirmPassword: value),
-                                      );
-                                  _confirmNewPasswordKey.currentState!
-                                      .validate();
-                                },
-                                fieldValidationkey: _confirmNewPasswordKey,
-                                hintText: "Repetir Nueva Contraseña",
-                                textInputType: TextInputType.visiblePassword,
-                                validate: (value) {
-                                  return FieldValidator.validatePasswordMatch(
-                                      value.toString(), state.password);
-                                },
-                                obscureText: state.obsecure1,
-                                sufixIcon: BlocBuilder<ForgetPasswordBloc,
-                                    ForgetPasswordStates>(
-                                  builder: (context, state) {
-                                    return InkWell(
-                                      onTap: () {
+                            return BlocBuilder<ForgetPasswordBloc,
+                                ForgetPasswordStates>(
+                              builder: (context, state) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.10),
+                                  child: CustomTextField(
+                                      character: '*',
+                                      onChanged: (value) {
                                         context.read<ForgetPasswordBloc>().add(
-                                              const ConfirmPasswordVisibilityEvent(),
+                                              ConfirmPasswordChanged(
+                                                  confirmPassword: value),
                                             );
+                                        _confirmNewPasswordKey.currentState!
+                                            .validate();
                                       },
-                                      child: Icon(
-                                        state.obsecure1
-                                            ? Icons.visibility_off_outlined
-                                            : Icons.visibility,
-                                        color: const Color(0xFF766B6B),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
+                                      fieldValidationkey:
+                                          _confirmNewPasswordKey,
+                                      hintText: "Repetir Nueva Contraseña",
+                                      textInputType:
+                                          TextInputType.visiblePassword,
+                                      validate: (value) {
+                                        return FieldValidator
+                                            .validatePasswordMatch(
+                                                value.toString(),
+                                                state.password);
+                                      },
+                                      obscureText: state.obsecure1,
+                                      sufixIcon: InkWell(
+                                        onTap: () {
+                                          context
+                                              .read<ForgetPasswordBloc>()
+                                              .add(
+                                                const ConfirmPasswordVisibilityEvent(),
+                                              );
+                                        },
+                                        child: Icon(
+                                          state.obsecure1
+                                              ? Icons.visibility_off_outlined
+                                              : Icons.visibility,
+                                          color: const Color(0xFF766B6B),
+                                        ),
+                                      )),
+                                );
+                              },
                             );
                           },
                         ),

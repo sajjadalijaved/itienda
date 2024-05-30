@@ -4,6 +4,7 @@ part of 'sign_up_bloc.dart';
 
 class SignUpStates extends Equatable {
   final String name;
+  final String token;
   final String confirmPassword;
   final String email;
   final String password;
@@ -13,6 +14,7 @@ class SignUpStates extends Equatable {
   final PostApiStatus postApiStatus;
   const SignUpStates(
       {this.name = '',
+      this.token = '',
       this.email = '',
       this.password = '',
       this.confirmPassword = '',
@@ -24,6 +26,7 @@ class SignUpStates extends Equatable {
   SignUpStates copyWith(
       {PostApiStatus? postApiStatus,
       String? name,
+      String? token,
       String? email,
       String? password,
       String? confirmPassword,
@@ -32,6 +35,7 @@ class SignUpStates extends Equatable {
       bool? obsecure1}) {
     return SignUpStates(
         name: name ?? this.name,
+        token: token ?? this.token,
         email: email ?? this.email,
         password: password ?? this.password,
         confirmPassword: confirmPassword ?? this.confirmPassword,
@@ -44,6 +48,7 @@ class SignUpStates extends Equatable {
   @override
   List<Object> get props => [
         name,
+        token,
         email,
         password,
         confirmPassword,

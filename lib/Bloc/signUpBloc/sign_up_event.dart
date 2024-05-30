@@ -8,7 +8,9 @@ abstract class SignUpEvents extends Equatable {
 
 class NameChanged extends SignUpEvents {
   final String name;
-  const NameChanged({required this.name});
+  const NameChanged({
+    required this.name,
+  });
   @override
   List<Object> get props => [name];
 }
@@ -51,7 +53,10 @@ class NameUnFocused extends SignUpEvents {}
 class ConfirmPasswordUnFocused extends SignUpEvents {}
 
 class SignUpButtonEvent extends SignUpEvents {
-  const SignUpButtonEvent();
+  final String token;
+  const SignUpButtonEvent({required this.token});
+  @override
+  List<Object> get props => [token];
 }
 
 class GoogleSignUpEvent extends SignUpEvents {

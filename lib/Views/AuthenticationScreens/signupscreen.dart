@@ -1,3 +1,4 @@
+import 'dart:developer';
 import '../main_screen.dart';
 import '../../Utils/enum.dart';
 import '../../Utils/utils.dart';
@@ -11,6 +12,7 @@ import '../../Utils/Validation/validation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../config/componants/loading_widget.dart';
 import 'package:itienda/Bloc/signUpBloc/sign_up_bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:itienda/Views/AuthenticationScreens/login.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -27,6 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final passwordFocusNode = FocusNode();
   final emailFocusNode = FocusNode();
   final confirmPasswordFocusNode = FocusNode();
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
   // global keys
   final GlobalKey<FormState> key = GlobalKey<FormState>();
@@ -39,22 +42,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
       GlobalKey<FormFieldState>();
 
   // get token
-  // Future<String> getToken() async {
-  //   await messaging.getToken().then((value) {
-  //     if (value != null) {
-  //       setState(() {
-  //         token = value;
-  //       });
-  //       log('Push Token: $token');
-  //     }
-  //   });
-  //   return token;
-  // }
+  Future<String> getToken() async {
+    await firebaseMessaging.getToken().then((value) {
+      if (value != null) {
+        setState(() {
+          token = value;
+        });
+        log('Push Token: $token');
+      }
+    });
+    return token;
+  }
 
   @override
   void initState() {
     super.initState();
     signUpBloc = SignUpBloc();
+    getToken();
   }
 
 // dispose method
@@ -182,7 +186,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   inputAction: TextInputAction.next,
                                   onChanged: (value) {
                                     context.read<SignUpBloc>().add(
-                                          NameChanged(name: value),
+                                          NameChanged(
+                                            name: value,
+                                          ),
                                         );
                                     firstNameFieldKey.currentState!.validate();
                                   },
@@ -231,43 +237,45 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             buildWhen: (previous, current) =>
                                 previous.password != current.password,
                             builder: (context, state) {
-                              return Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.08),
-                                child: CustomTextField(
-                                  character: '*',
-                                  onChanged: (value) {
-                                    context.read<SignUpBloc>().add(
-                                          PasswordSignUpChanged(
-                                              password: value),
-                                        );
-                                    passwordFieldKey.currentState!.validate();
-                                  },
-                                  fieldValidationkey: passwordFieldKey,
-                                  hintText: "Contraseña",
-                                  textInputType: TextInputType.visiblePassword,
-                                  validate: (value) {
-                                    return FieldValidator.validatePassword(
-                                        value.toString());
-                                  },
-                                  obscureText: state.obsecure,
-                                  sufixIcon:
-                                      BlocBuilder<SignUpBloc, SignUpStates>(
-                                    builder: (context, state) {
-                                      return InkWell(
-                                        onTap: () {
+                              return BlocBuilder<SignUpBloc, SignUpStates>(
+                                builder: (context, state) {
+                                  return Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: width * 0.08),
+                                    child: CustomTextField(
+                                        character: '*',
+                                        onChanged: (value) {
                                           context.read<SignUpBloc>().add(
-                                              const PasswordVisibilitySignUp());
+                                                PasswordSignUpChanged(
+                                                    password: value),
+                                              );
+                                          passwordFieldKey.currentState!
+                                              .validate();
                                         },
-                                        child: Icon(
-                                            state.obsecure
-                                                ? Icons.visibility_off_outlined
-                                                : Icons.visibility,
-                                            color: const Color(0xFF766B6B)),
-                                      );
-                                    },
-                                  ),
-                                ),
+                                        fieldValidationkey: passwordFieldKey,
+                                        hintText: "Contraseña",
+                                        textInputType:
+                                            TextInputType.visiblePassword,
+                                        validate: (value) {
+                                          return FieldValidator
+                                              .validatePassword(
+                                                  value.toString());
+                                        },
+                                        obscureText: state.obsecure,
+                                        sufixIcon: InkWell(
+                                          onTap: () {
+                                            context.read<SignUpBloc>().add(
+                                                const PasswordVisibilitySignUp());
+                                          },
+                                          child: Icon(
+                                              state.obsecure
+                                                  ? Icons
+                                                      .visibility_off_outlined
+                                                  : Icons.visibility,
+                                              color: const Color(0xFF766B6B)),
+                                        )),
+                                  );
+                                },
                               );
                             },
                           ),
@@ -280,44 +288,47 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 previous.confirmPassword !=
                                 current.confirmPassword,
                             builder: (context, state) {
-                              return Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.08),
-                                child: CustomTextField(
-                                  character: '*',
-                                  onChanged: (value) {
-                                    context.read<SignUpBloc>().add(
-                                          ConfirmPasswordSignUpChanged(
-                                              confirmPassword: value),
-                                        );
-                                    confirmPasswordFieldKey.currentState!
-                                        .validate();
-                                  },
-                                  fieldValidationkey: confirmPasswordFieldKey,
-                                  hintText: "Repetir contraseña",
-                                  textInputType: TextInputType.visiblePassword,
-                                  validate: (value) {
-                                    return FieldValidator.validatePasswordMatch(
-                                        value.toString(), state.password);
-                                  },
-                                  obscureText: state.obsecure1,
-                                  sufixIcon:
-                                      BlocBuilder<SignUpBloc, SignUpStates>(
-                                    builder: (context, state) {
-                                      return InkWell(
-                                        onTap: () {
+                              return BlocBuilder<SignUpBloc, SignUpStates>(
+                                builder: (context, state) {
+                                  return Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: width * 0.08),
+                                    child: CustomTextField(
+                                        character: '*',
+                                        onChanged: (value) {
                                           context.read<SignUpBloc>().add(
-                                              const ConfirmPasswordVisibilitySignUp());
+                                                ConfirmPasswordSignUpChanged(
+                                                    confirmPassword: value),
+                                              );
+                                          confirmPasswordFieldKey.currentState!
+                                              .validate();
                                         },
-                                        child: Icon(
-                                            state.obsecure1
-                                                ? Icons.visibility_off_outlined
-                                                : Icons.visibility,
-                                            color: const Color(0xFF766B6B)),
-                                      );
-                                    },
-                                  ),
-                                ),
+                                        fieldValidationkey:
+                                            confirmPasswordFieldKey,
+                                        hintText: "Repetir contraseña",
+                                        textInputType:
+                                            TextInputType.visiblePassword,
+                                        validate: (value) {
+                                          return FieldValidator
+                                              .validatePasswordMatch(
+                                                  value.toString(),
+                                                  state.password);
+                                        },
+                                        obscureText: state.obsecure1,
+                                        sufixIcon: InkWell(
+                                          onTap: () {
+                                            context.read<SignUpBloc>().add(
+                                                const ConfirmPasswordVisibilitySignUp());
+                                          },
+                                          child: Icon(
+                                              state.obsecure1
+                                                  ? Icons
+                                                      .visibility_off_outlined
+                                                  : Icons.visibility,
+                                              color: const Color(0xFF766B6B)),
+                                        )),
+                                  );
+                                },
                               );
                             },
                           ),
@@ -359,7 +370,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     if (key.currentState!.validate()) {
                                       context
                                           .read<SignUpBloc>()
-                                          .add(const SignUpButtonEvent());
+                                          .add(SignUpButtonEvent(token: token));
                                     } else {
                                       Utils.snackbar(context,
                                           "Kindly fill the all required fields.");

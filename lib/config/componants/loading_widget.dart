@@ -19,12 +19,12 @@ class _LoadingWidgetState extends State<LoadingWidget> {
       child: Platform.isAndroid
           ? const Center(
               child: CircularProgressIndicator(
-                color: Colors.blue,
+                color: Color(0xFF006341),
               ),
             )
           : const Center(
               child: CupertinoActivityIndicator(
-                color: Colors.blue,
+                color: Color(0xFF006341),
               ),
             ),
     );

@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 class UserModel {
-  String? user_id;
+  dynamic user_id;
 
   UserModel({this.user_id});
 

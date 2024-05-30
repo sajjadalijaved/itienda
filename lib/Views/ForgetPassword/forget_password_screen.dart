@@ -2,9 +2,7 @@ import 'dart:developer';
 import '../../Utils/enum.dart';
 import '../../Utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../Widgets/custombutton.dart';
-import '../../view_model/view_modal.dart';
 import '../../Widgets/customtextfield.dart';
 import 'package:itienda/Utils/appcolors.dart';
 import '../../Widgets/connectivity_check.dart';
@@ -43,7 +41,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
-    final authViewModal = Provider.of<AuthViewModal>(context);
+
     return BlocProvider(
       create: (context) => ForgetPasswordBloc(),
       child: BlocListener<ForgetPasswordBloc, ForgetPasswordStates>(
@@ -203,7 +201,6 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: width * 0.12),
                                 child: CustomButton(
-                                  loading: authViewModal.signinLoading,
                                   width: width,
                                   height: height * 0.06,
                                   press: () async {

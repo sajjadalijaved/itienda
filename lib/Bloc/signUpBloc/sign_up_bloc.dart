@@ -74,7 +74,7 @@ class SignUpBloc extends Bloc<SignUpEvents, SignUpStates> {
       'full_name': state.name,
       'email': state.email,
       'password': state.password,
-      'device_token': "null",
+      'device_token': event.token,
     };
 
     await authRepository.registerApi(data).then((value) async {
