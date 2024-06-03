@@ -3,7 +3,6 @@ import '../../Utils/enum.dart';
 import '../../Utils/utils.dart';
 import 'package:flutter/material.dart';
 import '../../Widgets/custombutton.dart';
-import '../../view_model/view_modal.dart';
 import 'package:itienda/Utils/appcolors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../config/componants/loading_widget.dart';
@@ -13,6 +12,7 @@ import 'package:itienda/Utils/Validation/validation.dart';
 import 'package:itienda/Views/ForgetPassword/forget_password_screen.dart';
 import 'package:itienda/Bloc/forgetPasswordBloc/forget_password_bloc.dart';
 import 'package:itienda/Views/ForgetPassword/confirm_new_password_screen.dart';
+
 // ignore_for_file: must_be_immutable
 
 // ignore_for_file: unused_import

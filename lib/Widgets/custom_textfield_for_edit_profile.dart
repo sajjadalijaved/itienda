@@ -13,12 +13,11 @@ class CustomTextFieldForEditProfile extends StatelessWidget {
       this.inputparameter,
       this.hint,
       this.textCapitalization = TextCapitalization.none,
-      required this.controller,
+      this.controller,
       required this.fieldValidationkey,
       this.onChanged});
 
-  TextEditingController controller;
-
+  TextEditingController? controller;
   TextInputType? textInputType;
   TextInputAction? inputAction;
   TextCapitalization textCapitalization;

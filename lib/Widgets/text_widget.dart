@@ -28,37 +28,28 @@ Widget profileScreenText(
   );
 }
 
-Widget row(ValueNotifier<bool> checkbox, Widget text, BuildContext context) {
+Widget row(bool value, Widget text, BuildContext context) {
   double width = MediaQuery.sizeOf(context).width;
   return Row(
     children: [
-      ValueListenableBuilder(
-          valueListenable: checkbox,
-          builder: (context, value, child) => GestureDetector(
-                onTap: () {
-                  checkbox.value = !checkbox.value;
-                },
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 500),
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                      color: checkbox.value == true
-                          ? AppColors.buttonColor
-                          : Colors.white,
-                      border: checkbox.value == true
-                          ? Border.all(color: Colors.black)
-                          : Border.all(color: AppColors.regisgerColor),
-                      borderRadius: BorderRadius.circular(2)),
-                  child: Center(
-                    child: Icon(
-                      checkbox.value == true ? Icons.check : null,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ),
-                ),
-              )),
+      AnimatedContainer(
+        duration: const Duration(milliseconds: 500),
+        height: 22,
+        width: 22,
+        decoration: BoxDecoration(
+            color: value == true ? AppColors.buttonColor : Colors.white,
+            border: value == true
+                ? Border.all(color: Colors.black)
+                : Border.all(color: AppColors.regisgerColor),
+            borderRadius: BorderRadius.circular(2)),
+        child: Center(
+          child: Icon(
+            value == true ? Icons.check : null,
+            color: Colors.white,
+            size: 20,
+          ),
+        ),
+      ),
       SizedBox(
         width: width * 0.02,
       ),
