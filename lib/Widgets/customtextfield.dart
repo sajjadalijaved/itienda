@@ -17,12 +17,12 @@ class CustomTextField extends StatelessWidget {
       this.controller,
       this.onChanged,
       this.obscureText = false,
-      required this.fieldValidationkey});
+      this.fieldValidationkey});
 
   Widget? sufixIcon;
   String character;
   TextEditingController? controller;
-  GlobalKey<FormFieldState> fieldValidationkey;
+  GlobalKey<FormFieldState>? fieldValidationkey;
   TextInputType? textInputType;
   TextInputAction? inputAction;
   TextCapitalization textCapitalization;

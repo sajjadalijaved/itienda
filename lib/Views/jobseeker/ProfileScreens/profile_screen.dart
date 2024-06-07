@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:itienda/Utils/appcolors.dart';
 import 'package:itienda/Widgets/text_widget.dart';
-import 'package:itienda/Views/ProfileScreens/messages_screen.dart';
-import 'package:itienda/Views/ProfileScreens/help_center_screen.dart';
-import 'package:itienda/Views/ProfileScreens/notification_screen.dart';
-import 'package:itienda/Views/ProfileScreens/edit_profile_screen.dart';
-import 'package:itienda/Views/ProfileScreens/term_condition_screen.dart';
-import 'package:itienda/Views/ProfileScreens/privacy_policy_screen.dart';
-import 'package:itienda/Views/ProfileScreens/my_job_application_screen.dart';
+import 'package:itienda/Views/jobseeker/ProfileScreens/messages_screen.dart';
+import 'package:itienda/Views/jobseeker/ProfileScreens/help_center_screen.dart';
+import 'package:itienda/Views/jobseeker/ProfileScreens/notification_screen.dart';
+import 'package:itienda/Views/jobseeker/ProfileScreens/edit_profile_screen.dart';
+import 'package:itienda/Views/jobseeker/ProfileScreens/term_condition_screen.dart';
+import 'package:itienda/Views/jobseeker/ProfileScreens/privacy_policy_screen.dart';
+import 'package:itienda/Views/jobseeker/ProfileScreens/my_job_application_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

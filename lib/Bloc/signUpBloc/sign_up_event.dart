@@ -3,7 +3,7 @@ part of 'sign_up_bloc.dart';
 abstract class SignUpEvents extends Equatable {
   const SignUpEvents();
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class NameChanged extends SignUpEvents {
@@ -34,6 +34,22 @@ class ConfirmPasswordSignUpChanged extends SignUpEvents {
   const ConfirmPasswordSignUpChanged({required this.confirmPassword});
   @override
   List<Object> get props => [confirmPassword];
+}
+
+class BusinessNameSignUpChanged extends SignUpEvents {
+  final String businessName;
+  const BusinessNameSignUpChanged({required this.businessName});
+  @override
+  List<Object> get props => [businessName];
+}
+
+class SelectRadioButton extends SignUpEvents {
+  final int? selectedValue;
+
+  const SelectRadioButton({required this.selectedValue});
+
+  @override
+  List<Object?> get props => [selectedValue];
 }
 
 class PasswordVisibilitySignUp extends SignUpEvents {

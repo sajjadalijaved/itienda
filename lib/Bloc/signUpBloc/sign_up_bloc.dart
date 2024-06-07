@@ -18,8 +18,10 @@ class SignUpBloc extends Bloc<SignUpEvents, SignUpStates> {
     on<EmailSignUpChanged>(_emailChangeHandle);
     on<PasswordSignUpChanged>(_passwordChangeHandle);
     on<ConfirmPasswordSignUpChanged>(_confirmPasswordChangeHandle);
+    on<BusinessNameSignUpChanged>(_businessNameChangeHandle);
     on<PasswordVisibilitySignUp>(_passwordViewHandle);
     on<ConfirmPasswordVisibilitySignUp>(_confirmPasswordViewHandle);
+    on<SelectRadioButton>(_selectRadioButtonHandle);
     on<SignUpButtonEvent>(_signUpButton);
     on<GoogleSignUpEvent>(_googleSignUpButton);
   }
@@ -51,6 +53,13 @@ class SignUpBloc extends Bloc<SignUpEvents, SignUpStates> {
     );
   }
 
+  void _businessNameChangeHandle(
+      BusinessNameSignUpChanged event, Emitter<SignUpStates> emit) {
+    emit(
+      state.copyWith(businessName: event.businessName),
+    );
+  }
+
   void _passwordViewHandle(
       PasswordVisibilitySignUp event, Emitter<SignUpStates> emit) {
     emit(
@@ -62,6 +71,13 @@ class SignUpBloc extends Bloc<SignUpEvents, SignUpStates> {
       ConfirmPasswordVisibilitySignUp event, Emitter<SignUpStates> emit) {
     emit(
       state.copyWith(obsecure1: !state.obsecure1),
+    );
+  }
+
+  void _selectRadioButtonHandle(
+      SelectRadioButton event, Emitter<SignUpStates> emit) {
+    emit(
+      state.copyWith(selectvalue: event.selectedValue),
     );
   }
 

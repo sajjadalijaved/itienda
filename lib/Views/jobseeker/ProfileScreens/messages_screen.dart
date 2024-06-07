@@ -1,4 +1,4 @@
-import '../../Utils/appcolors.dart';
+import '../../../Utils/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:itienda/Widgets/text_widget.dart';
 

@@ -1,38 +1,37 @@
-import '../../Utils/appcolors.dart';
+import '../../../Utils/appcolors.dart';
 import 'package:flutter/material.dart';
 
 // ignore_for_file: must_be_immutable
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-class HelpCentreScreen extends StatefulWidget {
-  const HelpCentreScreen({
+class PrivacyPolicyScreen extends StatefulWidget {
+  const PrivacyPolicyScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<HelpCentreScreen> createState() => _HelpCentreScreenState();
+  State<PrivacyPolicyScreen> createState() => _PrivacyPolicyScreenState();
 }
 
-class _HelpCentreScreenState extends State<HelpCentreScreen> {
+class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.only(
-              top: height * 0.02, left: width * 0.05, right: width * 0.06),
-          height: height,
-          width: width,
-          decoration: const BoxDecoration(
+      body: Container(
+        padding: EdgeInsets.only(
+            top: height * 0.02, left: width * 0.05, right: width * 0.04),
+        height: height,
+        width: width,
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
                   "assets/priv.jpg",
                 ),
-                fit: BoxFit.fill),
-          ),
+                fit: BoxFit.fill)),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -78,7 +77,7 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
                 child: Row(
                   children: [
                     Image.asset(
-                      "assets/15.png",
+                      "assets/16.png",
                       height: 25,
                       width: 25,
                       fit: BoxFit.fill,
@@ -87,7 +86,7 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
                       width: width * 0.05,
                     ),
                     const Text(
-                      "Central de Ayuda",
+                      "Política de Privacidad",
                       style: TextStyle(
                           color: AppColors.textWhiteColor,
                           fontSize: 18,
@@ -97,53 +96,6 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              SizedBox(
-                height: height * 0.06,
-                width: width,
-                child: const Text(
-                  "Entra en contacto con nostros por uno de los medios disponibles.",
-                  style: TextStyle(
-                      color: AppColors.textWhiteColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "Montserrat"),
-                ),
-              ),
-              SizedBox(
-                height: height * 0.10,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(5)),
-                height: height * 0.20,
-                width: width,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "+52 (322) 308-0150",
-                      style: TextStyle(
-                          color: AppColors.textBlackColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    SizedBox(
-                      height: height * 0.001,
-                    ),
-                    const Text(
-                      "info@itiendamexico.com",
-                      style: TextStyle(
-                          color: AppColors.textBlackColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
         ),

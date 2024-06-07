@@ -1,19 +1,20 @@
 import 'dart:developer';
-import '../main_screen.dart';
-import '../../Utils/enum.dart';
-import '../../Utils/utils.dart';
+import '../../main_screen.dart';
+import '../../../Utils/enum.dart';
+import '../../../Utils/utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../Widgets/custombutton.dart';
-import '../../Widgets/customtextfield.dart';
+import '../../../Widgets/custombutton.dart';
 import 'package:itienda/Utils/appcolors.dart';
-import '../../Widgets/connectivity_check.dart';
-import '../../Utils/Validation/validation.dart';
+import '../../../Widgets/customtextfield.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../config/componants/loading_widget.dart';
+import '../../../Widgets/connectivity_check.dart';
+import '../../../Utils/Validation/validation.dart';
+import '../../../config/componants/loading_widget.dart';
 import 'package:itienda/Bloc/signUpBloc/sign_up_bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:itienda/Views/AuthenticationScreens/login.dart';
+import 'package:itienda/Widgets/customRadioButton/radio_button.dart';
+import 'package:itienda/Views/jobseeker/AuthenticationScreens/login.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -39,6 +40,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormFieldState> confirmPasswordFieldKey =
       GlobalKey<FormFieldState>();
   final GlobalKey<FormFieldState> firstNameFieldKey =
+      GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> businessNameFieldKey =
       GlobalKey<FormFieldState>();
 
   // get token
@@ -120,26 +123,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding: EdgeInsets.only(top: height * 0.05),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          RichText(
-                              text: const TextSpan(children: <InlineSpan>[
-                            TextSpan(
-                                text: "Regístrate ",
+                          Center(
+                            child: RichText(
+                                text: const TextSpan(children: <InlineSpan>[
+                              TextSpan(
+                                  text: "Regístrate ",
+                                  style: TextStyle(
+                                      color: AppColors.textWhiteColor,
+                                      fontFamily: "Montserrat",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 28)),
+                              TextSpan(
+                                text: "gratis",
                                 style: TextStyle(
                                     color: AppColors.textWhiteColor,
+                                    fontSize: 30,
                                     fontFamily: "Montserrat",
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 28)),
-                            TextSpan(
-                              text: "gratis",
-                              style: TextStyle(
-                                  color: AppColors.textWhiteColor,
-                                  fontSize: 30,
-                                  fontFamily: "Montserrat",
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ])),
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ])),
+                          ),
                           SizedBox(
                             height: height * 0.01,
                           ),
@@ -166,6 +171,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           SizedBox(
                             height: height * .02,
                           ),
+                          // business name text field
+                          BlocBuilder<SignUpBloc, SignUpStates>(
+                            builder: (context, state) {
+                              return state.selectvalue == 2
+                                  ? Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: width * 0.08),
+                                      child: CustomTextField(
+                                        fieldValidationkey:
+                                            businessNameFieldKey,
+                                        textCapitalization:
+                                            TextCapitalization.words,
+                                        hintText: "Nombre del Negocio",
+                                        textInputType: TextInputType.name,
+                                        inputAction: TextInputAction.next,
+                                        validate: (value) {
+                                          return FieldValidator
+                                              .validateBusinessName(value);
+                                        },
+                                        onChanged: (value) {
+                                          context.read<SignUpBloc>().add(
+                                                BusinessNameSignUpChanged(
+                                                  businessName: value,
+                                                ),
+                                              );
+                                        },
+                                      ),
+                                    )
+                                  : const SizedBox();
+                            },
+                          ),
+
+                          // space
+                          SizedBox(
+                            height: height * .02,
+                          ),
+
                           // first name text field
                           BlocBuilder<SignUpBloc, SignUpStates>(
                             buildWhen: (previous, current) =>
@@ -332,6 +374,59 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                             },
                           ),
+                          // space
+                          SizedBox(
+                            height: height * .01,
+                          ),
+                          // radio button select text
+                          Padding(
+                            padding: EdgeInsets.only(left: width * 0.10),
+                            child: const Text(
+                              "Por favor seleccione su posición.",
+                              style: TextStyle(
+                                  color: AppColors.textWhiteColor,
+                                  fontSize: 14,
+                                  fontFamily: "Montserrat",
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * .01,
+                          ),
+                          // radio buttons
+                          BlocBuilder<SignUpBloc, SignUpStates>(
+                            builder: (context, state) {
+                              return Padding(
+                                padding: EdgeInsets.only(left: width * 0.08),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                        child: CustomRadioButton(
+                                            isSelected: state.selectvalue == 1,
+                                            onChanged: () {
+                                              context.read<SignUpBloc>().add(
+                                                  const SelectRadioButton(
+                                                      selectedValue: 1));
+                                            },
+                                            label: "Demandante de empleo")),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                        child: CustomRadioButton(
+                                            isSelected: state.selectvalue == 2,
+                                            onChanged: () {
+                                              context.read<SignUpBloc>().add(
+                                                  const SelectRadioButton(
+                                                      selectedValue: 2));
+                                            },
+                                            label: "Dueño de negocio")),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
 
                           // space
                           SizedBox(
@@ -367,6 +462,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   width: width,
                                   height: height * 0.06,
                                   press: () async {
+                                    bool isValid = key.currentState!.validate();
+
+                                    if (state.selectvalue == 2 &&
+                                        businessNameFieldKey.currentState !=
+                                            null) {
+                                      if (!businessNameFieldKey.currentState!
+                                          .validate()) {
+                                        isValid = false;
+                                      }
+                                    }
+                                    if (isValid) {
+                                      context
+                                          .read<SignUpBloc>()
+                                          .add(SignUpButtonEvent(token: token));
+                                    } else {
+                                      Utils.snackbar(context,
+                                          "Kindly fill all required fields.");
+                                    }
                                     if (key.currentState!.validate()) {
                                       context
                                           .read<SignUpBloc>()
@@ -382,6 +495,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                             },
                           ),
+
                           SizedBox(
                             height: height * 0.04,
                           ),

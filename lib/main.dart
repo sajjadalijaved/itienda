@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Bloc/conectivityBloc/connectivity_bloc.dart';
 import 'package:itienda/Views/SplashScreen/splash_screen.dart';
+import 'package:itienda/Views/jobseeker/AuthenticationScreens/signupscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF006341)),
         ),
         home: const CheckConnectivity(
-          child: SplashScreen(),
+          child: SignUpScreen(),
         ),
       ),
     );

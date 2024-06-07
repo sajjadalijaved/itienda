@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itienda/Utils/appcolors.dart';
-import 'package:itienda/Views/CategoryScreens/job_listing_screen.dart';
+import 'package:itienda/Views/jobseeker/CategoryScreens/job_listing_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:itienda/Views/main_screen.dart';
 import 'package:itienda/Widgets/connectivity_check.dart';
-import 'package:itienda/Views/AuthenticationScreens/login.dart';
 import 'package:itienda/config/sessionManager/session_manager.dart';
+import 'package:itienda/Views/jobseeker/AuthenticationScreens/login.dart';
 
 class SplashServices {
   void checkAuthentication(BuildContext context) async {

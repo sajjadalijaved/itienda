@@ -1,18 +1,18 @@
-import '../../Utils/enum.dart';
-import '../../Utils/utils.dart';
+import '../../../Utils/enum.dart';
+import '../../../Utils/utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../Widgets/custombutton.dart';
-import '../../Widgets/customtextfield.dart';
-import '../../Bloc/loginBloc/login_bloc.dart';
+import '../../../Widgets/custombutton.dart';
 import 'package:itienda/Utils/appcolors.dart';
-import '../../Widgets/connectivity_check.dart';
+import '../../../Widgets/customtextfield.dart';
 import 'package:itienda/Views/main_screen.dart';
-import '../../Utils/Validation/validation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../Bloc/loginBloc/login_bloc.dart';
+import '../../../Widgets/connectivity_check.dart';
+import '../../../Utils/Validation/validation.dart';
 import 'package:itienda/config/componants/loading_widget.dart';
-import 'package:itienda/Views/AuthenticationScreens/signupscreen.dart';
-import 'package:itienda/Views/ForgetPassword/forget_password_screen.dart';
+import 'package:itienda/Views/jobseeker/AuthenticationScreens/signupscreen.dart';
+import 'package:itienda/Views/jobseeker/ForgetPassword/forget_password_screen.dart';
 
 // ignore_for_file: missing_required_param
 
