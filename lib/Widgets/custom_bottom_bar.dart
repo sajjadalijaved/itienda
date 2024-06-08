@@ -8,25 +8,20 @@ import 'package:itienda/Bloc/bottomNavigatonBarBloc/bottom_nav_bar_bloc.dart';
 class BottomBar extends StatefulWidget {
   final int tabIndex;
   final BuildContext context;
-  const BottomBar({Key? key, required this.tabIndex, required this.context});
+  final List<String> icons;
+  final List<String> lables;
+  const BottomBar(
+      {Key? key,
+      required this.tabIndex,
+      required this.context,
+      required this.icons,
+      required this.lables});
 
   @override
   State<BottomBar> createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-  List<String> icons = [
-    "assets/home.png",
-    "assets/category.png",
-    "assets/user.png",
-  ];
-
-  List<String> lables = [
-    "Inicio",
-    "Categorías",
-    "Perfil",
-  ];
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -43,7 +38,7 @@ class _BottomBarState extends State<BottomBar> {
         ),
       ),
       child: ListView.builder(
-        itemCount: icons.length,
+        itemCount: widget.icons.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => InkWell(
           onTap: () {
@@ -73,14 +68,14 @@ class _BottomBarState extends State<BottomBar> {
                   ),
                 ),
               ),
-              Image.asset(icons[index],
+              Image.asset(widget.icons[index],
                   height: 40, width: 40, color: AppColors.textWhiteColor
                   // index == mainScreenViewModel.currentTab
                   //     ? const Color(0xFF365830)
                   //     : const Color(0xFF766B6B),
                   ),
               Text(
-                lables[index],
+                widget.lables[index],
                 style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,

@@ -17,6 +17,8 @@ Widget profileScreenText(
     String text, double fontsize, double minSize, double maxSize,
     {FontWeight? fontWeight}) {
   return AutoSizeText(
+    maxLines: 2,
+    overflow: TextOverflow.ellipsis,
     text.toString(),
     maxFontSize: maxSize,
     minFontSize: minSize,

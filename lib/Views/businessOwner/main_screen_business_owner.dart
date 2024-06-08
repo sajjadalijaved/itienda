@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import '../Widgets/custom_bottom_bar.dart';
+import '../../Widgets/custom_bottom_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itienda/Widgets/connectivity_check.dart';
-import 'package:itienda/Views/jobseeker/home_screen.dart';
-import 'package:itienda/Views/jobseeker/ProfileScreens/profile_screen.dart';
+import 'package:itienda/Views/businessOwner/business_add.dart';
+import 'package:itienda/Views/businessOwner/home_business_owner.dart';
+import 'package:itienda/Views/businessOwner/business_owner_profile.dart';
 import 'package:itienda/Bloc/bottomNavigatonBarBloc/bottom_nav_bar_bloc.dart';
-import 'package:itienda/Views/jobseeker/CategoryScreens/categories_screen.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class MainScreenBusinessOwner extends StatefulWidget {
+  const MainScreenBusinessOwner({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<MainScreenBusinessOwner> createState() =>
+      _MainScreenBusinessOwnerState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenBusinessOwnerState extends State<MainScreenBusinessOwner> {
   late BottomNavBarBloc bottomNavBarBloc;
   List<String> icons = [
     "assets/home.png",
-    "assets/category.png",
+    "assets/add.png",
     "assets/user.png",
   ];
 
   List<String> lables = [
     "Inicio",
-    "Categorías",
+    "Agregar Vacante",
     "Perfil",
   ];
 
@@ -43,11 +44,11 @@ class _MainScreenState extends State<MainScreen> {
   Widget _getBody(int tabIndex) {
     switch (tabIndex) {
       case 0:
-        return const CheckConnectivity(child: HomeScreen());
+        return const CheckConnectivity(child: HomeScreenBusinessOwner());
       case 1:
-        return const CheckConnectivity(child: CategoriesScreen());
+        return const CheckConnectivity(child: BusinessAadd());
       case 2:
-        return const CheckConnectivity(child: ProfileScreen());
+        return const CheckConnectivity(child: EditProfileScreenBusinessOwner());
 
       default:
         return const Center(child: Text('Unknown Screen'));
@@ -77,25 +78,9 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               ),
             ),
-            // bottomNavigationBar:
-            //     BottomBar(tabIndex: state.tabIndex, context: context),
           );
         },
       ),
     );
   }
 }
-
-
-// Stack(
-//                 children: [
-//                   Consumer<MainScreenViewModel>(
-//                       builder: (context, value, child) =>
-//                           mainScreenViewModel.currentScreen),
-//                   Positioned(
-//                       bottom: 0,
-//                       child: BottomBar(
-//                         mainScreenViewModel: mainScreenViewModel,
-//                       ))
-//                 ],
-//               ),
