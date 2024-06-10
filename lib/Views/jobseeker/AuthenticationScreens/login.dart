@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Form(
                     key: key,
                     child: Padding(
-                      padding: EdgeInsets.only(top: height * 0.10),
+                      padding: EdgeInsets.only(top: height * 0.15),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,

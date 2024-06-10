@@ -15,18 +15,18 @@ class SessionManager {
   factory SessionManager() {
     return _manager;
   }
-  Future<void> saveUserInPreferance(dynamic userId) async {
-    localStorage.setValue("user_id", jsonEncode(userId));
+  Future<void> saveUserInPreferance(dynamic token) async {
+    localStorage.setValue("token", jsonEncode(token));
     localStorage.setValue("isLogin", "true");
   }
 
   Future<void> getsaveUserInPreferance() async {
     try {
-      var userId = await localStorage.getValue("user_id");
+      var token = await localStorage.getValue("token");
       var isLogin = await localStorage.getValue("isLogin");
 
-      if (userId.isNotEmpty) {
-        SessionManager.user = UserModel.fromJson(jsonDecode(userId));
+      if (token.isNotEmpty) {
+        SessionManager.user = UserModel.fromJson(jsonDecode(token));
       }
       SessionManager.isLoging = isLogin == 'true' ? true : false;
     } catch (e) {

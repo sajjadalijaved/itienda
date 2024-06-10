@@ -1,17 +1,17 @@
 // ignore_for_file: non_constant_identifier_names
 
 class UserModel {
-  dynamic user_id;
+  dynamic token;
 
-  UserModel({this.user_id});
+  UserModel({this.token});
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    user_id = json['user_id'];
+    token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['user_id'] = user_id;
+    data['token'] = token;
     return data;
   }
 }
