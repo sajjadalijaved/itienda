@@ -12,8 +12,10 @@ import '../../../Utils/Validation/validation.dart';
 import '../../../config/componants/loading_widget.dart';
 import 'package:itienda/Bloc/signUpBloc/sign_up_bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:itienda/config/localStorage/local_storage.dart';
 import 'package:itienda/Widgets/customRadioButton/radio_button.dart';
 import 'package:itienda/Views/jobseeker/AuthenticationScreens/login.dart';
+// ignore_for_file: use_build_context_synchronously
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -29,6 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final passwordFocusNode = FocusNode();
   final emailFocusNode = FocusNode();
   final confirmPasswordFocusNode = FocusNode();
+  final LocalStorage localStorage = LocalStorage();
   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
   // global keys
@@ -81,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: BlocListener<SignUpBloc, SignUpStates>(
         listenWhen: (previous, current) =>
             current.postApiStatus != previous.postApiStatus,
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state.postApiStatus == PostApiStatus.loading) {
             showDialog(
                 context: context,
@@ -94,6 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             if (state.postApiStatus == PostApiStatus.error) {
               Utils.errorMessageFlush(state.message, context);
             } else if (state.postApiStatus == PostApiStatus.success) {
+              await localStorage.setRole("role", state.selectvalue);
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(

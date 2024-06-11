@@ -7,6 +7,11 @@ class LocalStorage {
     return true;
   }
 
+  Future<bool> setRole(String key, dynamic value) async {
+    await storage.write(key: key, value: value);
+    return true;
+  }
+
   Future<dynamic> getValue(String key) async {
     return await storage.read(key: key);
   }

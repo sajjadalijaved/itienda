@@ -5,7 +5,7 @@ part of 'login_bloc.dart';
 abstract class LoginEvents extends Equatable {
   const LoginEvents();
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class EmailChanged extends LoginEvents {
@@ -20,6 +20,14 @@ class PasswordChanged extends LoginEvents {
   const PasswordChanged({required this.password});
   @override
   List<Object> get props => [password];
+}
+
+class SelectRadioButton extends LoginEvents {
+  final int? selectedValue;
+
+  const SelectRadioButton({required this.selectedValue});
+  @override
+  List<Object?> get props => [selectedValue];
 }
 
 class PasswordVisibility extends LoginEvents {

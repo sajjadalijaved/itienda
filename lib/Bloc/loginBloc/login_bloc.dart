@@ -17,6 +17,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
     on<EmailChanged>(_emailChangeHandle);
     on<PasswordChanged>(_passwordChangeHandle);
     on<PasswordVisibility>(_passwordViewHandle);
+    on<SelectRadioButton>(_selectRadioButtonHandle);
     on<LoginButtonEvent>(_loginButton);
     on<GoogleSignInEvent>(_googleSignInButton);
   }
@@ -40,6 +41,13 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
     );
   }
 
+  void _selectRadioButtonHandle(
+      SelectRadioButton event, Emitter<LoginStates> emit) {
+    emit(
+      state.copyWith(role: event.selectedValue),
+    );
+  }
+
   void _loginButton(LoginButtonEvent event, Emitter<LoginStates> emit) async {
     emit(
       state.copyWith(postApiStatus: PostApiStatus.loading),
@@ -47,7 +55,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
     Map data = {'email': state.email, 'password': state.password};
 
     await authRepository.loginApi(data).then((value) async {
-      if (value['status'] == 'false') {
+      if (value['message'] == 'Invalid credentials') {
         emit(state.copyWith(
             message: "Invalid email or password.",
             postApiStatus: PostApiStatus.error));
@@ -56,6 +64,7 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
         await SessionManager().getsaveUserInPreferance();
         emit(state.copyWith(
             message: "User Login Succcessful",
+            role: value["role"],
             postApiStatus: PostApiStatus.success));
       }
     }).onError(

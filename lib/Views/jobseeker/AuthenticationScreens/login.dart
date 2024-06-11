@@ -11,6 +11,7 @@ import '../../../Bloc/loginBloc/login_bloc.dart';
 import '../../../Widgets/connectivity_check.dart';
 import '../../../Utils/Validation/validation.dart';
 import 'package:itienda/config/componants/loading_widget.dart';
+import 'package:itienda/Views/businessOwner/main_screen_business_owner.dart';
 import 'package:itienda/Views/jobseeker/AuthenticationScreens/signupscreen.dart';
 import 'package:itienda/Views/jobseeker/ForgetPassword/forget_password_screen.dart';
 
@@ -72,13 +73,26 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state.postApiStatus == PostApiStatus.error) {
               Utils.errorMessageFlush(state.message, context);
             } else if (state.postApiStatus == PostApiStatus.success) {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MainScreen(),
-                  ),
-                  (route) => false);
-              Utils.successMessageFlush(state.message, context);
+              if (state.role == 1) {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const CheckConnectivity(child: MainScreen()),
+                    ),
+                    (route) => false);
+                Utils.successMessageFlush(state.message, context);
+              }
+              if (state.role == 2) {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CheckConnectivity(
+                          child: MainScreenBusinessOwner()),
+                    ),
+                    (route) => false);
+                Utils.successMessageFlush(state.message, context);
+              }
             }
           }
         },
