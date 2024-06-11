@@ -58,22 +58,23 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
                 builder: (context) {
                   return const LoadingWidget();
                 });
-          }
-          if (state.postApiStatus == PostApiStatus.error) {
-            Utils.errorMessageFlush(state.message, context);
-          }
-          if (state.postApiStatus == PostApiStatus.success) {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CheckConnectivity(
-                      child: ConfirmNewPasswordScreen(
-                    email: widget.email,
-                    userId: state.userId,
-                  )),
-                ),
-                (route) => false);
-            Utils.successMessageFlush(state.message, context);
+          } else {
+            Navigator.of(context, rootNavigator: true).pop();
+            if (state.postApiStatus == PostApiStatus.error) {
+              Utils.errorMessageFlush(state.message, context);
+            } else if (state.postApiStatus == PostApiStatus.success) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CheckConnectivity(
+                        child: ConfirmNewPasswordScreen(
+                      email: widget.email,
+                      userId: state.userId,
+                    )),
+                  ),
+                  (route) => false);
+              Utils.successMessageFlush(state.message, context);
+            }
           }
         },
         child: Scaffold(

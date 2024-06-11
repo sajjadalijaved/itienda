@@ -68,20 +68,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           if (state.postApiStatus == PostApiStatus.loading) {
             showDialog(
                 context: context,
+                barrierDismissible: false,
                 builder: (context) {
                   return const LoadingWidget();
                 });
-          }
-          if (state.postApiStatus == PostApiStatus.error) {
-            Utils.errorMessageFlush(state.message, context);
-            log("Edit profile:${state.message}");
-          }
-          if (state.postApiStatus == PostApiStatus.success) {
-            log("Name:${state.name}");
-            log("Phone Number:${state.phone}");
-            log("Date:${state.date}");
-            log("male:${state.male == true ? 'male' : 'female'}");
-            Utils.successMessageFlush(state.message, context);
+          } else {
+            Navigator.of(context, rootNavigator: true).pop();
+            if (state.postApiStatus == PostApiStatus.error) {
+              Utils.errorMessageFlush(state.message, context);
+              log("Edit profile:${state.message}");
+            } else if (state.postApiStatus == PostApiStatus.success) {
+              log("Name:${state.name}");
+              log("Phone Number:${state.phone}");
+              log("Date:${state.date}");
+              log("male:${state.male == true ? 'male' : 'female'}");
+              Utils.successMessageFlush(state.message, context);
+            }
           }
         },
         child: Scaffold(

@@ -20,7 +20,9 @@ import 'package:itienda/Views/jobseeker/ForgetPassword/forget_password_screen.da
 
 // login Screen
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({
+    super.key,
+  });
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -61,21 +63,23 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state.postApiStatus == PostApiStatus.loading) {
             showDialog(
                 context: context,
+                barrierDismissible: false,
                 builder: (context) {
                   return const LoadingWidget();
                 });
-          }
-          if (state.postApiStatus == PostApiStatus.error) {
-            Utils.errorMessageFlush(state.message, context);
-          }
-          if (state.postApiStatus == PostApiStatus.success) {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MainScreen(),
-                ),
-                (route) => false);
-            Utils.successMessageFlush(state.message, context);
+          } else {
+            Navigator.of(context, rootNavigator: true).pop();
+            if (state.postApiStatus == PostApiStatus.error) {
+              Utils.errorMessageFlush(state.message, context);
+            } else if (state.postApiStatus == PostApiStatus.success) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MainScreen(),
+                  ),
+                  (route) => false);
+              Utils.successMessageFlush(state.message, context);
+            }
           }
         },
         child: GestureDetector(

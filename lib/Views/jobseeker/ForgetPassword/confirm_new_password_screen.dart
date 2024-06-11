@@ -56,22 +56,24 @@ class _ConfirmNewPasswordScreenState extends State<ConfirmNewPasswordScreen> {
           if (state.postApiStatus == PostApiStatus.loading) {
             showDialog(
                 context: context,
+                barrierDismissible: false,
                 builder: (context) {
                   return const LoadingWidget();
                 });
-          }
-          if (state.postApiStatus == PostApiStatus.error) {
-            Utils.errorMessageFlush(state.message, context);
-          }
-          if (state.postApiStatus == PostApiStatus.success) {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const CheckConnectivity(child: LoginScreen()),
-                ),
-                (route) => false);
-            Utils.successMessageFlush(state.message, context);
+          } else {
+            Navigator.of(context, rootNavigator: true).pop();
+            if (state.postApiStatus == PostApiStatus.error) {
+              Utils.errorMessageFlush(state.message, context);
+            } else if (state.postApiStatus == PostApiStatus.success) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        const CheckConnectivity(child: LoginScreen()),
+                  ),
+                  (route) => false);
+              Utils.successMessageFlush(state.message, context);
+            }
           }
         },
         child: Scaffold(

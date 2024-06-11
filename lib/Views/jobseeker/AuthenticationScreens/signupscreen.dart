@@ -1,5 +1,4 @@
 import 'dart:developer';
-import '../../main_screen.dart';
 import '../../../Utils/enum.dart';
 import '../../../Utils/utils.dart';
 import 'package:flutter/gestures.dart';
@@ -86,22 +85,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
           if (state.postApiStatus == PostApiStatus.loading) {
             showDialog(
                 context: context,
+                barrierDismissible: false,
                 builder: (context) {
                   return const LoadingWidget();
                 });
-          }
-          if (state.postApiStatus == PostApiStatus.error) {
-            Utils.errorMessageFlush(state.message, context);
-          }
-          if (state.postApiStatus == PostApiStatus.success) {
-            Navigator.pushAndRemoveUntil(
+          } else {
+            Navigator.of(context, rootNavigator: true).pop();
+            if (state.postApiStatus == PostApiStatus.error) {
+              Utils.errorMessageFlush(state.message, context);
+            } else if (state.postApiStatus == PostApiStatus.success) {
+              Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      const CheckConnectivity(child: MainScreen()),
+                      const CheckConnectivity(child: LoginScreen()),
                 ),
-                (route) => false);
-            Utils.successMessageFlush(state.message, context);
+                (route) => false,
+              );
+              Utils.successMessageFlush(state.message, context);
+            }
           }
         },
         child: GestureDetector(

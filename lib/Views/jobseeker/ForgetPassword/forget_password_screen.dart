@@ -51,25 +51,27 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           if (state.postApiStatus == PostApiStatus.loading) {
             showDialog(
                 context: context,
+                barrierDismissible: false,
                 builder: (context) {
                   return const LoadingWidget();
                 });
-          }
-          if (state.postApiStatus == PostApiStatus.error) {
-            Utils.errorMessageFlush(state.message, context);
-            log("forget password:${state.message}");
-          }
-          if (state.postApiStatus == PostApiStatus.success) {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CheckConnectivity(
-                      child: CodeVerificationScreen(
-                    email: state.email,
-                  )),
-                ),
-                (route) => false);
-            Utils.successMessageFlush(state.message, context);
+          } else {
+            Navigator.of(context, rootNavigator: true).pop();
+            if (state.postApiStatus == PostApiStatus.error) {
+              Utils.errorMessageFlush(state.message, context);
+              log("forget password:${state.message}");
+            } else if (state.postApiStatus == PostApiStatus.success) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CheckConnectivity(
+                        child: CodeVerificationScreen(
+                      email: state.email,
+                    )),
+                  ),
+                  (route) => false);
+              Utils.successMessageFlush(state.message, context);
+            }
           }
         },
         child: GestureDetector(
