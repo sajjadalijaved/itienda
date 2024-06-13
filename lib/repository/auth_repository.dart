@@ -91,6 +91,8 @@ class AuthRepository {
     try {
       dynamic responce =
           await _baseApiAServices.getPostApiResponse(AppUlr.registerUrl, data);
+      // log("Register api response status code : ${responce.statusCode}");
+      // log("Register api response body : ${responce.body}");
       log("Register api response : $responce");
       return responce;
     } catch (e) {

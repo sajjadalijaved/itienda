@@ -14,7 +14,7 @@ class FieldValidator {
 
   static String? validatePassword(String value) {
     if (value.isEmpty) return "se requiere contraseña";
-    if (value.length < 6) return "Contraseña is too short";
+    if (value.length < 8) return "Contraseña is too short";
     return null;
   }
 

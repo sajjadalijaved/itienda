@@ -87,13 +87,13 @@ class SignUpBloc extends Bloc<SignUpEvents, SignUpStates> {
       state.copyWith(postApiStatus: PostApiStatus.loading),
     );
     Map data = {
-      'name': state.name,
-      'email': state.email,
-      'password': state.password,
-      'password_confirmation': state.confirmPassword,
-      'business_name': state.businessName,
-      'role': state.selectvalue.toString(),
-      'notification_token': event.token,
+      "name": state.name,
+      "email": state.email,
+      "password": state.password,
+      "password_confirmation": state.confirmPassword,
+      "role": state.selectvalue,
+      "business_name": state.businessName,
+      "notification_token": event.token
     };
 
     await authRepository.registerApi(data).then((value) async {

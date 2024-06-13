@@ -47,9 +47,11 @@ class NetworkApiServices implements BaseApiAServices {
   Future<dynamic> getPostApiResponse(String url, data) async {
     dynamic jsonResponse;
     try {
-      final response = await http
-          .post(Uri.parse(url), body: data)
-          .timeout(const Duration(seconds: 50));
+      final response = await http.post(Uri.parse(url),
+          body: jsonEncode(data),
+          headers: {
+            'Content-Type': 'application/json'
+          }).timeout(const Duration(seconds: 50));
       jsonResponse = requestResponse(response);
     } on SocketException {
       throw NoInternetException();

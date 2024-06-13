@@ -2,8 +2,9 @@
 
 class UserModel {
   dynamic token;
-
-  UserModel({this.token});
+  UserModel({
+    this.token,
+  });
 
   UserModel.fromJson(Map<String, dynamic> json) {
     token = json['token'];

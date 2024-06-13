@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:itienda/Utils/enum.dart';
 import 'package:equatable/equatable.dart';
 import 'package:itienda/repository/auth_repository.dart';
+import 'package:itienda/config/localStorage/local_storage.dart';
 import 'package:itienda/config/sessionManager/session_manager.dart';
 
 // ignore_for_file: unnecessary_null_comparison
@@ -13,6 +14,7 @@ part 'login_states.dart';
 
 class LoginBloc extends Bloc<LoginEvents, LoginStates> {
   AuthRepository authRepository = AuthRepository();
+  LocalStorage localStorage = LocalStorage();
   LoginBloc() : super(const LoginStates()) {
     on<EmailChanged>(_emailChangeHandle);
     on<PasswordChanged>(_passwordChangeHandle);
@@ -62,6 +64,8 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       } else {
         await SessionManager().saveUserInPreferance(value);
         await SessionManager().getsaveUserInPreferance();
+        await localStorage.setRole(
+            key: "role", value: value["role"].toString());
         emit(state.copyWith(
             message: "User Login Succcessful",
             role: value["role"],

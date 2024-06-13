@@ -15,10 +15,10 @@ class _BusinessAaddState extends State<BusinessAadd> {
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/edit.jpg"), fit: BoxFit.fill)),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
