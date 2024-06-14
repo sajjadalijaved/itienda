@@ -28,7 +28,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
-                  "assets/priv.jpg",
+                  "assets/images/policy.jpg",
                 ),
                 fit: BoxFit.fill)),
         child: SingleChildScrollView(
@@ -78,8 +78,8 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   children: [
                     Image.asset(
                       "assets/16.png",
-                      height: 25,
-                      width: 25,
+                      height: 40,
+                      width: 40,
                       fit: BoxFit.fill,
                     ),
                     SizedBox(
@@ -90,7 +90,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                       style: TextStyle(
                           color: AppColors.textWhiteColor,
                           fontSize: 18,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                           fontFamily: "Montserrat"),
                     ),
                   ],

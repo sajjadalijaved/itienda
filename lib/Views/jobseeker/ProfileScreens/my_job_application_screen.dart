@@ -34,9 +34,9 @@ class _MyApplicationsJobSeekerScreenState
           decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
-                  "assets/noti.png",
+                  "assets/images/mis.jpg",
                 ),
-                fit: BoxFit.cover),
+                fit: BoxFit.fill),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,8 +84,8 @@ class _MyApplicationsJobSeekerScreenState
                   children: [
                     Image.asset(
                       "assets/12.png",
-                      height: 25,
-                      width: 25,
+                      height: 30,
+                      width: 30,
                       fit: BoxFit.fill,
                     ),
                     SizedBox(
@@ -96,7 +96,7 @@ class _MyApplicationsJobSeekerScreenState
                       style: TextStyle(
                           color: AppColors.textWhiteColor,
                           fontSize: 18,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                           fontFamily: "Montserrat"),
                     ),
                   ],

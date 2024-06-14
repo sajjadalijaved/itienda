@@ -9,7 +9,7 @@ import '../appException/app_exception.dart';
 class NetworkApiServices implements BaseApiAServices {
   dynamic requestResponse(http.Response response) {
     switch (response.statusCode) {
-      case 200:
+      case 200 || 201:
         dynamic jsonResponse = jsonDecode(response.body);
         return jsonResponse;
       case 400:
@@ -44,7 +44,8 @@ class NetworkApiServices implements BaseApiAServices {
   }
 
   @override
-  Future<dynamic> getPostApiResponse(String url, data) async {
+  Future<dynamic> getPostApiResponse(
+      String url, Map<String, dynamic> data) async {
     dynamic jsonResponse;
     try {
       final response = await http.post(Uri.parse(url),

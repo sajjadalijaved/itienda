@@ -29,7 +29,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                "assets/noti.png",
+                "assets/images/noti.jpg",
               ),
               fit: BoxFit.cover),
         ),
@@ -39,27 +39,27 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             children: [
               SizedBox(
                 height: height * 0.05,
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Icon(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Row(
+                    children: [
+                      Icon(
                         Icons.arrow_back_ios,
                         size: 20,
                         color: AppColors.textWhiteColor,
                       ),
-                    ),
-                    const Text(
-                      "Volver",
-                      style: TextStyle(
-                          color: AppColors.textWhiteColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Montserrat"),
-                    ),
-                  ],
+                      Text(
+                        "Volver",
+                        style: TextStyle(
+                            color: AppColors.textWhiteColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Montserrat"),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -80,8 +80,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   children: [
                     Image.asset(
                       "assets/14.png",
-                      height: 25,
-                      width: 25,
+                      height: 40,
+                      width: 40,
                       fit: BoxFit.fill,
                     ),
                     SizedBox(
@@ -92,7 +92,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       style: TextStyle(
                           color: AppColors.textWhiteColor,
                           fontSize: 18,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                           fontFamily: "Montserrat"),
                     ),
                   ],
@@ -101,8 +101,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               SizedBox(
                 height: height * 0.04,
               ),
-              Expanded(
-                  child: ListView.builder(
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
                 itemCount: 6,
                 itemBuilder: (context, index) {
                   return Container(
@@ -202,7 +203,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                     ),
                   );
                 },
-              ))
+              ),
             ],
           ),
         ),

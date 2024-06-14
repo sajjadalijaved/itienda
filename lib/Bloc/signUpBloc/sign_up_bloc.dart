@@ -86,7 +86,8 @@ class SignUpBloc extends Bloc<SignUpEvents, SignUpStates> {
     emit(
       state.copyWith(postApiStatus: PostApiStatus.loading),
     );
-    Map data = {
+
+    Map<String, dynamic> data = {
       "name": state.name,
       "email": state.email,
       "password": state.password,
@@ -95,23 +96,23 @@ class SignUpBloc extends Bloc<SignUpEvents, SignUpStates> {
       "business_name": state.businessName,
       "notification_token": event.token
     };
-
-    await authRepository.registerApi(data).then((value) async {
-      if (value['message'] == 'User registered successfully') {
+    await authRepository.sendPostRequest(data).then((value) async {
+      if (value['status'] == 'false') {
+        emit(state.copyWith(
+            message: "This user email already exists. Try with another email.",
+            postApiStatus: PostApiStatus.error));
+      } else {
         await SessionManager().saveUserInPreferance(value);
         await SessionManager().getsaveUserInPreferance();
         emit(state.copyWith(
             message: "User Register Succcessfully.",
             postApiStatus: PostApiStatus.success));
-      } else {
-        emit(state.copyWith(
-            message: "User with this email already exists.",
-            postApiStatus: PostApiStatus.error));
       }
     }).onError(
       (error, stackTrace) {
+        log("Register stackTrace:${stackTrace.toString()}");
         emit(state.copyWith(
-            message: "Something went wrong kindly try later.",
+            message: "The email has already been taken.",
             postApiStatus: PostApiStatus.error));
       },
     );

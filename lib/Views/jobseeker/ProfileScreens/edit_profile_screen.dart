@@ -150,8 +150,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     children: [
                       Image.asset(
                         "assets/11.png",
-                        height: 25,
-                        width: 25,
+                        height: 30,
+                        width: 30,
                       ),
                       const SizedBox(
                         width: 10,
@@ -161,7 +161,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         style: TextStyle(
                             color: AppColors.textWhiteColor,
                             fontSize: 18,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w600,
                             fontFamily: "Montserrat"),
                       ),
                     ],

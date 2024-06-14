@@ -92,7 +92,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   return const LoadingWidget();
                 });
           } else {
-            Navigator.of(context, rootNavigator: true).pop();
+            if (mounted) {
+              Navigator.of(
+                context,
+              ).pop();
+            }
+
             if (state.postApiStatus == PostApiStatus.error) {
               Utils.errorMessageFlush(state.message, context);
             } else if (state.postApiStatus == PostApiStatus.success) {

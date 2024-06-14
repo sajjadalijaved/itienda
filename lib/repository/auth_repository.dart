@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'dart:convert';
 import 'dart:developer';
 import '../Utils/utils.dart';
 import '../config/appurl.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import '../data/network/baseapiservices.dart';
 import '../data/network/networkapiservices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -75,7 +77,7 @@ class AuthRepository {
   }
 
 //  sign with email and password in method
-  Future<dynamic> loginApi(dynamic data) async {
+  Future<dynamic> loginApi(Map<String, dynamic> data) async {
     try {
       dynamic responce =
           await _baseApiAServices.getPostApiResponse(AppUlr.loginUrl, data);
@@ -86,17 +88,28 @@ class AuthRepository {
     }
   }
 
-//  sign up method
-  Future<dynamic> registerApi(dynamic data) async {
+  Future<dynamic> sendPostRequest(Map<String, dynamic> data) async {
     try {
-      dynamic responce =
-          await _baseApiAServices.getPostApiResponse(AppUlr.registerUrl, data);
-      // log("Register api response status code : ${responce.statusCode}");
-      // log("Register api response body : ${responce.body}");
-      log("Register api response : $responce");
-      return responce;
+      final response = await http.post(
+        Uri.parse(AppUlr.registerUrl),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(data),
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        var result = jsonDecode(response.body);
+        log("Register api response : $result");
+        if (result['status'] == 'true') {
+          return result;
+        }
+      } else {
+        log('Request failed with status: ${response.statusCode}');
+        log('Request failed with body: ${response.body}');
+      }
     } catch (e) {
-      log("Register Api Error : $e");
+      log("Post register api Error:$e");
     }
   }
 

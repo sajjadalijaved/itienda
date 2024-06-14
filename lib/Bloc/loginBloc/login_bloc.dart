@@ -54,7 +54,10 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
     emit(
       state.copyWith(postApiStatus: PostApiStatus.loading),
     );
-    Map data = {'email': state.email, 'password': state.password};
+    Map<String, dynamic> data = {
+      'email': state.email,
+      'password': state.password
+    };
 
     await authRepository.loginApi(data).then((value) async {
       if (value['message'] == 'Invalid credentials') {

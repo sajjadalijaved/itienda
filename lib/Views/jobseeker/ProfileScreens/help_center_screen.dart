@@ -29,7 +29,7 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
           decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
-                  "assets/priv.jpg",
+                  "assets/images/contact.jpg",
                 ),
                 fit: BoxFit.fill),
           ),
@@ -79,8 +79,8 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
                   children: [
                     Image.asset(
                       "assets/15.png",
-                      height: 25,
-                      width: 25,
+                      height: 40,
+                      width: 40,
                       fit: BoxFit.fill,
                     ),
                     SizedBox(
@@ -91,7 +91,7 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
                       style: TextStyle(
                           color: AppColors.textWhiteColor,
                           fontSize: 18,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                           fontFamily: "Montserrat"),
                     ),
                   ],
@@ -117,7 +117,7 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
               ),
               Container(
                 decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.4),
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(5)),
                 height: height * 0.20,
                 width: width,
@@ -127,17 +127,17 @@ class _HelpCentreScreenState extends State<HelpCentreScreen> {
                     const Text(
                       "+52 (322) 308-0150",
                       style: TextStyle(
-                          color: AppColors.textBlackColor,
+                          color: AppColors.buttonColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
                     SizedBox(
-                      height: height * 0.001,
+                      height: height * 0.02,
                     ),
                     const Text(
                       "info@itiendamexico.com",
                       style: TextStyle(
-                          color: AppColors.textBlackColor,
+                          color: AppColors.buttonColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),

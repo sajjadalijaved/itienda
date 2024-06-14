@@ -28,7 +28,7 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
-                  "assets/priv.jpg",
+                  "assets/images/policy.jpg",
                 ),
                 fit: BoxFit.fill)),
         child: SingleChildScrollView(
@@ -90,7 +90,7 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
                       style: TextStyle(
                           color: AppColors.textWhiteColor,
                           fontSize: 18,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                           fontFamily: "Montserrat"),
                     ),
                   ],
