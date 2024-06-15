@@ -1,11 +1,12 @@
-import 'dart:developer';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:itienda/Utils/enum.dart';
 import 'package:equatable/equatable.dart';
 import 'package:itienda/repository/auth_repository.dart';
 import 'package:itienda/config/localStorage/local_storage.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:itienda/config/sessionManager/session_manager.dart';
+
+// ignore_for_file: use_build_context_synchronously
 
 // ignore_for_file: unnecessary_null_comparison
 
@@ -15,13 +16,12 @@ part 'login_states.dart';
 class LoginBloc extends Bloc<LoginEvents, LoginStates> {
   AuthRepository authRepository = AuthRepository();
   LocalStorage localStorage = LocalStorage();
+  final storage = const FlutterSecureStorage();
   LoginBloc() : super(const LoginStates()) {
     on<EmailChanged>(_emailChangeHandle);
     on<PasswordChanged>(_passwordChangeHandle);
     on<PasswordVisibility>(_passwordViewHandle);
-    on<SelectRadioButton>(_selectRadioButtonHandle);
     on<LoginButtonEvent>(_loginButton);
-    on<GoogleSignInEvent>(_googleSignInButton);
   }
 
   void _emailChangeHandle(EmailChanged event, Emitter<LoginStates> emit) {
@@ -40,13 +40,6 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       PasswordVisibility event, Emitter<LoginStates> emit) {
     emit(
       state.copyWith(obsecure: !state.obsecure),
-    );
-  }
-
-  void _selectRadioButtonHandle(
-      SelectRadioButton event, Emitter<LoginStates> emit) {
-    emit(
-      state.copyWith(role: event.selectedValue),
     );
   }
 
@@ -69,39 +62,11 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
         await SessionManager().getsaveUserInPreferance();
         await localStorage.setRole(
             key: "role", value: value["role"].toString());
+        await localStorage.setValue("businessName", value["business_name"]);
         emit(state.copyWith(
             message: "User Login Succcessful",
             role: value["role"],
-            postApiStatus: PostApiStatus.success));
-      }
-    }).onError(
-      (error, stackTrace) {
-        emit(state.copyWith(
-            message: error.toString(), postApiStatus: PostApiStatus.error));
-      },
-    );
-  }
-
-  void _googleSignInButton(
-    GoogleSignInEvent event,
-    Emitter<LoginStates> emit,
-  ) async {
-    emit(
-      state.copyWith(postApiStatus: PostApiStatus.loading),
-    );
-
-    await authRepository.signInWithGoogle(event.context).then((value) {
-      log("Google response:$value");
-      if (value == null &&
-          value!.user == null &&
-          value.additionalUserInfo == null &&
-          value.user!.uid == null) {
-        emit(state.copyWith(
-            message: "Something went wrong please try again.",
-            postApiStatus: PostApiStatus.error));
-      } else {
-        emit(state.copyWith(
-            message: "User Login Succcessful",
+            businessName: value["business_name"],
             postApiStatus: PostApiStatus.success));
       }
     }).onError(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Widgets/custom_bottom_bar.dart';
+import '../../Widgets/custom_bottom_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itienda/Widgets/connectivity_check.dart';
 import 'package:itienda/Views/jobseeker/home_screen.dart';

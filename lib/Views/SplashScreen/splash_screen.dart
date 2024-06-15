@@ -19,19 +19,40 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     getRole().then(
       (value) {
-        log("role in splash:$value");
-        splashServices.checkAuthentication(context, value);
+        var role = value ?? ''; // Provide default value if null
+        log("role:$role");
+        if (role.isEmpty) {
+          splashServices.checkAuthentication(context, "", "");
+        } else {
+          getBusinessName().then(
+            (value) {
+              var businessName = value ?? ''; // Provide default value if null
+              log("businessName in splash:$businessName");
+              splashServices.checkAuthentication(context, role, businessName);
+            },
+          );
+        }
       },
     );
   }
 
   Future<dynamic> getRole() async {
     try {
-      var role = await localStorage.getValue("role");
-
+      var role = await localStorage.getValue(key: "role");
       return role;
     } catch (e) {
       log("Get role Error:${e.toString()}");
+      return ''; // Return default value in case of error
+    }
+  }
+
+  Future<dynamic> getBusinessName() async {
+    try {
+      var businessName = await localStorage.getValue(key: "businessName");
+      return businessName;
+    } catch (e) {
+      log("Get businessName Error:${e.toString()}");
+      return ''; // Return default value in case of error
     }
   }
 
@@ -42,17 +63,18 @@ class _SplashScreenState extends State<SplashScreen> {
     double width = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
-        body: SafeArea(
-      child: Container(
-        height: height,
-        width: width,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/splash.png"),
-            fit: BoxFit.fill,
+      body: SafeArea(
+        child: Container(
+          height: height,
+          width: width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/splash.png"),
+              fit: BoxFit.fill,
+            ),
           ),
         ),
       ),
-    ));
+    );
   }
 }

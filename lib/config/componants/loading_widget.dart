@@ -17,14 +17,14 @@ class _LoadingWidgetState extends State<LoadingWidget> {
       height: widget.size,
       width: widget.size,
       child: Platform.isAndroid
-          ? const Center(
+          ? Center(
               child: CircularProgressIndicator(
-                color: Color(0xFF006341),
+                color: Colors.blue.shade900,
               ),
             )
-          : const Center(
+          : Center(
               child: CupertinoActivityIndicator(
-                color: Color(0xFF006341),
+                color: Colors.blue.shade900,
               ),
             ),
     );

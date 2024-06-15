@@ -4,13 +4,16 @@ class CustomRadioButton extends StatelessWidget {
   final bool isSelected;
   final void Function()? onChanged;
   final String label;
+  final Color color;
+  final Color radioButtonColor;
 
-  const CustomRadioButton({
-    super.key,
-    required this.isSelected,
-    required this.onChanged,
-    required this.label,
-  });
+  const CustomRadioButton(
+      {super.key,
+      required this.isSelected,
+      required this.onChanged,
+      required this.label,
+      required this.radioButtonColor,
+      required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class CustomRadioButton extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: isSelected ? const Color(0xFF365830) : Colors.white,
+                color: isSelected ? const Color(0xFF365830) : radioButtonColor,
                 width: isSelected ? 4 : 2,
               ),
               color: Colors.transparent,
@@ -46,8 +49,8 @@ class CustomRadioButton extends StatelessWidget {
           const SizedBox(width: 5),
           Text(
             label,
-            style: const TextStyle(
-                color: Colors.white,
+            style: TextStyle(
+                color: color,
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
                 fontFamily: "Montserrat"),

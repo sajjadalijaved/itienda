@@ -22,14 +22,6 @@ class PasswordChanged extends LoginEvents {
   List<Object> get props => [password];
 }
 
-class SelectRadioButton extends LoginEvents {
-  final int? selectedValue;
-
-  const SelectRadioButton({required this.selectedValue});
-  @override
-  List<Object?> get props => [selectedValue];
-}
-
 class PasswordVisibility extends LoginEvents {
   const PasswordVisibility();
 }
@@ -40,11 +32,4 @@ class PasswordUnFocused extends LoginEvents {}
 
 class LoginButtonEvent extends LoginEvents {
   const LoginButtonEvent();
-}
-
-class GoogleSignInEvent extends LoginEvents {
-  final BuildContext context;
-  const GoogleSignInEvent({required this.context});
-  @override
-  List<Object> get props => [context];
 }

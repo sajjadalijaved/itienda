@@ -192,7 +192,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             businessNameFieldKey,
                                         textCapitalization:
                                             TextCapitalization.words,
-                                        hintText: "Nombre del Negocio",
+                                        hintText: "nombre de empresa",
                                         textInputType: TextInputType.name,
                                         inputAction: TextInputAction.next,
                                         validate: (value) {
@@ -412,6 +412,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   children: [
                                     Expanded(
                                         child: CustomRadioButton(
+                                            radioButtonColor: Colors.white,
+                                            color: Colors.white,
                                             isSelected: state.selectvalue == 1,
                                             onChanged: () {
                                               context.read<SignUpBloc>().add(
@@ -424,6 +426,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                     Expanded(
                                         child: CustomRadioButton(
+                                            radioButtonColor: Colors.white,
+                                            color: Colors.white,
                                             isSelected: state.selectvalue == 2,
                                             onChanged: () {
                                               context.read<SignUpBloc>().add(

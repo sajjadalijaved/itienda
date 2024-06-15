@@ -6,9 +6,11 @@ import 'package:itienda/Views/businessOwner/business_add.dart';
 import 'package:itienda/Views/businessOwner/home_business_owner.dart';
 import 'package:itienda/Views/businessOwner/business_owner_profile.dart';
 import 'package:itienda/Bloc/bottomNavigatonBarBloc/bottom_nav_bar_bloc.dart';
+// ignore_for_file: must_be_immutable
 
 class MainScreenBusinessOwner extends StatefulWidget {
-  const MainScreenBusinessOwner({super.key});
+  String? businessName;
+  MainScreenBusinessOwner({super.key, this.businessName});
 
   @override
   State<MainScreenBusinessOwner> createState() =>
@@ -44,7 +46,10 @@ class _MainScreenBusinessOwnerState extends State<MainScreenBusinessOwner> {
   Widget _getBody(int tabIndex) {
     switch (tabIndex) {
       case 0:
-        return const CheckConnectivity(child: HomeScreenBusinessOwner());
+        return CheckConnectivity(
+            child: HomeScreenBusinessOwner(
+          businessName: widget.businessName!,
+        ));
       case 1:
         return const CheckConnectivity(child: BusinessAadd());
       case 2:

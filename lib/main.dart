@@ -2,10 +2,11 @@ import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'Widgets/connectivity_check.dart';
+import 'Views/SplashScreen/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Bloc/conectivityBloc/connectivity_bloc.dart';
-import 'package:itienda/Views/SplashScreen/splash_screen.dart';
+import 'package:itienda/Bloc/loginBloc/googleLoginBloc/google_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,8 +29,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ConnectivityBloc>(
-      create: (context) => ConnectivityBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ConnectivityBloc>(
+          create: (context) => ConnectivityBloc(),
+        ),
+        BlocProvider(
+          create: (context) => GoogleLoginBloc(),
+        ),
+      ],
       child: MaterialApp(
         title: 'iTIENDA',
         debugShowCheckedModeBanner: false,

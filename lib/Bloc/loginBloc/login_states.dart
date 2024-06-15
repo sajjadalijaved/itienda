@@ -4,6 +4,7 @@ part of 'login_bloc.dart';
 
 class LoginStates extends Equatable {
   final String email;
+  final String businessName;
   final String password;
   final String message;
   final bool obsecure;
@@ -12,6 +13,7 @@ class LoginStates extends Equatable {
   const LoginStates(
       {this.email = '',
       this.password = '',
+      this.businessName = '',
       this.role = 1,
       this.message = '',
       this.obsecure = true,
@@ -21,6 +23,7 @@ class LoginStates extends Equatable {
       {PostApiStatus? postApiStatus,
       String? email,
       String? password,
+      String? businessName,
       String? message,
       int? role,
       bool? obsecure}) {
@@ -28,6 +31,7 @@ class LoginStates extends Equatable {
         email: email ?? this.email,
         password: password ?? this.password,
         message: message ?? this.message,
+        businessName: businessName ?? this.businessName,
         role: role ?? this.role,
         obsecure: obsecure ?? this.obsecure,
         postApiStatus: postApiStatus ?? this.postApiStatus);
@@ -35,5 +39,5 @@ class LoginStates extends Equatable {
 
   @override
   List<Object> get props =>
-      [email, password, message, postApiStatus, obsecure, role];
+      [email, password, message, postApiStatus, obsecure, role, businessName];
 }

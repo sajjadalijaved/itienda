@@ -5,15 +5,18 @@ import 'package:flutter/material.dart';
 import '../../../Widgets/custombutton.dart';
 import 'package:itienda/Utils/appcolors.dart';
 import '../../../Widgets/customtextfield.dart';
-import 'package:itienda/Views/main_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../Bloc/loginBloc/login_bloc.dart';
 import '../../../Widgets/connectivity_check.dart';
 import '../../../Utils/Validation/validation.dart';
+import 'package:itienda/Views/jobseeker/main_screen.dart';
 import 'package:itienda/config/componants/loading_widget.dart';
+import 'package:itienda/config/localStorage/local_storage.dart';
+import 'package:itienda/Bloc/loginBloc/googleLoginBloc/google_bloc.dart';
 import 'package:itienda/Views/businessOwner/main_screen_business_owner.dart';
 import 'package:itienda/Views/jobseeker/AuthenticationScreens/signupscreen.dart';
 import 'package:itienda/Views/jobseeker/ForgetPassword/forget_password_screen.dart';
+// ignore_for_file: use_build_context_synchronously
 
 // ignore_for_file: missing_required_param
 
@@ -37,11 +40,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormFieldState> emailFieldKey = GlobalKey<FormFieldState>();
   final GlobalKey<FormFieldState> passwordFieldKey =
       GlobalKey<FormFieldState>();
+  late LocalStorage localStorage;
 
   @override
   void initState() {
     super.initState();
     loginBloc = LoginBloc();
+    localStorage = LocalStorage();
   }
 
   @override
@@ -87,8 +92,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const CheckConnectivity(
-                          child: MainScreenBusinessOwner()),
+                      builder: (context) => CheckConnectivity(
+                          child: MainScreenBusinessOwner(
+                        businessName: state.businessName,
+                      )),
                     ),
                     (route) => false);
                 Utils.successMessageFlush(state.message, context);
@@ -307,44 +314,103 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: height * .06,
                           ),
                           // google login button
-                          BlocBuilder<LoginBloc, LoginStates>(
-                            buildWhen: (previous, current) =>
+                          BlocListener<GoogleLoginBloc, GoogleLoginStates>(
+                            listenWhen: (previous, current) =>
                                 current.postApiStatus != previous.postApiStatus,
-                            builder: (context, state) {
-                              return GestureDetector(
-                                onTap: () {
-                                  context
-                                      .read<LoginBloc>()
-                                      .add(GoogleSignInEvent(context: context));
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.08,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        "assets/google.png",
-                                        height: 35,
-                                        width: 35,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      const Text(
-                                        'Acceder con Google',
-                                        style: TextStyle(
-                                            color: AppColors.textWhiteColor,
-                                            fontFamily: "Montserrat",
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 20),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
+                            listener: (context, state) async {
+                              if (state.postApiStatus ==
+                                  PostApiStatus.loading) {
+                                showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (context) {
+                                      return const LoadingWidget();
+                                    });
+                              } else {
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop();
+                                if (state.postApiStatus ==
+                                    PostApiStatus.error) {
+                                  Utils.errorMessageFlush(
+                                      state.message, context);
+                                } else if (state.postApiStatus ==
+                                    PostApiStatus.success) {
+                                  await localStorage.setValue(
+                                      'businessName', state.businessName);
+                                  await localStorage.setRole(
+                                      key: 'role',
+                                      value: state.role.toString());
+                                  if (state.role == 1) {
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const CheckConnectivity(
+                                                  child: MainScreen()),
+                                        ),
+                                        (route) => false);
+                                    Utils.successMessageFlush(
+                                        state.message, context);
+                                  }
+                                  if (state.role == 2) {
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              CheckConnectivity(
+                                                  child:
+                                                      MainScreenBusinessOwner(
+                                            businessName: state.businessName,
+                                          )),
+                                        ),
+                                        (route) => false);
+                                    Utils.successMessageFlush(
+                                        state.message, context);
+                                  }
+                                }
+                              }
                             },
+                            child:
+                                BlocBuilder<GoogleLoginBloc, GoogleLoginStates>(
+                              buildWhen: (previous, current) =>
+                                  current.postApiStatus !=
+                                  previous.postApiStatus,
+                              builder: (context, state) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    context.read<GoogleLoginBloc>().add(
+                                        GoogleLoginEvent(context: context));
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.08,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/google.png",
+                                          height: 35,
+                                          width: 35,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        const Text(
+                                          'Acceder con Google',
+                                          style: TextStyle(
+                                              color: AppColors.textWhiteColor,
+                                              fontFamily: "Montserrat",
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 20),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                           SizedBox(
                             height: height * .02,

@@ -22,8 +22,8 @@ class SessionManager {
 
   Future<void> getsaveUserInPreferance() async {
     try {
-      var token = await localStorage.getValue("token");
-      var isLogin = await localStorage.getValue("isLogin");
+      var token = await localStorage.getValue(key: "token");
+      var isLogin = await localStorage.getValue(key: "isLogin");
 
       if (token.isNotEmpty) {
         SessionManager.user = UserModel.fromJson(jsonDecode(token));

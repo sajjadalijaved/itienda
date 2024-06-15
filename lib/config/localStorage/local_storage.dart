@@ -12,7 +12,7 @@ class LocalStorage {
     return true;
   }
 
-  Future<dynamic> getValue(String key) async {
+  Future<dynamic> getValue({required String key}) async {
     return await storage.read(key: key);
   }
 

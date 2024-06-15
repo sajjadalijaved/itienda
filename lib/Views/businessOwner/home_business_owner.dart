@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:itienda/Utils/appcolors.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 
 class HomeScreenBusinessOwner extends StatefulWidget {
-  const HomeScreenBusinessOwner({super.key});
+  String businessName;
+  HomeScreenBusinessOwner({
+    Key? key,
+    required this.businessName,
+  }) : super(key: key);
 
   @override
   State<HomeScreenBusinessOwner> createState() =>
@@ -73,9 +78,9 @@ class _HomeScreenBusinessOwnerState extends State<HomeScreenBusinessOwner> {
                       color: Colors.white,
                       fontFamily: "Montserrat"),
                 ),
-                const Text(
-                  "Company Name",
-                  style: TextStyle(
+                Text(
+                  widget.businessName,
+                  style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 20,
                       color: Colors.white,
