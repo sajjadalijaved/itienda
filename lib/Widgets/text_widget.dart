@@ -2,6 +2,8 @@ import '../Utils/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+// ignore_for_file: unused_element
+
 Widget text(String text, double fontsize, {FontWeight? fontWeight}) {
   return Text(
     text.toString(),

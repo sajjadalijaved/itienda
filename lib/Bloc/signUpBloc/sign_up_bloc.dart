@@ -110,9 +110,9 @@ class SignUpBloc extends Bloc<SignUpEvents, SignUpStates> {
       }
     }).onError(
       (error, stackTrace) {
-        log("Register stackTrace:${stackTrace.toString()}");
         emit(state.copyWith(
-            message: "The email has already been taken.",
+            message:
+                "Something went wrong. Please check your internet connection and try again.",
             postApiStatus: PostApiStatus.error));
       },
     );

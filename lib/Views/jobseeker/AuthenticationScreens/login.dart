@@ -1,3 +1,4 @@
+import 'dart:developer';
 import '../../../Utils/enum.dart';
 import '../../../Utils/utils.dart';
 import 'package:flutter/gestures.dart';
@@ -16,6 +17,7 @@ import 'package:itienda/Bloc/loginBloc/googleLoginBloc/google_bloc.dart';
 import 'package:itienda/Views/businessOwner/main_screen_business_owner.dart';
 import 'package:itienda/Views/jobseeker/AuthenticationScreens/signupscreen.dart';
 import 'package:itienda/Views/jobseeker/ForgetPassword/forget_password_screen.dart';
+
 // ignore_for_file: use_build_context_synchronously
 
 // ignore_for_file: missing_required_param
@@ -77,6 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.of(context, rootNavigator: true).pop();
             if (state.postApiStatus == PostApiStatus.error) {
               Utils.errorMessageFlush(state.message, context);
+              log("message:${state.message}");
             } else if (state.postApiStatus == PostApiStatus.success) {
               if (state.role == 1) {
                 Navigator.pushAndRemoveUntil(

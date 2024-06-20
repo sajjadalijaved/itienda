@@ -10,6 +10,7 @@ import '../../../Widgets/customtextfield.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../Widgets/connectivity_check.dart';
 import '../../../Utils/Validation/validation.dart';
+import 'package:itienda/config/routes/routes_name.dart';
 import '../../../config/componants/loading_widget.dart';
 import '../../../config/localStorage/local_storage.dart';
 import 'package:itienda/Bloc/signUpBloc/sign_up_bloc.dart';
@@ -18,6 +19,8 @@ import '../../businessOwner/main_screen_business_owner.dart';
 import '../../../Bloc/loginBloc/googleLoginBloc/google_bloc.dart';
 import 'package:itienda/Widgets/customRadioButton/radio_button.dart';
 import 'package:itienda/Views/jobseeker/AuthenticationScreens/login.dart';
+
+// ignore_for_file: unused_element
 
 // ignore_for_file: use_build_context_synchronously
 
@@ -71,6 +74,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     getToken();
   }
 
+  void _showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const LoadingWidget(),
+    );
+  }
+
 // dispose method
   @override
   void dispose() {
@@ -91,30 +102,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
             current.postApiStatus != previous.postApiStatus,
         listener: (context, state) async {
           if (state.postApiStatus == PostApiStatus.loading) {
-            showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (context) {
-                  return const LoadingWidget();
-                });
+            _showLoadingDialog(context);
           } else {
-            if (mounted) {
-              Navigator.of(
-                context,
-              ).pop();
+            bool isDialogShowing = ModalRoute.of(context)?.isCurrent == false;
+            if (isDialogShowing) {
+              Navigator.of(context, rootNavigator: true).pop();
             }
-
             if (state.postApiStatus == PostApiStatus.error) {
               Utils.errorMessageFlush(state.message, context);
             } else if (state.postApiStatus == PostApiStatus.success) {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const CheckConnectivity(child: LoginScreen()),
-                ),
-                (route) => false,
-              );
+              await Navigator.of(context)
+                  .pushReplacementNamed(RoutesName.loginScreen);
               Utils.successMessageFlush(state.message, context);
             }
           }

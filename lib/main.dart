@@ -1,4 +1,5 @@
 import 'firebase_options.dart';
+import 'config/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'Widgets/connectivity_check.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF006341)),
         ),
+        onGenerateRoute: Routes.generateRoutes,
         home: const CheckConnectivity(
           child: SplashScreen(),
         ),

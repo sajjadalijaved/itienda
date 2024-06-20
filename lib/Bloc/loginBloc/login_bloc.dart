@@ -52,7 +52,8 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
       'password': state.password
     };
 
-    await authRepository.loginApi(data).then((value) async {
+    try {
+      var value = await authRepository.loginApi(data);
       if (value['message'] == 'Invalid credentials') {
         emit(state.copyWith(
             message: "Invalid email or password.",
@@ -61,19 +62,18 @@ class LoginBloc extends Bloc<LoginEvents, LoginStates> {
         await SessionManager().saveUserInPreferance(value);
         await SessionManager().getsaveUserInPreferance();
         await localStorage.setRole(
-            key: "role", value: value["role"].toString());
-        await localStorage.setValue("businessName", value["business_name"]);
+            key: "role", value: (value["role"] ?? '').toString());
+        await localStorage.setValue(
+            "businessName", value["business_name"] ?? '');
         emit(state.copyWith(
-            message: "User Login Succcessful",
-            role: value["role"],
-            businessName: value["business_name"],
+            message: "User Login Successful",
+            role: value["role"] ?? '',
+            businessName: value["business_name"] ?? '',
             postApiStatus: PostApiStatus.success));
       }
-    }).onError(
-      (error, stackTrace) {
-        emit(state.copyWith(
-            message: error.toString(), postApiStatus: PostApiStatus.error));
-      },
-    );
+    } catch (error) {
+      emit(state.copyWith(
+          message: error.toString(), postApiStatus: PostApiStatus.error));
+    }
   }
 }

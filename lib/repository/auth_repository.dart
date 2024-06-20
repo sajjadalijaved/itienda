@@ -101,9 +101,13 @@ class AuthRepository {
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
         log("Register api response : $result");
-        if (result['status'] == 'true') {
+        if (result['status'] == true || result['status'] == 'true') {
           return result;
         }
+      } else if (response.statusCode == 409) {
+        var errorBody = jsonDecode(response.body);
+        log('Email already exists: ${errorBody["message"]}');
+        return errorBody;
       } else {
         log('Request failed with status: ${response.statusCode}');
         log('Request failed with body: ${response.body}');
