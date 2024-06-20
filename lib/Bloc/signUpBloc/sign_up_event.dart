@@ -43,10 +43,10 @@ class BusinessNameSignUpChanged extends SignUpEvents {
   List<Object> get props => [businessName];
 }
 
-class SelectRadioButton extends SignUpEvents {
+class SelectRadioButtonSignUp extends SignUpEvents {
   final int? selectedValue;
 
-  const SelectRadioButton({required this.selectedValue});
+  const SelectRadioButtonSignUp({required this.selectedValue});
 
   @override
   List<Object?> get props => [selectedValue];

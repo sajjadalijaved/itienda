@@ -1,4 +1,5 @@
 import 'dart:developer';
+import '../main_screen.dart';
 import '../../../Utils/enum.dart';
 import '../../../Utils/utils.dart';
 import 'package:flutter/gestures.dart';
@@ -10,8 +11,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../Widgets/connectivity_check.dart';
 import '../../../Utils/Validation/validation.dart';
 import '../../../config/componants/loading_widget.dart';
+import '../../../config/localStorage/local_storage.dart';
 import 'package:itienda/Bloc/signUpBloc/sign_up_bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import '../../businessOwner/main_screen_business_owner.dart';
+import '../../../Bloc/loginBloc/googleLoginBloc/google_bloc.dart';
 import 'package:itienda/Widgets/customRadioButton/radio_button.dart';
 import 'package:itienda/Views/jobseeker/AuthenticationScreens/login.dart';
 
@@ -31,6 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final passwordFocusNode = FocusNode();
   final emailFocusNode = FocusNode();
   final confirmPasswordFocusNode = FocusNode();
+  late LocalStorage localStorage;
   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
   // global keys
@@ -62,6 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void initState() {
     super.initState();
     signUpBloc = SignUpBloc();
+    localStorage = LocalStorage();
     getToken();
   }
 
@@ -417,7 +423,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             isSelected: state.selectvalue == 1,
                                             onChanged: () {
                                               context.read<SignUpBloc>().add(
-                                                  const SelectRadioButton(
+                                                  const SelectRadioButtonSignUp(
                                                       selectedValue: 1));
                                             },
                                             label: "Demandante de empleo")),
@@ -431,7 +437,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             isSelected: state.selectvalue == 2,
                                             onChanged: () {
                                               context.read<SignUpBloc>().add(
-                                                  const SelectRadioButton(
+                                                  const SelectRadioButtonSignUp(
                                                       selectedValue: 2));
                                             },
                                             label: "Dueño de negocio")),
@@ -513,45 +519,105 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             height: height * 0.04,
                           ),
                           // google login button
-                          BlocBuilder<SignUpBloc, SignUpStates>(
-                            buildWhen: (previous, current) =>
+                          BlocListener<GoogleLoginBloc, GoogleLoginStates>(
+                            listenWhen: (previous, current) =>
                                 current.postApiStatus != previous.postApiStatus,
-                            builder: (context, state) {
-                              return GestureDetector(
-                                onTap: () {
-                                  context.read<SignUpBloc>().add(
-                                        GoogleSignUpEvent(context: context),
-                                      );
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.08,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        "assets/google.png",
-                                        height: 35,
-                                        width: 35,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      const Text(
-                                        'Acceder con Google',
-                                        style: TextStyle(
-                                            color: AppColors.textWhiteColor,
-                                            fontFamily: "Montserrat",
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 20),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
+                            listener: (context, state) async {
+                              if (state.postApiStatus ==
+                                  PostApiStatus.loading) {
+                                showDialog(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    builder: (context) {
+                                      return const LoadingWidget();
+                                    });
+                              } else {
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop();
+                                if (state.postApiStatus ==
+                                    PostApiStatus.error) {
+                                  Utils.errorMessageFlush(
+                                      state.message, context);
+                                } else if (state.postApiStatus ==
+                                    PostApiStatus.success) {
+                                  await localStorage.setValue(
+                                      'businessName', state.businessName);
+                                  await localStorage.setRole(
+                                      key: 'role',
+                                      value: state.role.toString());
+                                  if (state.role == 1) {
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const CheckConnectivity(
+                                                  child: MainScreen()),
+                                        ),
+                                        (route) => false);
+                                    Utils.successMessageFlush(
+                                        state.message, context);
+                                  }
+                                  if (state.role == 2) {
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              CheckConnectivity(
+                                                  child:
+                                                      MainScreenBusinessOwner(
+                                            businessName: state.businessName,
+                                          )),
+                                        ),
+                                        (route) => false);
+                                    Utils.successMessageFlush(
+                                        state.message, context);
+                                  }
+                                }
+                              }
                             },
+                            child:
+                                BlocBuilder<GoogleLoginBloc, GoogleLoginStates>(
+                              buildWhen: (previous, current) =>
+                                  current.postApiStatus !=
+                                  previous.postApiStatus,
+                              builder: (context, state) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    context.read<GoogleLoginBloc>().add(
+                                        GoogleLoginEvent(context: context));
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.08,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/google.png",
+                                          height: 35,
+                                          width: 35,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        const Text(
+                                          'Acceder con Google',
+                                          style: TextStyle(
+                                              color: AppColors.textWhiteColor,
+                                              fontFamily: "Montserrat",
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 20),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
+
                           SizedBox(
                             height: height * .02,
                           ),
