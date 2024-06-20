@@ -70,10 +70,6 @@ class _EditProfileScreenBusinessOwnerState
             log("Edit profile:${state.message}");
           }
           if (state.postApiStatus == PostApiStatus.success) {
-            log("Name:${state.name}");
-            log("Phone Number:${state.phone}");
-            log("Date:${state.date}");
-            log("male:${state.male == true ? 'male' : 'female'}");
             Utils.successMessageFlush(state.message, context);
           }
         },
@@ -187,55 +183,48 @@ class _EditProfileScreenBusinessOwnerState
                                     "¿Te Gustaría Reflejar la Misma Información de tu Página de Google Mi Negocio en iTIENDA México?",
                                     12,
                                     fontWeight: FontWeight.w500),
-                                SizedBox(
-                                  height: height * 0.04,
-                                  child: BlocBuilder<EditProfileBloc,
-                                      EditProfileStates>(
-                                    builder: (context, state) {
-                                      return Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(const MaleBoxEvent());
-                                            },
-                                            child: row(
-                                                state.male,
-                                                profileScreenText(
-                                                    "Sí", 12, 10, 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                          SizedBox(
-                                            width: width * 0.16,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(
-                                                    const FeMaleBoxEvent(),
-                                                  );
-                                            },
-                                            child: row(
-                                                state.female,
-                                                profileScreenText(
-                                                    "No tengo página en Google Mi Negocio",
-                                                    12,
-                                                    10,
-                                                    12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
+                                BlocBuilder<EditProfileBloc, EditProfileStates>(
+                                  builder: (context, state) {
+                                    return Column(
+                                      children: [
+                                        SizedBox(
+                                          height: height * 0.01,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .read<EditProfileBloc>()
+                                                .add(const MaleBoxEvent());
+                                          },
+                                          child: row(
+                                              state.male,
+                                              profileScreenText(
+                                                  "Sí", 12, 10, 12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.01,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            context.read<EditProfileBloc>().add(
+                                                  const FeMaleBoxEvent(),
+                                                );
+                                          },
+                                          child: row(
+                                              state.female,
+                                              profileScreenText(
+                                                  "No tengo página en Google Mi Negocio",
+                                                  12,
+                                                  10,
+                                                  12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                      ],
+                                    );
+                                  },
                                 ),
 
                                 /// genero
