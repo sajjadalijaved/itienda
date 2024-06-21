@@ -96,26 +96,31 @@ class SignUpBloc extends Bloc<SignUpEvents, SignUpStates> {
       "business_name": state.businessName,
       "notification_token": event.token
     };
-    await authRepository.sendPostRequest(data).then((value) async {
-      if (value['status'] == 'false') {
+    try {
+      var value = await authRepository.sendPostRequest(data);
+      log("value:$value");
+      if (value != null && value['status'] == "false") {
         emit(state.copyWith(
             message: "This user email already exists. Try with another email.",
             postApiStatus: PostApiStatus.error));
-      } else {
+      } else if (value != null) {
         await SessionManager().saveUserInPreferance(value);
         await SessionManager().getsaveUserInPreferance();
         emit(state.copyWith(
-            message: "User Register Succcessfully.",
+            message: "User Register Successfully.",
             postApiStatus: PostApiStatus.success));
-      }
-    }).onError(
-      (error, stackTrace) {
+      } else {
         emit(state.copyWith(
-            message:
-                "Something went wrong. Please check your internet connection and try again.",
+            message: "Something went wrong. Please try again.",
             postApiStatus: PostApiStatus.error));
-      },
-    );
+      }
+    } catch (e) {
+      log("Sign up error: $e");
+      emit(state.copyWith(
+          message:
+              "Something went wrong. Please check your internet connection and try again.",
+          postApiStatus: PostApiStatus.error));
+    }
   }
 
   void _googleSignUpButton(

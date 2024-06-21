@@ -103,6 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         listener: (context, state) async {
           if (state.postApiStatus == PostApiStatus.loading) {
             _showLoadingDialog(context);
+            // const LoadingWidget();
           } else {
             bool isDialogShowing = ModalRoute.of(context)?.isCurrent == false;
             if (isDialogShowing) {
@@ -497,14 +498,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       Utils.snackbar(context,
                                           "Kindly fill all required fields.");
                                     }
-                                    if (key.currentState!.validate()) {
-                                      context
-                                          .read<SignUpBloc>()
-                                          .add(SignUpButtonEvent(token: token));
-                                    } else {
-                                      Utils.snackbar(context,
-                                          "Kindly fill the all required fields.");
-                                    }
+                                    // if (key.currentState!.validate()) {
+                                    //   context
+                                    //       .read<SignUpBloc>()
+                                    //       .add(SignUpButtonEvent(token: token));
+                                    // } else {
+                                    //   Utils.snackbar(context,
+                                    //       "Kindly fill the all required fields.");
+                                    // }
                                   },
                                   title: "Registrarme",
                                   color: AppColors.buttonColor,
