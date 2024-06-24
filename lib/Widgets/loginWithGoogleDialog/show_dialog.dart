@@ -6,7 +6,7 @@ import 'package:itienda/Utils/appcolors.dart';
 import '../../Utils/Validation/validation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../customRadioButton/radio_button.dart';
-import 'package:itienda/Bloc/loginBloc/googleLoginBloc/google_bloc.dart';
+import 'package:itienda/Bloc/JobSeekerBloc/loginBloc/googleLoginBloc/google_bloc.dart';
 
 // ignore_for_file: must_be_immutable
 

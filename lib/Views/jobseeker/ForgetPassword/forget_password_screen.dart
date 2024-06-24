@@ -10,8 +10,8 @@ import '../../../Widgets/connectivity_check.dart';
 import '../../../Utils/Validation/validation.dart';
 import '../../../config/componants/loading_widget.dart';
 import 'package:itienda/Views/jobseeker/AuthenticationScreens/login.dart';
-import 'package:itienda/Bloc/forgetPasswordBloc/forget_password_bloc.dart';
 import 'package:itienda/Views/jobseeker/ForgetPassword/code_verification_screen.dart';
+import 'package:itienda/Bloc/JobSeekerBloc/forgetPasswordBloc/forget_password_bloc.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});

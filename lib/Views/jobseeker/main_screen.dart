@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../Widgets/custom_bottom_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itienda/Widgets/connectivity_check.dart';
 import 'package:itienda/Views/jobseeker/home_screen.dart';
+import '../../Widgets/BottomNavigationBar/JobSeeker/custom_bottom_bar.dart';
 import 'package:itienda/Views/jobseeker/ProfileScreens/profile_screen.dart';
-import 'package:itienda/Bloc/bottomNavigatonBarBloc/bottom_nav_bar_bloc.dart';
 import 'package:itienda/Views/jobseeker/CategoryScreens/categories_screen.dart';
+import 'package:itienda/Bloc/JobSeekerBloc/bottomNavigatonBarBloc/bottom_nav_bar_bloc.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

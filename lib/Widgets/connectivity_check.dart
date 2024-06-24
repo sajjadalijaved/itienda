@@ -1,7 +1,7 @@
 import 'no_connection_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../Bloc/conectivityBloc/connectivity_bloc.dart';
+import '../Bloc/JobSeekerBloc/conectivityBloc/connectivity_bloc.dart';
 
 // ignore_for_file: must_be_immutable
 

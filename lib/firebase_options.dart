@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -63,7 +60,19 @@ class DefaultFirebaseOptions {
     messagingSenderId: '843062927229',
     projectId: 'itienda-585d8',
     storageBucket: 'itienda-585d8.appspot.com',
+    androidClientId: '843062927229-ksl0n62v7q94c0n23mpndmonkq9ogor8.apps.googleusercontent.com',
     iosClientId: '843062927229-cl37fuc818mu1hjhdeb2du73g0ulabjk.apps.googleusercontent.com',
     iosBundleId: 'com.example.itienda',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAnPB_nOCCC8yczv1Ct1CRvBN4zdrIc11s',
+    appId: '1:843062927229:web:c361b8192fd568a770f614',
+    messagingSenderId: '843062927229',
+    projectId: 'itienda-585d8',
+    authDomain: 'itienda-585d8.firebaseapp.com',
+    storageBucket: 'itienda-585d8.appspot.com',
+    measurementId: 'G-MP3Y72V1V1',
+  );
+
 }

@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
           height: height,
           width: width,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), color: color),
+              borderRadius: BorderRadius.circular(5), color: color),
           child: Center(
             child: loading
                 ? const CircularProgressIndicator(

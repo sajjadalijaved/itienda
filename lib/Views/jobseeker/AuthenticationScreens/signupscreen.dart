@@ -13,12 +13,12 @@ import '../../../Utils/Validation/validation.dart';
 import 'package:itienda/config/routes/routes_name.dart';
 import '../../../config/componants/loading_widget.dart';
 import '../../../config/localStorage/local_storage.dart';
-import 'package:itienda/Bloc/signUpBloc/sign_up_bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import '../../businessOwner/main_screen_business_owner.dart';
-import '../../../Bloc/loginBloc/googleLoginBloc/google_bloc.dart';
 import 'package:itienda/Widgets/customRadioButton/radio_button.dart';
+import 'package:itienda/Bloc/JobSeekerBloc/signUpBloc/sign_up_bloc.dart';
 import 'package:itienda/Views/jobseeker/AuthenticationScreens/login.dart';
+import '../../../Bloc/JobSeekerBloc/loginBloc/googleLoginBloc/google_bloc.dart';
 
 // ignore_for_file: unused_element
 

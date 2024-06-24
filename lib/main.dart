@@ -6,9 +6,11 @@ import 'Widgets/connectivity_check.dart';
 import 'Views/SplashScreen/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'Bloc/conectivityBloc/connectivity_bloc.dart';
-import 'package:itienda/Bloc/loginBloc/googleLoginBloc/google_bloc.dart';
+import 'package:itienda/Views/jobseeker/main_screen.dart';
+import 'Bloc/JobSeekerBloc/conectivityBloc/connectivity_bloc.dart';
+import 'package:itienda/Views/businessOwner/main_screen_business_owner.dart';
 import 'package:itienda/Views/jobseeker/AuthenticationScreens/signupscreen.dart';
+import 'package:itienda/Bloc/JobSeekerBloc/loginBloc/googleLoginBloc/google_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
         ),
         onGenerateRoute: Routes.generateRoutes,
         home: const CheckConnectivity(
-          child: SignUpScreen(),
+          child: MainScreen(),
         ),
       ),
     );

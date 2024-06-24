@@ -14,8 +14,8 @@ import '../../../config/componants/loading_widget.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:itienda/Bloc/editProfileBloc/edit_profile_bloc.dart';
 import 'package:itienda/Widgets/custom_textfield_for_edit_profile.dart';
+import 'package:itienda/Bloc/JobSeekerBloc/editJobSeekerProfileBloc/edit_profile_bloc.dart';
 
 // ignore_for_file: use_build_context_synchronously
 

@@ -9,8 +9,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../config/componants/loading_widget.dart';
 import 'package:itienda/Widgets/connectivity_check.dart';
 import 'package:itienda/Utils/Validation/validation.dart';
-import 'package:itienda/Bloc/forgetPasswordBloc/forget_password_bloc.dart';
 import 'package:itienda/Views/jobseeker/ForgetPassword/forget_password_screen.dart';
+import 'package:itienda/Bloc/JobSeekerBloc/forgetPasswordBloc/forget_password_bloc.dart';
 import 'package:itienda/Views/jobseeker/ForgetPassword/confirm_new_password_screen.dart';
 
 // ignore_for_file: must_be_immutable

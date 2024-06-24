@@ -1,7 +1,7 @@
-import '../../Utils/enum.dart';
 import 'package:bloc/bloc.dart';
+import '../../../Utils/enum.dart';
 import 'package:equatable/equatable.dart';
-import '../../repository/auth_repository.dart';
+import '../../../repository/auth_repository.dart';
 
 part 'forget_password_events.dart';
 part 'forget_password_states.dart';

@@ -3,7 +3,7 @@ import '../Utils/enum.dart';
 import '../Utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:itienda/Bloc/editProfileBloc/edit_profile_bloc.dart';
+import 'package:itienda/Bloc/JobSeekerBloc/editJobSeekerProfileBloc/edit_profile_bloc.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 

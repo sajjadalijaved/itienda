@@ -52,10 +52,11 @@ class _HomeScreenBusinessOwnerState extends State<HomeScreenBusinessOwner> {
           decoration: const BoxDecoration(
               color: Colors.transparent,
               image: DecorationImage(
-                  image: AssetImage("assets/back.png"), fit: BoxFit.fill)),
+                  image: AssetImage("assets/images/ownerside.jpg"),
+                  fit: BoxFit.fill)),
           child: Padding(
             padding: EdgeInsets.only(
-              left: 24,
+              left: 20,
               top: height * 0.06,
               right: width * 0.04,
             ),
@@ -63,28 +64,35 @@ class _HomeScreenBusinessOwnerState extends State<HomeScreenBusinessOwner> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(
-                  "assets/itienda.png",
-                  height: 40,
-                  width: 106,
+                  "assets/businessside.png",
+                  height: 73,
+                  width: 182,
+                  fit: BoxFit.fill,
                 ),
                 SizedBox(
                   height: height * 0.03,
                 ),
-                const Text(
-                  "Bievenido(a)!",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontFamily: "Montserrat"),
+                Padding(
+                  padding: EdgeInsets.only(left: width * 0.05),
+                  child: const Text(
+                    "Bievenido(a)!",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontFamily: "Montserrat"),
+                  ),
                 ),
-                Text(
-                  widget.businessName,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontFamily: "Montserrat"),
+                Padding(
+                  padding: EdgeInsets.only(left: width * 0.05),
+                  child: Text(
+                    widget.businessName,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontFamily: "Montserrat"),
+                  ),
                 ),
                 SizedBox(
                   height: height * 0.05,
@@ -97,7 +105,7 @@ class _HomeScreenBusinessOwnerState extends State<HomeScreenBusinessOwner> {
                         "assets/add.png",
                         height: 30,
                         width: 30,
-                        color: const Color(0xFF365830),
+                        color: Colors.white,
                       ),
                       const SizedBox(
                         width: 10,
@@ -124,7 +132,7 @@ class _HomeScreenBusinessOwnerState extends State<HomeScreenBusinessOwner> {
                         "assets/add.png",
                         height: 30,
                         width: 30,
-                        color: const Color(0xFF365830),
+                        color: Colors.white,
                       ),
                       const SizedBox(
                         width: 10,
@@ -143,58 +151,55 @@ class _HomeScreenBusinessOwnerState extends State<HomeScreenBusinessOwner> {
                 SizedBox(
                   height: height * 0.10,
                 ),
-                Center(
-                  child: Container(
-                    height: 78,
-                    width: 248,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/ho.png"), fit: BoxFit.fill),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.only(left: 30),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                Container(
+                  margin: EdgeInsets.only(left: width * 0.05),
+                  height: 109,
+                  width: width,
+                  padding: EdgeInsets.only(left: width * 0.05),
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/ho.png"), fit: BoxFit.fill),
+                  ),
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          "‌‌¿Buscas Mejores Candidatos?",
+                          style: TextStyle(
+                              color: AppColors.textWhiteColor,
+                              fontSize: 14,
+                              fontFamily: "Montserrat"),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
                         children: [
                           FittedBox(
                             fit: BoxFit.contain,
                             child: Text(
-                              "‌¿Mejores Resultados?",
+                              "Actualizar perfil",
                               style: TextStyle(
                                   color: AppColors.textWhiteColor,
-                                  fontSize: 14,
+                                  fontSize: 10,
                                   fontFamily: "Montserrat"),
                             ),
                           ),
                           SizedBox(
-                            height: 5,
+                            width: 10,
                           ),
-                          Row(
-                            children: [
-                              FittedBox(
-                                fit: BoxFit.contain,
-                                child: Text(
-                                  "Actualizar perfil",
-                                  style: TextStyle(
-                                      color: AppColors.textWhiteColor,
-                                      fontSize: 10,
-                                      fontFamily: "Montserrat"),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.arrow_forward,
-                                size: 15,
-                                color: Color(0xFFFFFFFF),
-                              )
-                            ],
+                          Icon(
+                            Icons.arrow_forward,
+                            size: 15,
+                            color: Color(0xFFFFFFFF),
                           )
                         ],
-                      ),
-                    ),
+                      )
+                    ],
                   ),
                 ),
               ],

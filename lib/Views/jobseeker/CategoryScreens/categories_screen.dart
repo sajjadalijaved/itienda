@@ -63,7 +63,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 18),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
                       "assets/category.png",
@@ -116,7 +115,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                             );
                           },
                           child: Container(
-                            height: 40,
+                            height: width >= 744 ? 60 : 50,
                             margin: EdgeInsets.only(bottom: height * 0.01),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),

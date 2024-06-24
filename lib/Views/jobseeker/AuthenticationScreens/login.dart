@@ -7,16 +7,16 @@ import '../../../Widgets/custombutton.dart';
 import 'package:itienda/Utils/appcolors.dart';
 import '../../../Widgets/customtextfield.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../Bloc/loginBloc/login_bloc.dart';
 import '../../../Widgets/connectivity_check.dart';
 import '../../../Utils/Validation/validation.dart';
 import 'package:itienda/Views/jobseeker/main_screen.dart';
+import '../../../Bloc/JobSeekerBloc/loginBloc/login_bloc.dart';
 import 'package:itienda/config/componants/loading_widget.dart';
 import 'package:itienda/config/localStorage/local_storage.dart';
-import 'package:itienda/Bloc/loginBloc/googleLoginBloc/google_bloc.dart';
 import 'package:itienda/Views/businessOwner/main_screen_business_owner.dart';
 import 'package:itienda/Views/jobseeker/AuthenticationScreens/signupscreen.dart';
 import 'package:itienda/Views/jobseeker/ForgetPassword/forget_password_screen.dart';
+import 'package:itienda/Bloc/JobSeekerBloc/loginBloc/googleLoginBloc/google_bloc.dart';
 
 // ignore_for_file: use_build_context_synchronously
 

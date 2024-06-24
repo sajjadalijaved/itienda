@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:itienda/Utils/appcolors.dart';
-import 'package:itienda/Bloc/bottomNavigatonBarBloc/bottom_nav_bar_bloc.dart';
+import 'package:itienda/Bloc/JobSeekerBloc/bottomNavigatonBarBloc/bottom_nav_bar_bloc.dart';
 
 // ignore_for_file: use_key_in_widget_constructors
 
@@ -27,7 +27,7 @@ class _BottomBarState extends State<BottomBar> {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * .120,
+      height: size.width >= 744 ? size.height * .140 : size.height * .120,
       width: size.width,
       decoration: const BoxDecoration(
         border: BorderDirectional(
@@ -56,8 +56,8 @@ class _BottomBarState extends State<BottomBar> {
                 curve: Curves.fastLinearToSlowEaseIn,
                 margin: EdgeInsets.only(
                   bottom: index == widget.tabIndex ? 0 : size.width * .029,
-                  right: size.width * .1,
-                  left: size.width * .1,
+                  right: size.width * .10,
+                  left: size.width * .10,
                 ),
                 width: size.width * .128,
                 height: index == widget.tabIndex ? size.width * .016 : 0,
@@ -69,7 +69,7 @@ class _BottomBarState extends State<BottomBar> {
                 ),
               ),
               Image.asset(widget.icons[index],
-                  height: 40, width: 40, color: AppColors.textWhiteColor
+                  height: 35, width: 35, color: AppColors.textWhiteColor
                   // index == mainScreenViewModel.currentTab
                   //     ? const Color(0xFF365830)
                   //     : const Color(0xFF766B6B),
