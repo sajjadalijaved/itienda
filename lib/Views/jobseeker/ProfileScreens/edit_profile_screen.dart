@@ -362,613 +362,573 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 ),
 
                                 /// genero
+                                text("Género", 12, fontWeight: FontWeight.w500),
                                 SizedBox(
-                                    height: height * 0.02,
-                                    child: text("Género", 12,
-                                        fontWeight: FontWeight.w500)),
-                                SizedBox(
-                                  height: height * 0.04,
-                                  child: BlocBuilder<EditProfileBloc,
-                                      EditProfileStates>(
-                                    builder: (context, state) {
-                                      return Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(const MaleBoxEvent());
-                                            },
-                                            child: row(
-                                                state.male,
-                                                profileScreenText(
-                                                    "Masculino", 12, 10, 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                          SizedBox(
-                                            width: width * 0.16,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(
-                                                    const FeMaleBoxEvent(),
-                                                  );
-                                            },
-                                            child: row(
-                                                state.female,
-                                                profileScreenText(
-                                                    "Feminino", 12, 10, 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
+                                  height: height * 0.002,
+                                ),
+                                BlocBuilder<EditProfileBloc, EditProfileStates>(
+                                  builder: (context, state) {
+                                    return Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .read<EditProfileBloc>()
+                                                .add(const MaleBoxEvent());
+                                          },
+                                          child: row(
+                                              state.male,
+                                              profileScreenText(
+                                                  "Masculino", 12, 10, 12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                        SizedBox(
+                                          width: width >= 744
+                                              ? width * 0.30
+                                              : width * 0.16,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            context.read<EditProfileBloc>().add(
+                                                  const FeMaleBoxEvent(),
+                                                );
+                                          },
+                                          child: row(
+                                              state.female,
+                                              profileScreenText(
+                                                  "Feminino", 12, 10, 12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                      ],
+                                    );
+                                  },
                                 ),
 
                                 /// Nacionalidad
+                                text("Nacionalidad", 12,
+                                    fontWeight: FontWeight.w500),
                                 SizedBox(
-                                    height: height * 0.02,
-                                    child: text("Nacionalidad", 12,
-                                        fontWeight: FontWeight.w500)),
-
-                                SizedBox(
-                                  height: height * 0.04,
-                                  child: BlocBuilder<EditProfileBloc,
-                                      EditProfileStates>(
-                                    builder: (context, state) {
-                                      return Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(
-                                                    const MexicanBoxEvent(),
-                                                  );
-                                            },
-                                            child: row(
-                                                state.mexican,
-                                                profileScreenText(
-                                                    "Mexicano(a)", 12, 10, 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                          SizedBox(
-                                            width: width * 0.131,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(
-                                                      const ForignorBoxEvent());
-                                            },
-                                            child: row(
-                                                state.foreigner,
-                                                profileScreenText(
-                                                    "Extranjero(a)", 12, 10, 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
+                                  height: height * 0.002,
+                                ),
+                                BlocBuilder<EditProfileBloc, EditProfileStates>(
+                                  builder: (context, state) {
+                                    return Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            context.read<EditProfileBloc>().add(
+                                                  const MexicanBoxEvent(),
+                                                );
+                                          },
+                                          child: row(
+                                              state.mexican,
+                                              profileScreenText(
+                                                  "Mexicano(a)", 12, 10, 12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                        SizedBox(
+                                          width: width >= 744
+                                              ? width * 0.29
+                                              : width * 0.131,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .read<EditProfileBloc>()
+                                                .add(const ForignorBoxEvent());
+                                          },
+                                          child: row(
+                                              state.foreigner,
+                                              profileScreenText(
+                                                  "Extranjero(a)", 12, 10, 12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                      ],
+                                    );
+                                  },
                                 ),
 
                                 //// Municipio
+                                profileScreenText(
+                                    "Municipio de Residencia", 12, 12, 14,
+                                    fontWeight: FontWeight.w500),
                                 SizedBox(
-                                    height: height * 0.022,
-                                    child: profileScreenText(
-                                        "Municipio de Residencia", 12, 12, 14,
-                                        fontWeight: FontWeight.w500)),
-                                SizedBox(
-                                  height: height * 0.08,
-                                  child: Column(
-                                    children: [
-                                      BlocBuilder<EditProfileBloc,
-                                          EditProfileStates>(
-                                        builder: (context, state) {
-                                          return Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              SizedBox(
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    context
-                                                        .read<EditProfileBloc>()
-                                                        .add(
-                                                            const PuertoBoxEvent());
-                                                  },
-                                                  child: row(
-                                                      state.puerto,
-                                                      profileScreenText(
-                                                          "Puerto Vallarta,Jal.",
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          12,
-                                                          10,
-                                                          12),
-                                                      context),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: width * 0.038,
-                                              ),
-                                              GestureDetector(
+                                  height: height * 0.002,
+                                ),
+                                Column(
+                                  children: [
+                                    BlocBuilder<EditProfileBloc,
+                                        EditProfileStates>(
+                                      builder: (context, state) {
+                                        return Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            SizedBox(
+                                              child: GestureDetector(
                                                 onTap: () {
                                                   context
                                                       .read<EditProfileBloc>()
                                                       .add(
-                                                          const CaboBoxEvent());
+                                                          const PuertoBoxEvent());
                                                 },
                                                 child: row(
-                                                    state.cabo,
-                                                    FittedBox(
-                                                      fit: BoxFit.scaleDown,
-                                                      child: profileScreenText(
-                                                          "Cabo Corrientes,Jal.",
-                                                          12,
-                                                          10,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          12),
-                                                    ),
+                                                    state.puerto,
+                                                    profileScreenText(
+                                                        "Puerto Vallarta,Jal.",
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        12,
+                                                        10,
+                                                        12),
                                                     context),
                                               ),
-                                            ],
-                                          );
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.005,
-                                      ),
-                                      BlocBuilder<EditProfileBloc,
-                                          EditProfileStates>(
-                                        builder: (context, state) {
-                                          return GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(const BahiaBoxEvent());
-                                            },
-                                            child: row(
-                                                state.bahia,
-                                                profileScreenText(
-                                                    "Bahia Banderas, Nay.",
-                                                    12,
-                                                    10,
-                                                    12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
+                                            ),
+                                            SizedBox(
+                                              width: width >= 744
+                                                  ? width * 0.263
+                                                  : width * 0.038,
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                context
+                                                    .read<EditProfileBloc>()
+                                                    .add(const CaboBoxEvent());
+                                              },
+                                              child: row(
+                                                  state.cabo,
+                                                  FittedBox(
+                                                    fit: BoxFit.scaleDown,
+                                                    child: profileScreenText(
+                                                        "Cabo Corrientes,Jal.",
+                                                        12,
+                                                        10,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        12),
+                                                  ),
+                                                  context),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.005,
+                                    ),
+                                    BlocBuilder<EditProfileBloc,
+                                        EditProfileStates>(
+                                      builder: (context, state) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .read<EditProfileBloc>()
+                                                .add(const BahiaBoxEvent());
+                                          },
+                                          child: row(
+                                              state.bahia,
+                                              profileScreenText(
+                                                  "Bahia Banderas, Nay.",
+                                                  12,
+                                                  10,
+                                                  12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
 
                                 ///Academico
-                                SizedBox(
-                                    height: height * 0.028,
-                                    child: text("ACADÉMICO", 18,
-                                        fontWeight: FontWeight.w600)),
+                                text("ACADÉMICO", 18,
+                                    fontWeight: FontWeight.w600),
                                 SizedBox(
                                   height: height * 0.004,
                                 ),
-                                SizedBox(
-                                  height: height * 0.02,
-                                  child: text("Nivel de Estudios", 12,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(
-                                  height: height * 0.10,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: height * 0.01,
-                                      ),
-                                      BlocBuilder<EditProfileBloc,
-                                          EditProfileStates>(
-                                        builder: (context, state) {
-                                          return Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  context
-                                                      .read<EditProfileBloc>()
-                                                      .add(
-                                                          const BasicBoxEvent());
-                                                },
-                                                child: row(
-                                                    state.basic,
-                                                    profileScreenText(
-                                                        "Básico", 12, 10, 12,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                    context),
-                                              ),
-                                              SizedBox(
-                                                width: width * 0.21,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  context
-                                                      .read<EditProfileBloc>()
-                                                      .add(
-                                                          const UpperMiddleBoxEvent());
-                                                },
-                                                child: row(
-                                                    state.upperMiddle,
-                                                    profileScreenText(
-                                                        "Medio Superior",
-                                                        12,
-                                                        10,
-                                                        12,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                    context),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.01,
-                                      ),
-                                      BlocBuilder<EditProfileBloc,
-                                          EditProfileStates>(
-                                        builder: (context, state) {
-                                          return Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  context
-                                                      .read<EditProfileBloc>()
-                                                      .add(
-                                                          const SuperiorBoxEvent());
-                                                },
-                                                child: row(
-                                                    state.superior,
-                                                    profileScreenText(
-                                                        "Superior", 12, 10, 12,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                    context),
-                                              ),
-                                              SizedBox(
-                                                width: width * 0.19,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  context
-                                                      .read<EditProfileBloc>()
-                                                      .add(
-                                                          const PostgradoBoxEvent());
-                                                },
-                                                child: row(
-                                                    state.postgrado,
-                                                    profileScreenText(
-                                                        "Postgrado", 12, 10, 12,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                    context),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
+                                text("Nivel de Estudios", 12,
+                                    fontWeight: FontWeight.w500),
+                                Column(
+                                  children: [
+                                    SizedBox(
+                                      height: height * 0.01,
+                                    ),
+                                    BlocBuilder<EditProfileBloc,
+                                        EditProfileStates>(
+                                      builder: (context, state) {
+                                        return Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () {
+                                                context
+                                                    .read<EditProfileBloc>()
+                                                    .add(const BasicBoxEvent());
+                                              },
+                                              child: row(
+                                                  state.basic,
+                                                  profileScreenText(
+                                                      "Básico", 12, 10, 12,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                  context),
+                                            ),
+                                            SizedBox(
+                                              width: width >= 744
+                                                  ? width * 0.32
+                                                  : width * 0.21,
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                context.read<EditProfileBloc>().add(
+                                                    const UpperMiddleBoxEvent());
+                                              },
+                                              child: row(
+                                                  state.upperMiddle,
+                                                  profileScreenText(
+                                                      "Medio Superior",
+                                                      12,
+                                                      10,
+                                                      12,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                  context),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.01,
+                                    ),
+                                    BlocBuilder<EditProfileBloc,
+                                        EditProfileStates>(
+                                      builder: (context, state) {
+                                        return Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () {
+                                                context
+                                                    .read<EditProfileBloc>()
+                                                    .add(
+                                                        const SuperiorBoxEvent());
+                                              },
+                                              child: row(
+                                                  state.superior,
+                                                  profileScreenText(
+                                                      "Superior", 12, 10, 12,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                  context),
+                                            ),
+                                            SizedBox(
+                                              width: width >= 744
+                                                  ? width * 0.313
+                                                  : width * 0.19,
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                context
+                                                    .read<EditProfileBloc>()
+                                                    .add(
+                                                        const PostgradoBoxEvent());
+                                              },
+                                              child: row(
+                                                  state.postgrado,
+                                                  profileScreenText(
+                                                      "Postgrado", 12, 10, 12,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                  context),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
                                 // Nivel de Ingles
+                                text("Nivel de Inglés", 12,
+                                    fontWeight: FontWeight.w500),
                                 SizedBox(
-                                    height: height * 0.022,
-                                    child: text("Nivel de Inglés", 12,
-                                        fontWeight: FontWeight.w500)),
-                                SizedBox(
-                                  height: height * 0.08,
-                                  child: Column(
-                                    children: [
-                                      BlocBuilder<EditProfileBloc,
-                                          EditProfileStates>(
-                                        builder: (context, state) {
-                                          return Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  context
-                                                      .read<EditProfileBloc>()
-                                                      .add(
-                                                          const NuloBoxEvent());
-                                                },
-                                                child: row(
-                                                    state.nulo,
-                                                    profileScreenText(
-                                                        "Nulo", 12, 10, 12,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                    context),
-                                              ),
-                                              SizedBox(
-                                                width: width * 0.248,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  context
-                                                      .read<EditProfileBloc>()
-                                                      .add(
-                                                          const Basic1BoxEvent());
-                                                },
-                                                child: row(
-                                                    state.basic1,
-                                                    profileScreenText(
-                                                        "Básico", 12, 10, 12,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                    context),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.01,
-                                      ),
-                                      BlocBuilder<EditProfileBloc,
-                                          EditProfileStates>(
-                                        builder: (context, state) {
-                                          return Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  context
-                                                      .read<EditProfileBloc>()
-                                                      .add(
-                                                          const IntermediateBoxEvent());
-                                                },
-                                                child: row(
-                                                    state.intermediate,
-                                                    profileScreenText(
-                                                        "Intermedio",
-                                                        12,
-                                                        10,
-                                                        12,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                    context),
-                                              ),
-                                              SizedBox(
-                                                width: width * 0.164,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  context
-                                                      .read<EditProfileBloc>()
-                                                      .add(
-                                                          const AdvanceBoxEvent());
-                                                },
-                                                child: row(
-                                                    state.advanced,
-                                                    profileScreenText(
-                                                        "Avanzado", 12, 10, 12,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                    context),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
+                                  height: height * 0.002,
+                                ),
+                                Column(
+                                  children: [
+                                    BlocBuilder<EditProfileBloc,
+                                        EditProfileStates>(
+                                      builder: (context, state) {
+                                        return Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () {
+                                                context
+                                                    .read<EditProfileBloc>()
+                                                    .add(const NuloBoxEvent());
+                                              },
+                                              child: row(
+                                                  state.nulo,
+                                                  profileScreenText(
+                                                      "Nulo", 12, 10, 12,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                  context),
+                                            ),
+                                            SizedBox(
+                                              width: width >= 744
+                                                  ? width * 0.33
+                                                  : width * 0.248,
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                context
+                                                    .read<EditProfileBloc>()
+                                                    .add(
+                                                        const Basic1BoxEvent());
+                                              },
+                                              child: row(
+                                                  state.basic1,
+                                                  profileScreenText(
+                                                      "Básico", 12, 10, 12,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                  context),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.01,
+                                    ),
+                                    BlocBuilder<EditProfileBloc,
+                                        EditProfileStates>(
+                                      builder: (context, state) {
+                                        return Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () {
+                                                context.read<EditProfileBloc>().add(
+                                                    const IntermediateBoxEvent());
+                                              },
+                                              child: row(
+                                                  state.intermediate,
+                                                  profileScreenText(
+                                                      "Intermedio", 12, 10, 12,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                  context),
+                                            ),
+                                            SizedBox(
+                                              width: width >= 744
+                                                  ? width * 0.303
+                                                  : width * 0.164,
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                context
+                                                    .read<EditProfileBloc>()
+                                                    .add(
+                                                        const AdvanceBoxEvent());
+                                              },
+                                              child: row(
+                                                  state.advanced,
+                                                  profileScreenText(
+                                                      "Avanzado", 12, 10, 12,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                  context),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
 
                                 // ¿Tienes domínio de otros idiomas?
 
+                                profileScreenText(
+                                    "¿Tienes domínio de otros idiomas?",
+                                    12,
+                                    12,
+                                    14,
+                                    fontWeight: FontWeight.w500),
                                 SizedBox(
-                                    height: height * 0.022,
-                                    child: profileScreenText(
-                                        "¿Tienes domínio de otros idiomas?",
-                                        12,
-                                        12,
-                                        14,
-                                        fontWeight: FontWeight.w500)),
-                                SizedBox(
-                                  height: height * 0.04,
-                                  child: BlocBuilder<EditProfileBloc,
-                                      EditProfileStates>(
-                                    builder: (context, state) {
-                                      return Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(const YesBoxEvent());
-                                            },
-                                            child: row(
-                                                state.yes,
-                                                profileScreenText(
-                                                    "Sí", 12, 10, 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                          SizedBox(
-                                            width: width * 0.29,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(const NoBoxEvent());
-                                            },
-                                            child: row(
-                                                state.no,
-                                                profileScreenText(
-                                                    "No", 12, 10, 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
+                                  height: height * 0.002,
+                                ),
+                                BlocBuilder<EditProfileBloc, EditProfileStates>(
+                                  builder: (context, state) {
+                                    return Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .read<EditProfileBloc>()
+                                                .add(const YesBoxEvent());
+                                          },
+                                          child: row(
+                                              state.yes,
+                                              profileScreenText(
+                                                  "Sí", 12, 10, 12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                        SizedBox(
+                                          width: width >= 744
+                                              ? width * 0.342
+                                              : width * 0.29,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .read<EditProfileBloc>()
+                                                .add(const NoBoxEvent());
+                                          },
+                                          child: row(
+                                              state.no,
+                                              profileScreenText(
+                                                  "No", 12, 10, 12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                      ],
+                                    );
+                                  },
                                 ),
 
                                 // PROFESIONAL
 
-                                SizedBox(
-                                    height: height * 0.03,
-                                    child: text("PROFESIONAL", 18,
-                                        fontWeight: FontWeight.w600)),
-                                SizedBox(
-                                    height: height * 0.03,
-                                    width: width,
-                                    child: profileScreenText(
-                                        "¿Estás trabajando actualmente?",
-                                        12,
-                                        12,
-                                        14,
-                                        fontWeight: FontWeight.w500)),
-                                SizedBox(
-                                  height: height * 0.04,
-                                  child: BlocBuilder<EditProfileBloc,
-                                      EditProfileStates>(
-                                    builder: (context, state) {
-                                      return Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(const Yes1BoxEvent());
-                                            },
-                                            child: row(
-                                                state.yes1,
-                                                profileScreenText(
-                                                    "Sí", 12, 10, 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                          SizedBox(
-                                            width: width * 0.29,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(const No1BoxEvent());
-                                            },
-                                            child: row(
-                                                state.no1,
-                                                profileScreenText(
-                                                    "No", 12, 10, 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
+                                text("PROFESIONAL", 18,
+                                    fontWeight: FontWeight.w600),
+                                profileScreenText(
+                                    "¿Estás trabajando actualmente?",
+                                    12,
+                                    12,
+                                    14,
+                                    fontWeight: FontWeight.w500),
+                                BlocBuilder<EditProfileBloc, EditProfileStates>(
+                                  builder: (context, state) {
+                                    return Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .read<EditProfileBloc>()
+                                                .add(const Yes1BoxEvent());
+                                          },
+                                          child: row(
+                                              state.yes1,
+                                              profileScreenText(
+                                                  "Sí", 12, 10, 12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                        SizedBox(
+                                          width: width >= 744
+                                              ? width * 0.342
+                                              : width * 0.29,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .read<EditProfileBloc>()
+                                                .add(const No1BoxEvent());
+                                          },
+                                          child: row(
+                                              state.no1,
+                                              profileScreenText(
+                                                  "No", 12, 10, 12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                      ],
+                                    );
+                                  },
                                 ),
+                                profileScreenText(
+                                    "¿Tienes disponibilidad para empezar de inmediato?",
+                                    12,
+                                    12,
+                                    14,
+                                    fontWeight: FontWeight.w500),
                                 SizedBox(
-                                    height: height * 0.022,
-                                    child: profileScreenText(
-                                        "¿Tienes disponibilidad para empezar de inmediato?",
-                                        12,
-                                        12,
-                                        14,
-                                        fontWeight: FontWeight.w500)),
-                                SizedBox(
-                                  height: height * 0.04,
-                                  child: BlocBuilder<EditProfileBloc,
-                                      EditProfileStates>(
-                                    builder: (context, state) {
-                                      return Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(const Yes2BoxEvent());
-                                            },
-                                            child: row(
-                                                state.yes2,
-                                                profileScreenText(
-                                                    "Sí", 12, 10, 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                          SizedBox(
-                                            width: width * 0.29,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              context
-                                                  .read<EditProfileBloc>()
-                                                  .add(const No2BoxEvent());
-                                            },
-                                            child: row(
-                                                state.no2,
-                                                profileScreenText(
-                                                    "No", 12, 10, 12,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                context),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
+                                  height: height * 0.002,
+                                ),
+                                BlocBuilder<EditProfileBloc, EditProfileStates>(
+                                  builder: (context, state) {
+                                    return Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .read<EditProfileBloc>()
+                                                .add(const Yes2BoxEvent());
+                                          },
+                                          child: row(
+                                              state.yes2,
+                                              profileScreenText(
+                                                  "Sí", 12, 10, 12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                        SizedBox(
+                                          width: width >= 744
+                                              ? width * 0.342
+                                              : width * 0.29,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            context
+                                                .read<EditProfileBloc>()
+                                                .add(const No2BoxEvent());
+                                          },
+                                          child: row(
+                                              state.no2,
+                                              profileScreenText(
+                                                  "No", 12, 10, 12,
+                                                  fontWeight: FontWeight.w400),
+                                              context),
+                                        ),
+                                      ],
+                                    );
+                                  },
                                 ),
                                 // ¿En cuales areas te gustaria actuar?Escoge hasta 3 opciones
+                                profileScreenText(
+                                    "¿En cuales areas te gustaria actuar? Escoge hasta 3 opciones.",
+                                    12,
+                                    12,
+                                    14,
+                                    fontWeight: FontWeight.w500),
                                 SizedBox(
-                                    height: height * 0.05,
-                                    child: profileScreenText(
-                                        "¿En cuales areas te gustaria actuar? Escoge hasta 3 opciones.",
-                                        12,
-                                        12,
-                                        14,
-                                        fontWeight: FontWeight.w500)),
+                                  height: height * 0.002,
+                                ),
                                 Column(
                                   children: [
                                     BlocBuilder<EditProfileBloc,
@@ -995,7 +955,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                   context),
                                             ),
                                             SizedBox(
-                                              width: width * 0.12,
+                                              width: width >= 744
+                                                  ? width * 0.287
+                                                  : width * 0.12,
                                             ),
                                             GestureDetector(
                                               onTap: () {
@@ -1044,7 +1006,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                   context),
                                             ),
                                             SizedBox(
-                                              width: width * 0.14,
+                                              width: width >= 744
+                                                  ? width * 0.293
+                                                  : width * 0.14,
                                             ),
                                             GestureDetector(
                                               onTap: () {
@@ -1090,7 +1054,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                   context),
                                             ),
                                             SizedBox(
-                                              width: width * 0.12,
+                                              width: width >= 744
+                                                  ? width * 0.285
+                                                  : width * 0.12,
                                             ),
                                             GestureDetector(
                                               onTap: () {
@@ -1135,7 +1101,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                   context),
                                             ),
                                             SizedBox(
-                                              width: width * 0.194,
+                                              width: width >= 744
+                                                  ? width * 0.306
+                                                  : width * 0.194,
                                             ),
                                             GestureDetector(
                                               onTap: () {
@@ -1180,7 +1148,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                   context),
                                             ),
                                             SizedBox(
-                                              width: width * 0.184,
+                                              width: width >= 744
+                                                  ? width * 0.303
+                                                  : width * 0.184,
                                             ),
                                             GestureDetector(
                                               onTap: () {

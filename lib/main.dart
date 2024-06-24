@@ -3,13 +3,10 @@ import 'config/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'Widgets/connectivity_check.dart';
-import 'Views/SplashScreen/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:itienda/Views/jobseeker/main_screen.dart';
 import 'Bloc/JobSeekerBloc/conectivityBloc/connectivity_bloc.dart';
 import 'package:itienda/Views/businessOwner/main_screen_business_owner.dart';
-import 'package:itienda/Views/jobseeker/AuthenticationScreens/signupscreen.dart';
 import 'package:itienda/Bloc/JobSeekerBloc/loginBloc/googleLoginBloc/google_bloc.dart';
 
 void main() async {
@@ -50,8 +47,10 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF006341)),
         ),
         onGenerateRoute: Routes.generateRoutes,
-        home: const CheckConnectivity(
-          child: MainScreen(),
+        home: CheckConnectivity(
+          child: MainScreenBusinessOwner(
+            businessName: "abc",
+          ),
         ),
       ),
     );
